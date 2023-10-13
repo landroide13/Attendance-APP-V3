@@ -1,0 +1,12 @@
+@import "./assets/css/themes/lite-blue.css";
+@import "./assets/css/themes/lite-blue.min.css";
+
+@import "./assets/css/plugins/perfect-scrollbar.css";
+@import "./assets/css/plugins/perfect-scrollbar.min.css";
+
+@import "./assets/css/bootstrap-rtl.css";
+@import "./assets/css/bootstrap-rtl.min.css";
+@import "./assets/css/third-party.bundle.css";
+
+@import "./assets/css/plugins/bootstrap/bootstrap.css";
+@import "./assets/css/plugins/bootstrap/bootstrap.min.css";
