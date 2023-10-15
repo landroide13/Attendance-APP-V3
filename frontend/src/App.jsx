@@ -91,7 +91,7 @@ function App() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2">UI kits</label><a href="#"> UI kits</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="/register"> Manage Users</a>
                         </div>
                       </div>
                     </li>
@@ -99,7 +99,7 @@ function App() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2">Extra UI kits</label><a href="#"> Extra UI kits</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="#">Manage Students</a>
                         </div>
                       </div>
                     </li>
@@ -107,7 +107,7 @@ function App() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2">Apps</label><a href="#"> Apps</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="#"> Manage enrolments</a>
                         </div>
                       </div>
                     </li>
@@ -115,7 +115,7 @@ function App() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2">Forms</label><a href="#"> Logout</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="/attendance">Manage Attendance</a>
                         </div>
                       </div>
                     </li>       
@@ -129,7 +129,7 @@ function App() {
            
             <div className="main-content">
                 <div className="breadcrumb">
-                    <h1 className="me-2 ">Madrasahtul Islamiyah</h1>
+                    <h1 className="me-2">Madrasahtul Islamiyah</h1>
                     <ul>
                       <li><a href="">Dashboard</a></li>
                     </ul>
