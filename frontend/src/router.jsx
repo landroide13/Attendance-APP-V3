@@ -1,16 +1,21 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Signup from './views/Signup';
 import Login from './views/Login';
 import Attendance from './views/Attendance';
 import GuessLayout from './components/GuessLayout';
 import UsersLayout from './components/UsersLayout';
+import Dashboard from './views/Dashboard';
 
 const router = createBrowserRouter([
     {
         path:'/',
         element:<GuessLayout />,
         children: [
+            {
+                path: '/',
+                element: <Navigate to="/login" />
+            },
             {
                 path: '/login',
                 element: <Login />
@@ -23,7 +28,7 @@ const router = createBrowserRouter([
         children:[
             {
                 path: '/',
-                element: <App />
+                element: <Dashboard />
             },
         
             {
