@@ -5,17 +5,13 @@ function Signup() {
     const img = new URL('../assets/images/madarsa_logo.jpg', import.meta.url).href
 
   return (
-
-    <div className="main-content-wrap d-flex flex-column">
-            
         <div className="row">
             <div className="col-md-12">
                 <div className="card mb-4">
                     <div className="card-body">
                         <div className="card-title mb-3">
-                            <div className="breadcrumb">
-                                <div class="logo"><img src={ img } alt="" style={{ width: 50, height: 50}} /></div>
-                                <h1>Register User</h1>
+                            <div className="breadcrumb" style={{ background: '#FFCB70' }}>
+                                <h1 className='text-white'>Register User</h1>
                             </div>
                         </div>
                             <form>
@@ -60,7 +56,7 @@ function Signup() {
                 </div>
             </div>
         </div>
-    </div>                
+                  
   )
 }
 

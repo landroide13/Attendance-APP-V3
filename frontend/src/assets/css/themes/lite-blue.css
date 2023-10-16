@@ -7,7 +7,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-  --blue: #064d71;
+  --blue: #020381;
   --indigo: #3F51B5;
   --purple: #663399;
   --pink: #CB3066;
@@ -20,7 +20,7 @@
   --white: #fff;
   --gray: #55aad4;
   --gray-dark: #2f8ebd;
-  --blue: #064d71;
+  --blue: #020381;
   --indigo: #3F51B5;
   --purple: #663399;
   --pink: #CB3066;
@@ -6237,9 +6237,9 @@ button.close {
 .align-text-top {
   vertical-align: text-top !important;
 }
-
+/* colors */
 .bg-primary {
-  background-color: #16b1ff !important;
+  background-color: #020381 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,

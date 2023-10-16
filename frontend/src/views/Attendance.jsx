@@ -3,10 +3,10 @@ import React from 'react'
 function Attendance() {
   return (
     <>
-        <div className="main-content-wrap d-flex flex-column">
+        
             <div className="main-content">
-                <div className="breadcrumb">
-                    <h1>Attendance</h1>
+                <div className="breadcrumb" style={{ background: '#FFCB70' }}>
+                    <h1 className="text-white">Students Attendance</h1>
                 </div>
                 <div className="separator-breadcrumb border-top"></div>
                 
@@ -83,9 +83,9 @@ function Attendance() {
                     </div>
                 </div>
             </div>
-        </div>
+       
 
-        <div className="col-md-12 mt-5 text-center">
+        <div className="col-md-12 text-center">
             <nav aria-label="Page navigation example">
                 <ul className="pagination d-inline-flex">
                     <li className="page-item">
@@ -106,9 +106,7 @@ function Attendance() {
                 </ul>
             </nav>
         </div>
-               
-      
-    </>
+    </>     
   )
 }
 
