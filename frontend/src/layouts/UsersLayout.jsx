@@ -26,7 +26,7 @@ function UsersLayout() {
             <div className="header-part-right">
                 <div className="dropdown"><i className="i-Safe-Box text-muted header-icon text-white-50" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div className="menu-icon-grid" ><a href="#"><i className="i-Shop-4"></i> Home</a><a href="#"><i className="i-Library"></i> UI Kits</a><a href="#"><i className="i-Drop"></i> Apps</a><a href="#"><i className="i-File-Clipboard-File--Text"></i> Forms</a><a href="#"><i className="i-Checked-User"></i> Sessions</a><a href="#"><i className="i-Ambulance"></i> Support</a></div>
+                    <div className="menu-icon-grid" ><a href="#"><i className="i-Shop-4"></i> Home</a><a href="#"><i className="i-Library"></i> UI Kits</a><a href="#"><i className="i-Drop"></i> Apps</a><a href="#"><i className="i-File-Clipboard-File--Text"></i> Forms</a><a href="/profile"><i className="i-Checked-User"></i>Profile</a><a href="#"><i className="i-Ambulance"></i> Support</a></div>
                   </div>
                 </div>
                 
@@ -78,7 +78,7 @@ function UsersLayout() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2"></label><a href="/register"> Manage Users</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="/manageUsers"> Manage Users</a>
                         </div>
                       </div>
                     </li>
@@ -86,7 +86,7 @@ function UsersLayout() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2"></label><a href="#">Manage Students</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="/manageStudents">Manage Students</a>
                         </div>
                       </div>
                     </li>

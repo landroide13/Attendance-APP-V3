@@ -3,9 +3,12 @@ import App from './App';
 import Signup from './views/Signup';
 import Login from './views/Login';
 import Attendance from './views/Attendance';
-import GuessLayout from './components/GuessLayout';
-import UsersLayout from './components/UsersLayout';
+import GuessLayout from './layouts/GuessLayout';
+import UsersLayout from './layouts/UsersLayout';
 import Dashboard from './views/Dashboard';
+import ManageUsers from './views/ManageUsers';
+import ManageStudents from './views/ManageStudents';
+import Profile from './views/Profile';
 
 const router = createBrowserRouter([
     {
@@ -32,8 +35,16 @@ const router = createBrowserRouter([
             },
         
             {
-                path: '/register',
-                element: <Signup />
+                path: '/manageUsers',
+                element: <ManageUsers />
+            },
+            {
+                path: '/manageStudents',
+                element: <ManageStudents />
+            },
+            {
+                path: '/profile',
+                element: <Profile />
             },
            
             {
