@@ -9,7 +9,7 @@ function UsersLayout() {
   return (
     <div className="text-start">
       <div className="app-admin-wrap layout-horizontal-bar">
-        <div className="main-header" style={{ height: 90, marginTop: -40, background: '#020381'}}>
+        <div className="main-header" style={{ height: 90, marginTop: -40, background: 'white'}}>
             <div className="logo"><img src={ img } style={{ width: 85, height: 85}} /></div>
             <div className="menu-toggle">
                 <div></div>
@@ -26,7 +26,7 @@ function UsersLayout() {
             <div className="header-part-right">
                 <div className="dropdown"><i className="i-Safe-Box text-muted header-icon text-white-50" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div className="menu-icon-grid" ><a href="#"><i className="i-Shop-4"></i> Home</a><a href="#"><i className="i-Library"></i> UI Kits</a><a href="#"><i className="i-Drop"></i> Apps</a><a href="#"><i className="i-File-Clipboard-File--Text"></i> Forms</a><a href="/profile"><i className="i-Checked-User"></i>Profile</a><a href="#"><i className="i-Ambulance"></i> Support</a></div>
+                    <div className="menu-icon-grid text-gray-300" ><a href="#"><i className="i-Shop-4"></i> Home</a><a href="#"><i className="i-Library"></i> UI Kits</a><a href="#"><i className="i-Drop"></i> Apps</a><a href="#"><i className="i-File-Clipboard-File--Text"></i> Forms</a><a href="/profile"><i className="i-Checked-User"></i>Profile</a><a href="#"><i className="i-Ambulance"></i> Support</a></div>
                   </div>
                 </div>
                 
@@ -62,7 +62,7 @@ function UsersLayout() {
         </div>
         
         <div className="horizontal-bar-wrap">
-            <div className="header-topnav">
+            <div className="header-topnav" style={{ background: '#fcb900' }}>
               <div className="container-fluid">
                 <div className="topnav rtl-ps-none" id="" data-perfect-scrollbar="" data-suppress-scroll-x="true">
                   <ul className="menu float-start">
@@ -70,7 +70,7 @@ function UsersLayout() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" ></label><a href="/dashboard" className='text-blue-900'> Dashboard</a>
+                          <label className="toggle text-white"></label><a href="/dashboard" className='text-white'>Dashboard</a>
                         </div>
                       </div>
                     </li>
@@ -117,7 +117,7 @@ function UsersLayout() {
         </div>
 
       <div className="flex-grow-1"></div>
-            <div className="app-footer text-white" style={{ background: '#020381' }}>
+            <div className="app-footer text-white" style={{ background: 'white' }}>
               <div className="row py-3">
                 <div className="col-md-9">
                   <p><strong>Madrasahtul Islamiyah</strong></p>

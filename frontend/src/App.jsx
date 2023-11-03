@@ -83,7 +83,7 @@ function App() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" >Dashboard</label><a href="#" className='text-blue-900'> Dashboard</a>
+                          <label className="toggle" >Dashboard</label><a href="#" > Dashboard</a>
                         </div>
                       </div>
                     </li>
@@ -129,7 +129,7 @@ function App() {
            
             <div className="main-content">
                 <div className="breadcrumb">
-                    <h1 className="me-2">Madrasahtul Islamiyah</h1>
+                    <h1 className="me-2">Madrasahtul Islamiyah </h1>
                     <ul>
                       <li><a href="">Dashboard</a></li>
                     </ul>
