@@ -20,6 +20,19 @@ class UserService
         return $user;
     }
 
+    public function update(array $userDetails, string $roleId):User
+    {
+        $user = User::update([
+            'first_name' => $userDetails['first_name'],
+            'last_name' => $userDetails['last_name'],
+            'email' => $userDetails['email'],
+            'password' => bcrypt($userDetails['password']),
+            'role_id' => $roleId,
+        ]);
+
+        return $user;
+    }
+
 
 
 }

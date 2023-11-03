@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->foreingId('enrol_student_id');
+            $table->foreingId('status_id');
+            $table->DateTime();
             $table->timestamps();
         });
     }

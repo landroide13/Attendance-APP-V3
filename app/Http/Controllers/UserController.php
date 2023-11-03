@@ -21,9 +21,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, UserServices $userService, UserRequest $userRequest)
+    public function store(UserServices $userService, UserRequest $userRequest)
     {
-        $newUser = $userService -> store($request -> validated());
+        $newUser = $userService -> store($userRequest -> validated());
 
         return new UserResource($newUser);
     }
@@ -39,9 +39,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $update, UserServices $userService, string $id)
     {
-        //
+        
     }
 
     /**

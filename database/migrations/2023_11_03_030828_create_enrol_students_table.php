@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('enrol_students', function (Blueprint $table) {
             $table->id();
+            $table->foreingId('lecture_id');
+            $table->foreingId('user_id');
             $table->timestamps();
         });
     }

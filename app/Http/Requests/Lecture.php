@@ -11,7 +11,7 @@ class Lecture extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class Lecture extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'lecture_name' => ['required', 'min:4', 'max:8'],
+            'user_id' => ['required'],
         ];
     }
 }

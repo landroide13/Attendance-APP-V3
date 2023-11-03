@@ -14,6 +14,10 @@ class Lecture extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'lecture_name' => $this->lecture_name,
+            'user_id' => $this->user_id,
+        ];
     }
 }
