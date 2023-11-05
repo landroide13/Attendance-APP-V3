@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 
-class UserService
+class UserServices
 {
 
     public function store(array $userDetails):User

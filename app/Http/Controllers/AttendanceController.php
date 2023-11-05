@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance as AttendanceModel;
 use Illuminate\Http\Request;
-use App\Services\Attendance as AttendanceService;   
+use App\Services\AttendanceService;   
 use App\Http\Requests\Attendance as AttendanceRequest;
 use App\Http\Resources\Attendance as AttendanceResource;
 
