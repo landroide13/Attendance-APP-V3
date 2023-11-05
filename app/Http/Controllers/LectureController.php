@@ -10,12 +10,18 @@ use App\Models\Lecture as LectureModel;
 
 class LectureController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return new LectureResource(Lecture::all());
+        return LectureResource::collection(Lecture::all());
     }
 
     /**
@@ -23,9 +29,9 @@ class LectureController extends Controller
      */
     public function store(LectureRequest $lectureRequest, LectureService $lectureService)
     {
-        $newLecture = $lectureService -> store($lectureRequest -> valiadted());
+        $newLecture = $lectureService -> store($lectureRequest -> validated());
 
-        return new LectureResource($newLecture);
+        return response(new LectureResource($newLecture), 203);
     }
 
     /**

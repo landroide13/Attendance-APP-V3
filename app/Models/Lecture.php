@@ -13,4 +13,11 @@ class Lecture extends Model
         'lecture_name',
         'user_id'
     ];
+
+
+    public function tutor()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

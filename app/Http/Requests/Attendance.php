@@ -22,7 +22,9 @@ class Attendance extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'enrol_student_id' => ['required'],
+            'status_id' => ['required'],
+            'date' => ['required'],
         ];
     }
 }

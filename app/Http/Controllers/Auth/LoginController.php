@@ -29,4 +29,15 @@ class LoginController extends Controller
 
         return response($response, 201);
     }
+
+    public function logout(Request $request){
+
+        $user = $request -> user();
+
+        $user -> currentAccessToken()->delete();
+
+        return response('', 204);
+    }
+
+
 }

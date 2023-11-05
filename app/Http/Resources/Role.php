@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Role extends JsonResource
 {
+    //public static $wrap = false;
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +15,10 @@ class Role extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            //'permissions' => PermissionResource::collection($this->whenLoaded('Permission')),
+        ];
     }
 }

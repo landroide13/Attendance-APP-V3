@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\User as UserModel;
 use Illuminate\Http\Request;
-use App\Services\UserServices;
+use App\Services\UserServices;   
 use App\Http\Requests\User as UserRequest;
 use App\Http\Resources\User as UserResource;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return new UserResource(UserModel::all());
+        return UserResource::collection(UserModel::all());
     }
 
     /**
@@ -25,7 +31,7 @@ class UserController extends Controller
     {
         $newUser = $userService -> store($userRequest -> validated());
 
-        return new UserResource($newUser);
+        return response(new UserResource($newUser), 203);
     }
 
     /**
@@ -39,9 +45,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserUpdateRequest $update, UserServices $userService, string $id)
+    public function update(UserUpdateRequest $updateRequest, UserServices $userService, UserModel $user)
     {
-        
+        $editUser = $userService -> update($updateRequest -> validated(), $user->role_id);
+
+        return response(new UserResource($editUser), 201);
     }
 
     /**

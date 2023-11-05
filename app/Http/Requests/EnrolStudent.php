@@ -11,7 +11,7 @@ class EnrolStudent extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class EnrolStudent extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'lecture_id' => ['required'],
+            'user_id' => ['required'],
         ];
     }
 }
