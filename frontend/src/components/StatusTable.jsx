@@ -9,12 +9,9 @@ function StatusTable() {
    
         <div className="col-md-6">
             <div className="card o-hidden mb-2">
-                <div className="card-header d-flex align-items-center">
+                <div className="card-header d-flex align-items-left">
                     <h3 className="w-50 float-start card-title m-0">New Users</h3>
-                    <div className="dropdown dropleft text-end w-50 float-end">
-                        <button className="btn bg-gray-100" id="dropdownMenuButton_table1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="nav-icon i-Gear-2"></i></button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton_table1"><a className="dropdown-item" href="#">Add new user</a><a className="dropdown-item" href="#">View All users</a><a className="dropdown-item" href="#">Something else here</a></div>
-                    </div>
+                    
                 </div>
                 <div className="card-body">
                     <div className="table-responsive">

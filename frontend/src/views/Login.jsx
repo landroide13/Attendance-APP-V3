@@ -14,7 +14,7 @@ function Login() {
                     <div className="card-body">
                         <div className="card-title mb-3">
                             <div className="breadcrumb">
-                                <div class="logo"><img src={ img } alt="" style={{ width: 50, height: 50}} /></div>
+                                {/* <div class="logo"><img src={ img } alt="" style={{ width: 50, height: 50}} /></div> */}
                                 <h1 className='ml-3'>Login</h1>
                             </div>
                         </div>

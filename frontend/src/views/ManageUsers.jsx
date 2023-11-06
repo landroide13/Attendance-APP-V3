@@ -3,6 +3,8 @@ import List from '../components/List'
 import RegisterForm from '../components/RegisterForm'
 
 function ManageUsers() {
+    
+
   return (
     <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2 mt-2 mb-2">
         <div className="card">
@@ -29,7 +31,7 @@ function ManageUsers() {
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
 
-                            <List />                     
+                            <List />                            
 
                         </div>
                                                 
@@ -41,6 +43,7 @@ function ManageUsers() {
                                                     
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

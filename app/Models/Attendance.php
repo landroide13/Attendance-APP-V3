@@ -16,11 +16,6 @@ class Attendance extends Model
         //'date',
     ];
 
-    // public function user()
-    // {
-    //     return $this->hasOneThrough(EnrolStudent::class, User::class, 'enrol_student_id', 'user_id');
-    // }
-
     public function status()
     {
         return $this->belongsTo(Status::class);

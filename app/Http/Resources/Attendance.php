@@ -17,8 +17,8 @@ class Attendance extends JsonResource
         return [
             'id' => $this->id,
             'enrol_student_id' => $this->enrol_student_id,
-            'student' => $this -> enrol($this->id),
-            'status' => $this-> status -> name,
+            //'student' => $this -> enrol($this->id),
+            'status' => $this-> status,
             'date' => $this-> created_at ->format('Y-m-d')
         ];
     }

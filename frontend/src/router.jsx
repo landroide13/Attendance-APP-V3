@@ -1,6 +1,4 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import App from './App';
-import Signup from './views/Signup';
 import Login from './views/Login';
 import Attendance from './views/Attendance';
 import GuessLayout from './layouts/GuessLayout';
