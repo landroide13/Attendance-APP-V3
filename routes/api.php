@@ -23,7 +23,7 @@ use App\Http\Controllers\EnrolStudentController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});      
 
 Route::apiResource('users', UserController::class);
 Route::apiResource('lectures', LectureController::class);

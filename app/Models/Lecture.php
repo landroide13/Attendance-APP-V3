@@ -15,7 +15,7 @@ class Lecture extends Model
     ];
 
 
-    public function tutor()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
