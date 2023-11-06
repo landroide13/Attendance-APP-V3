@@ -24,7 +24,7 @@ function StripedTable() {
                                 <td>Smith Doe</td>
                                 <td><img className="rounded-circle m-0 avatar-sm-table" src="../../dist-assets/images/faces/1.jpg" alt="" /></td>
                                 <td>Smith@gmail.com</td>
-                                <td><span className="badge bg-success">Active</span></td>
+                                <td><span className="badge bg-success">Present</span></td>
                                 <td><a className="text-success me-2" href="#"><i className="nav-icon i-Pen-2 fw-bold"></i></a><a className="text-danger me-2" href="#"><i className="nav-icon i-Close-Window fw-bold"></i></a></td>
                             </tr>
                             <tr>
@@ -32,7 +32,7 @@ function StripedTable() {
                                 <td>Jhon Doe</td>
                                 <td><img className="rounded-circle m-0 avatar-sm-table" src="../../dist-assets/images/faces/1.jpg" alt="" /></td>
                                 <td>Jhon@gmail.com</td>
-                                <td><span className="badge bg-info">Pending</span></td>
+                                <td><span className="badge bg-info">Present</span></td>
                                 <td><a className="text-success me-2" href="#"><i className="nav-icon i-Pen-2 fw-bold"></i></a><a className="text-danger me-2" href="#"><i className="nav-icon i-Close-Window fw-bold"></i></a></td>
                             </tr>
                             <tr>
@@ -40,7 +40,7 @@ function StripedTable() {
                                 <td>Alex</td>
                                 <td><img className="rounded-circle m-0 avatar-sm-table" src="../../dist-assets/images/faces/1.jpg" alt="" /></td>
                                 <td>Otto@gmail.com</td>
-                                <td><span className="badge bg-warning">Not Active</span></td>
+                                <td><span className="badge bg-warning">Leave</span></td>
                                 <td><a className="text-success me-2" href="#"><i className="nav-icon i-Pen-2 fw-bold"></i></a><a className="text-danger me-2" href="#"><i className="nav-icon i-Close-Window fw-bold"></i></a></td>
                             </tr>
                         </tbody>

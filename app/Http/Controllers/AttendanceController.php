@@ -27,7 +27,7 @@ class AttendanceController extends Controller
      */
     public function store(AttendanceRequest $attendanceRequest, AttendanceService $attendanceService)
     {
-        $newAttendance = $attendanceService -> store($attendanceRequest -> valiadated());
+        $newAttendance = $attendanceService -> store($attendanceRequest -> validated());
 
         return response(new AttendanceResource($newAttendance), 203);
     }

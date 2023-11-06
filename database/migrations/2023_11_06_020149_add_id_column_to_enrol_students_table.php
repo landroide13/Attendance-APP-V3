@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('enrol_students', function (Blueprint $table) {
+            $table->foreignId('lecture_id');
+            $table->foreignId('user_id');
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::table('enrol_students', function (Blueprint $table) {
+            //
+        });
     }
 };

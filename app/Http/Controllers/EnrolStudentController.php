@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EnrolStudent as EnrolStudentModel;
 use Illuminate\Http\Request;
-use App\Services\EnrolStudent as EnrolStudentServices;
+use App\Services\EnrolStudentService;
 use App\Http\Requests\EnrolStudent as EnrolStudentRequest;
 use App\Http\Resources\EnrolStudent as EnrolStudentResource;
 
@@ -26,7 +26,7 @@ class EnrolStudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EnrolStudentRequest $request, EnrolStudentServices $enrolService)
+    public function store(EnrolStudentRequest $request, EnrolStudentService $enrolService)
     {
         $newEnrol = $enrolService -> store($request -> validated());
 
@@ -44,7 +44,7 @@ class EnrolStudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EnrolStudentRequest $request, EnrolStudentServices $enrolService, EnrolStudentModel $enrolModel)
+    public function update(EnrolStudentRequest $request, EnrolStudentService $enrolService, EnrolStudentModel $enrolModel)
     {
         //
     }

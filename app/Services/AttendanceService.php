@@ -11,7 +11,6 @@ class AttendanceService
         $attendance = Attendance::create([
             'enrol_student_id' => $details['enrol_student_id'],
             'status_id' => $details['status_id'],
-            'date' => $details['date'],
         ]);
    
         return $attendance;

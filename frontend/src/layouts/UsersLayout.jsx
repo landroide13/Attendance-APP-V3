@@ -5,12 +5,15 @@ function UsersLayout() {
 
   const img = new URL('../assets/images/madarsa_logo.jpg', import.meta.url).href
 
+  // <img src={ img } style={{ width: 85, height: 85}} />
+
+  // className="logo"
 
   return (
     <div className="text-start">
       <div className="app-admin-wrap layout-horizontal-bar">
-        <div className="main-header" style={{ height: 90, marginTop: -40, background: 'white'}}>
-            <div className="logo"><img src={ img } style={{ width: 85, height: 85}} /></div>
+        <div className="main-header" style={{ height: 90, marginTop: -40, background: '#020381'}}>
+            <div className='mr-5 ml-5'><h2 className="me-2 text-white">Madrasahtul Islamiyah</h2></div>
             <div className="menu-toggle">
                 <div></div>
                 <div></div>
@@ -62,7 +65,7 @@ function UsersLayout() {
         </div>
         
         <div className="horizontal-bar-wrap">
-            <div className="header-topnav" style={{ background: '#fcb900' }}>
+            <div className="header-topnav" style={{ background: 'white' }}>
               <div className="container-fluid">
                 <div className="topnav rtl-ps-none" id="" data-perfect-scrollbar="" data-suppress-scroll-x="true">
                   <ul className="menu float-start">
@@ -117,7 +120,7 @@ function UsersLayout() {
         </div>
 
       <div className="flex-grow-1"></div>
-            <div className="app-footer text-white" style={{ background: 'white' }}>
+            <div className="app-footer text-white" style={{ background: '#020381' }}>
               <div className="row py-3">
                 <div className="col-md-9">
                   <p><strong>Madrasahtul Islamiyah</strong></p>

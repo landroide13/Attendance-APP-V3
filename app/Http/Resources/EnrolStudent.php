@@ -16,8 +16,8 @@ class EnrolStudent extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'lecture_id' => $this->lecture_id,
+            'user' => $this->user,
+            'lecture' => $this->lecture
         ];
     }
 }

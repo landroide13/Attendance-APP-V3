@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Attendance extends Model
 {
@@ -12,14 +13,18 @@ class Attendance extends Model
     protected $fillable = [
         'enrol_student_id',
         'status_id',
-        'date',
+        //'date',
     ];
 
+    // public function user()
+    // {
+    //     return $this->hasOneThrough(EnrolStudent::class, User::class, 'enrol_student_id', 'user_id');
+    // }
 
-    public function studentAttendance()
+    public function status()
     {
-        return $this -> belongsTo(EnrolStudent::class);
+        return $this->belongsTo(Status::class);
     }
 
-
+    
 }

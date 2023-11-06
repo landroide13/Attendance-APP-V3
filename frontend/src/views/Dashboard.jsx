@@ -6,9 +6,9 @@ function Dashboard() {
   return (
     <div className="main-content">
       <div className="breadcrumb" style={{ background: '#020381' }}>
-        <h1 className="me-2 text-white">Madrasahtul Islamiyah</h1>
+        <h1 className="me-2 text-white">Dashboard</h1>
         <ul>
-          <li><a href="" className="text-white">Dashboard</a></li>
+          {/* <li><a href="" className="text-white">Dashboard</a></li> */}
         </ul>
       </div>
       <div className="separator-breadcrumb border-top"></div>

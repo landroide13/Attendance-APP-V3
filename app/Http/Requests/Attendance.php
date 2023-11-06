@@ -11,7 +11,7 @@ class Attendance extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class Attendance extends FormRequest
         return [
             'enrol_student_id' => ['required'],
             'status_id' => ['required'],
-            'date' => ['required'],
+            //'date' => ['required'],
         ];
     }
 }
