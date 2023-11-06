@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Status as StatusModel;
 use Illuminate\Http\Request;
-use App\Services\Status as StatusService;   
+use App\Services\StatusService;   
 use App\Http\Requests\Status as StatusRequest;
 use App\Http\Resources\Status as StatusResource;
 
@@ -29,7 +29,7 @@ class StatusController extends Controller
     {
         $newStatus = $statusService -> store($statusRequest -> validated());
 
-        return response(new StatusResource($newStatus), 203);
+        return response(new StatusResource($newStatus), 203);  
     }
 
     /**

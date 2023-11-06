@@ -22,7 +22,7 @@ class Lecture extends FormRequest
     public function rules(): array
     {
         return [
-            'lecture_name' => ['required', 'min:4', 'max:8'],
+            'lecture_name' => ['required', 'min:4', 'max:100'],
             'user_id' => ['required'],
         ];
     }
