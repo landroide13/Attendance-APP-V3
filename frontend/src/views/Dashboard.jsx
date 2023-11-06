@@ -3,6 +3,9 @@ import StatusTable from '../components/StatusTable'
 import StripedTable from '../components/StripedTable'
 
 function Dashboard() {
+
+  const avatar = new URL('../assets/images/Angular_Icon.png', import.meta.url).href
+
   return (
     <div className="main-content">
       <div className="breadcrumb" style={{ background: '#020381' }}>
@@ -112,8 +115,8 @@ function Dashboard() {
                 <div className="col-lg-6 col-md-6">
                   <div className="card mb-4">
                     <div className="card-body">
-                    <div className="card-title">Operations and Admins</div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src="#" alt="" />
+                    <div className="card-title">Super Admins and Admins</div>
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">David Hopkins</h6>
                           <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
@@ -122,7 +125,7 @@ function Dashboard() {
                           <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src="#" alt="" />
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">James Mitchell</h6>
                           <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
@@ -131,7 +134,7 @@ function Dashboard() {
                           <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src="#" alt="" />
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">Jessica Mitchell</h6>
                           <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
@@ -148,7 +151,7 @@ function Dashboard() {
                   <div className="card mb-4">
                     <div className="card-body">
                     <div className="card-title">Tutors</div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src="#" alt="" />
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">David Hopkins</h6>
                           <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
@@ -157,7 +160,7 @@ function Dashboard() {
                           <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src="#" alt="" />
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">James Mitchell</h6>
                           <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
@@ -166,7 +169,7 @@ function Dashboard() {
                           <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src="#" alt="" />
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">Jessica Mitchell</h6>
                           <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>

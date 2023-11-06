@@ -1,19 +1,29 @@
 import React from 'react'
 
 function Profile() {
+
+    const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
+
+    const pic1 = new URL('../assets/images/photo-wide-1.jpg', import.meta.url).href
+
+    const pic2 = new URL('../assets/images/photo-wide-2.jpg', import.meta.url).href
+
+    const pic3 = new URL('../assets/images/photo-wide-3.jpg', import.meta.url).href
+
+    const pic4 = new URL('../assets/images/photo-wide-4.jpg', import.meta.url).href
+
   return (
     <div className="main-content">
                 <div className="breadcrumb">
                     <h1>User Profile</h1>
                     <ul>
-                        <li><a href="">Pages</a></li>
-                        <li>User Profile</li>
+                       
                     </ul>
                 </div>
                 <div className="separator-breadcrumb border-top"></div>
                 <div className="card user-profile o-hidden mb-4">
                     <div className="header-cover" ></div>
-                    <div className="user-info"><img className="profile-picture avatar-lg mb-2" src="../../dist-assets/images/faces/1.jpg" alt="" />
+                    <div className="user-info"><img className="profile-picture avatar-lg mb-2" src={ avatar } alt="" />
                         <p className="m-0 text-24">Timothy Carlson</p>
                         <p className="text-muted m-0">Digital Marketer</p>
                     </div>
@@ -34,7 +44,7 @@ function Profile() {
                                             <div className="card-body">
                                                 <div className="mb-1"><strong className="me-1">Timothy Carlson</strong> added a new photo
                                                     <p className="text-muted">3 hours ago</p>
-                                                </div><img className="rounded mb-2" src="../../dist-assets/images/photo-wide-1.jpg" alt="" />
+                                                </div><img className="rounded mb-2" src={ pic1 } alt="" />
                                                 <div className="mb-3"><a className="me-1" href="#">Like</a><a href="#">Comment</a></div>
                                                 <div className="input-group">
                                                     <input className="form-control" type="text" placeholder="Write comment" aria-label="comment" />
@@ -46,7 +56,7 @@ function Profile() {
                                         </div>
                                     </li>
                                     <li className="timeline-item">
-                                        <div className="timeline-badge"><img className="badge-img" src="../../dist-assets/images/faces/1.jpg" alt="" /></div>
+                                        <div className="timeline-badge"><img className="badge-img" src={ pic2 } alt="" /></div>
                                         <div className="timeline-card card">
                                             <div className="card-body">
                                                 <div className="mb-1"><strong className="me-1">Timothy Carlson</strong> updated his sattus
@@ -99,7 +109,7 @@ function Profile() {
                                             <div className="card-body">
                                                 <div className="mb-1"><strong className="me-1">Timothy Carlson</strong> added a new photo
                                                     <p className="text-muted">2 days ago</p>
-                                                </div><img className="rounded mb-2" src="../../dist-assets/images/photo-wide-2.jpg" alt="" />
+                                                </div><img className="rounded mb-2" src={ pic3 } alt="" />
                                                 <div className="mb-3"><a className="me-1" href="#">Like</a><a href="#">Comment</a></div>
                                                 <div className="input-group">
                                                     <input className="form-control" type="text" placeholder="Write comment" aria-label="comment" />
@@ -191,7 +201,7 @@ function Profile() {
                                     <div className="col-md-3">
                                         <div className="card card-profile-1 mb-4">
                                             <div className="card-body text-center">
-                                                <div className="avatar box-shadow-2 mb-3"><img src="../../dist-assets/images/faces/16.jpg" alt="" /></div>
+                                                <div className="avatar box-shadow-2 mb-3"><img src={ pic4 } alt="" /></div>
                                                 <h5 className="m-0">Jassica Hike</h5>
                                                 <p className="mt-0">UI/UX Designer</p>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae cumque.</p>

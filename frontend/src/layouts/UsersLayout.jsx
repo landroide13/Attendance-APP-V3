@@ -3,11 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 function UsersLayout() {
 
-  const img = new URL('../assets/images/madarsa_logo.jpg', import.meta.url).href
-
-  // <img src={ img } style={{ width: 85, height: 85}} />
-
-  // className="logo"
+  const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
   return (
     <div className="text-start">
@@ -29,7 +25,7 @@ function UsersLayout() {
             <div className="header-part-right">
                 <div className="dropdown"><i className="i-Safe-Box text-muted header-icon text-white-50" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div className="menu-icon-grid text-gray-300" ><a href="#"><i className="i-Shop-4"></i> Home</a><a href="#"><i className="i-Library"></i> UI Kits</a><a href="#"><i className="i-Drop"></i> Apps</a><a href="#"><i className="i-File-Clipboard-File--Text"></i> Forms</a><a href="/profile"><i className="i-Checked-User"></i>Profile</a><a href="#"><i className="i-Ambulance"></i> Support</a></div>
+                    <div className="menu-icon-grid text-gray-300" > <a href="/profile"><i className="i-Checked-User"></i>Profile</a> </div>
                   </div>
                 </div>
                 
@@ -55,7 +51,7 @@ function UsersLayout() {
                 </div>
                 
                 <div className="dropdown">
-                    <div className="user col align-self-end"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                    <div className="user col align-self-end"><img id="userDropdown" src={ avatar } alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             <div className="dropdown-header"><i className="i-Lock-User me-1"></i> Timothy Carlson</div><a className="dropdown-item">Account settings</a><a className="dropdown-item">Billing history</a><a className="dropdown-item" href="signin.html">Sign out</a>
                         </div>
