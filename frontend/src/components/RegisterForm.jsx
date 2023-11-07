@@ -32,7 +32,7 @@ function RegisterForm() {
           .then(({ data }) => {
             setRoles(data.data)
             setLoading(false)
-            console.log(roles)
+            //console.log(roles)
           })
           .catch(() => {
             const response = err.response;
