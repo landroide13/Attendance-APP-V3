@@ -5,9 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Attendance extends JsonResource
+class StudentResource extends JsonResource
 {
-    /** 
+    /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
@@ -16,9 +16,12 @@ class Attendance extends JsonResource
     {
         return [
             'id' => $this->id,
-            'enrol_student_id' => $this->enrol_student_id,
-            'status' => $this-> status -> name,
-            'date' => $this-> created_at ->format('Y-m-d')
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'parent_email' => $this->parent_email,
+            'parent_phone' => $this->parent_phone,
+            'gender' => $this->gender,
+            'attendance' => $this->attendance,
         ];
     }
 }

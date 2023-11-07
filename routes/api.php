@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\LectureController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EnrolStudentController;
@@ -26,6 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });      
 
 Route::apiResource('users', UserController::class);
+
+Route::apiResource('students', StudentController::class);
+
 Route::apiResource('lectures', LectureController::class);
 Route::apiResource('attendances', AttendanceController::class);
 Route::apiResource('status', StatusController::class);
