@@ -15,6 +15,7 @@ class UserServices
             'email' => $userDetails['email'],
             'password' => bcrypt($userDetails['password']),
             'role_id' => $userDetails['role_id'],
+            'phone' => $userDetails['phone'],
         ]);
 
         return $user;
@@ -28,6 +29,7 @@ class UserServices
             'email' => $userDetails['email'],
             'password' => bcrypt($userDetails['password']),
             'role_id' => $userDetails['role_id'],
+            'phone' => $userDetails['phone'],
         ]);
 
         return $user;
