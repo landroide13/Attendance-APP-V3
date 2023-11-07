@@ -14,7 +14,6 @@ function List( ) {
           .then(({ data }) => {
             setUser(data.data)
             setLoading(false)
-            console.log(users[0])
           })
           .catch(() => {
             const response = err.response;
@@ -38,7 +37,7 @@ function List( ) {
                     <h3 className="ul-widget__head-title">Users List</h3>
                 </div>
                 <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All</button>
-                <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Bar-Chart-4"> </i> Super Admin</a><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Data-Save"> </i> Admins</a><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Duplicate-Layer"></i> Tutors</a>
+                <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}><a className="dropdown-item ul-widget__link--font" href="#"> Super Admin</a><a className="dropdown-item ul-widget__link--font" href="#"> Admins</a><a className="dropdown-item ul-widget__link--font" href="#">Tutors</a>
                     {/* <div className="dropdown-divider"></div><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Folder-Download"></i> All</a><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Gears-2"></i> Customize</a> */}
                 </div>
             </div>
