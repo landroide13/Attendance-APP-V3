@@ -1,4 +1,6 @@
 import React from 'react'
+import ResgisterStudent from '../components/ResgisterStudent'
+import ListStudent from '../components/ListStudent'
 
 function ManageStudents() {
   return (
@@ -11,9 +13,9 @@ function ManageStudents() {
                     </div>
                     <div className="ul-widget__head-toolbar">
                         <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">
-                            <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Enrol Student</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List Users</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">List Students</a></li>
+                            <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Register Student</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List Student</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">----</a></li>
                         </ul>
                     </div>
                 </div>
@@ -21,12 +23,14 @@ function ManageStudents() {
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
-                            <h1>Content tab 1</h1>
+                            <ResgisterStudent />
 
                         </div>
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
-                        <h1>Content tab 2</h1>                         
+
+                            <ListStudent />
+
                         </div>
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
