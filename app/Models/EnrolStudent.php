@@ -19,11 +19,6 @@ class EnrolStudent extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function user()
-    {
-        return $this->hasManyThrough(User::class, Lecture::class);
-    }
-
     public function lecture()
     {
         return $this->belongsTo(Lecture::class);

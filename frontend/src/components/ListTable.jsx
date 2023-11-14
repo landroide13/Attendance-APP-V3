@@ -27,15 +27,15 @@ function ListTable() {
                     </div>
 
                     <div className="tab-pane" id="ul-widget2-tab2-content">
-                    <TableItem />
-                    <TableItem />                
+                        <TableItem />
+                        <TableItem />                
                     </div>
 
                     <div className="tab-pane" id="ul-widget2-tab3-content">
                                                     
-                    <TableItem />
-                    <TableItem />
-                    <TableItem />
+                        <TableItem />
+                        <TableItem />
+                        <TableItem />
                     </div>
                 </div>
             </div>

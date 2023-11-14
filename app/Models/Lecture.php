@@ -20,4 +20,10 @@ class Lecture extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function attendance()
+    {
+        return $this->hasManyThrough(Attendance::class, EnrolStudent::class);
+    }
+
+
 }

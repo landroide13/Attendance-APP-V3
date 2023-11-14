@@ -63,7 +63,7 @@ function EnrolStudent() {
         axiosClient.post('/enrol', enrol) 
         .then(() => {
           console.log(enrol)
-          navigate('/dashboard')
+          navigate('/manageStudents')
           window.confirm("Enrolment successfully done")
           //setNotification('User was successfully created')
         })
@@ -95,6 +95,7 @@ function EnrolStudent() {
                         {!loading &&
                         
                         <select className="form-control"  onChange={ev => setEnrol({...enrol, student_id: ev.target.value})}>
+                             <option>...</option>
                             {students.map(student => (
                                
                               <option key={student.id} value={student.id}>{student.first_name} {student.last_name}</option>
@@ -117,6 +118,7 @@ function EnrolStudent() {
                         {!loading &&
                         
                         <select className="form-control"  onChange={ev => setEnrol({...enrol, lecture_id: ev.target.value})}>
+                             <option>...</option>
                             {lectures.map(lecture => (
                                
                               <option key={lecture.id} value={lecture.id}>{lecture.lecture_name}</option>

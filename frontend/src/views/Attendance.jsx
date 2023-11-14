@@ -2,6 +2,10 @@ import React from 'react'
 import ListTable from '../components/ListTable'
 
 function Attendance() {
+
+  
+
+
   return (
 
     <div className="main-content">

@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function enrol()
     {
-        return $this->hasOneThrough(EnrolStudent::class, Lecture::class);
+        return $this->hasManyThrough(EnrolStudent::class, Lecture::class);
     }
 
 
