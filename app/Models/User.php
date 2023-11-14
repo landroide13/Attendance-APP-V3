@@ -56,5 +56,10 @@ class User extends Authenticatable
         return Str::lower($this->role->name) === Str::lower($roleName);
     }
 
+    public function enrol()
+    {
+        return $this->hasOneThrough(EnrolStudent::class, Lecture::class);
+    }
+
 
 }

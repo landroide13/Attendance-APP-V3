@@ -23,7 +23,7 @@ class EnrolStudent extends FormRequest
     {
         return [
             'lecture_id' => ['required'],
-            'user_id' => ['required'],
+            'student_id' => ['required'],
         ];
     }
 }

@@ -1,20 +1,25 @@
-import React, { useEffect, useState }  from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
 import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
 
-function List( ) {
+function ListSubjects() {
 
-    const [users, setUser] = useState([])
+    const [lectures, setLecture] = useState([])
     const [loading, setLoading] = useState(false);
     const {setNotification} = useStateContext()
+    const [errors, setErrors] = useState(null)
 
-    const [option, setOption] = useState('super_admin');
+    useEffect(() => {     
+        getSubjects();
+      }, []);
 
-    const getUsers = () => {
+    const getSubjects = () => {
         setLoading(true)
-        axiosClient.get('/users')
+        axiosClient.get('/lectures')
           .then(({ data }) => {
-            setUser(data.data)
+            console.log(data.data)
+            setLecture(data.data)
             setLoading(false)
           })
           .catch(() => {
@@ -24,14 +29,12 @@ function List( ) {
           }
           setLoading(false)
         })
-    }
+      }
 
-    useEffect(() => {     
-        getUsers();
-      }, []);
 
-  const filtered =  users.filter(user => user.role.name == option)
-  
+    //const filtered =  tutors.filter(user => user.role.name == 'tutor')
+
+
   return (
     <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
 
@@ -49,20 +52,19 @@ function List( ) {
             <div className="ul-widget__body">
                 <div className="ul-widget1">
 
-                    {  filtered.map(user => (
+                    {  lectures.map(lecture => (
                         
-                        <div className="ul-widget4__item ul-widget4__users" key={ user.id }>
+                        <div className="ul-widget4__item ul-widget4__users" key={ lecture.id }>
                             <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ user.first_name } { user.last_name }</a><span className="ul-widget2__username" href="#">{ user.role.name }</span></div><span className="ul-widget4__number t-font-boldest text-success">+500</span>
+                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ lecture.lecture_name } </a><span className="ul-widget2__username" href="#">{ lecture.tutor.first_name } { lecture.tutor.last_name }</span></div><span className="ul-widget4__number t-font-boldest text-success">+500</span>
                         </div>
                         
                       ))
                     }
                 </div>
-            </div>                     
-                          
+            </div>                           
     </div>
   )
 }
 
-export default List
+export default ListSubjects

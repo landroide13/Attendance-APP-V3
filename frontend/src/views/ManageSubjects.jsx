@@ -1,24 +1,23 @@
 import React from 'react'
-import ResgisterStudent from '../components/ResgisterStudent'
-import ListStudent from '../components/ListStudent'
-import EnrolStudent from '../components/EnrolStudent'
+import RegisterSubject from '../components/RegisterSubject'
+import ListSubjects from '../components/ListSubjects'
 
-function ManageStudents() {
+function ManageSubjects() {
 
-    
+
   return (
     <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2 mt-2 mb-2">
         <div className="card">
             <div className="card-body">
                 <div className="ul-widget__head">
                     <div className="ul-widget__head-label">
-                        <h3 className="ul-widget__head-title">Students Zone</h3>
+                        <h3 className="ul-widget__head-title">Subjects Zone</h3>
                     </div>
                     <div className="ul-widget__head-toolbar">
                         <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">
-                            <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Register Student</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List Student</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">Enrol Student</a></li>
+                            <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Create Subject</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List Subject</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">----</a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,20 +25,18 @@ function ManageStudents() {
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
-                            <ResgisterStudent />
+                            <RegisterSubject />
 
                         </div>
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
 
-                            <ListStudent />
+                            <ListSubjects />
 
                         </div>
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
-
-                          <EnrolStudent /> 
-
+                            <h1>----</h1>
                         </div>
                                                     
                     </div>
@@ -50,4 +47,4 @@ function ManageStudents() {
   )
 }
 
-export default ManageStudents
+export default ManageSubjects

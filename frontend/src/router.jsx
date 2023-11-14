@@ -7,6 +7,7 @@ import Dashboard from './views/Dashboard';
 import ManageUsers from './views/ManageUsers';
 import ManageStudents from './views/ManageStudents';
 import Profile from './views/Profile';
+import ManageSubjects from './views/ManageSubjects';
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: '/manageStudents',
                 element: <ManageStudents />
+            },
+            {
+                path: '/manageSubjects',
+                element: <ManageSubjects />
             },
             {
                 path: '/profile',

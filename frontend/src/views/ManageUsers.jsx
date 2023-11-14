@@ -1,6 +1,7 @@
 import React from 'react'
 import List from '../components/List'
 import RegisterForm from '../components/RegisterForm'
+import EnrolStudent from '../components/EnrolStudent'
 
 
 function ManageUsers() {
@@ -20,7 +21,7 @@ function ManageUsers() {
                         <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">
                             <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Create User</a></li>
                             <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List Users</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">List Students</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">---</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,7 +41,7 @@ function ManageUsers() {
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
 
-                            <List />   
+                           -------
                             
                         </div>
                                                     

@@ -11,12 +11,17 @@ class EnrolStudent extends Model
 
     protected $fillable = [
         'lecture_id',
-        'user_id'
+        'student_id'
     ];
 
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function user()
+    {
+        return $this->hasManyThrough(User::class, Lecture::class);
     }
 
     public function lecture()

@@ -11,7 +11,7 @@ class EnrolStudentService
     {
         $enrol = EnrolStudent::create([
             'lecture_id' => $details['lecture_id'],
-            'user_id' => $details['user_id'],
+            'student_id' => $details['student_id'],
         ]);
 
         return $enrol;
@@ -21,7 +21,7 @@ class EnrolStudentService
     {
         $enrol = EnrolStudent::update([
             'lecture_id' => $details['lecture_id'],
-            'user_id' => $details['user_id'],
+            'student_id' => $details['student_id'],
         ]);
 
         return $enrol;
