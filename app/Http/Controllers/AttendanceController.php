@@ -19,7 +19,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return AttendanceResource::collection(AttendanceModel::latest()->paginate(6));
+        //return AttendanceResource::collection(AttendanceModel::latest()->paginate(6));
+        return AttendanceResource::collection(AttendanceModel::all());
     }
 
     /**

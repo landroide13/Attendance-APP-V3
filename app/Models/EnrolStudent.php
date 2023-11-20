@@ -25,4 +25,12 @@ class EnrolStudent extends Model
     }
 
 
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    
+
+
 }

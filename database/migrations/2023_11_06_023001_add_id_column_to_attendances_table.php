@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('enrol_student_id');
             $table->foreignId('status_id');
         });
-    }
+    }  
 
     /**
      * Reverse the migrations.

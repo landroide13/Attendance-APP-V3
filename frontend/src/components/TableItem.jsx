@@ -1,18 +1,82 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axiosClient from "../axios-client.jsx";
 
-function TableItem() {
+function TableItem(props) {
+
+    const { student, id } = props
+
+    const [attendance, setAttendance] = useState({
+      id: null,
+      enrol_student_id: id, 
+      status_id: '',  
+    })
+
+    //console.log(student.id);
+
+    const [statuses, setStatus] = useState([])
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState(null)
+
+    const getStatus = () => {
+        setLoading(true)
+        axiosClient.get('/status')
+          .then(({ data }) => {
+            setStatus(data.data)
+            //console.log(data.data)
+            setLoading(false)
+          })
+          .catch(() => {
+            const response = err.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+          setLoading(false)
+        })
+    }
+
+    const onSubmit = ev => {
+      ev.preventDefault()
+      console.log({...attendance, enrol_student_id: ev.target.value})
+      axiosClient.post('/attendances', attendance) 
+      .then(() => {
+        console.log(attendance)
+        navigate('/dashboard')
+        window.confirm("Attendance successfully done")
+        //setNotification('User was successfully created')
+      })
+      .catch(err => {
+        const response = err.response;
+        if (response && response.status === 422) {
+          setErrors(response.data.errors)
+        }
+      })
+  }
+
+    useEffect(() => {     
+        getStatus()
+      }, []);
+
+
   return (
-    <div className="ul-widget1">
-        <div className="ul-widget2__item">
-            <label className="checkbox checkbox-outline-primary">
-                <input type="checkbox" checked="" /><span className="checkmark"></span>
-            </label>
-            <div className="ul-widget2__info"><a className="ul-widget2__title" href="#">Student Name</a></div>
-                <div className="ul-widget2__actions">
-                    <button className="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="_dot _inline-dot"></span><span className="_dot _inline-dot"></span><span className="_dot _inline-dot"></span></button>
-                <div className="dropdown-menu" x-placement="bottom-start"><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Statistic"> </i> Reports</a><a className="dropdown-item ul-widget__link--font" href="#"><i className="i-Email"> </i> Profile</a></div>
-            </div>
-        </div>
+    <div key={ student.id } className="ul-widget1">
+  
+      <form className='row' onSubmit={onSubmit}>
+        <select className="form-control col-md-2 "  onChange={ev => setAttendance({...attendance, status_id: ev.target.value})}>
+        <option>...</option>
+        { statuses.map(status => (
+                               
+          <option key={status.id} value={status.id}>{status.name}</option>
+                    
+          ))}
+        </select> 
+
+          <div className="ul-widget2__info"><option className="ul-widget2__title" href="#" value={student.id}># {id} - { student.first_name } { student.last_name } </option></div>
+          <div className="ul-widget2__actions">
+            <button className="btn btn-primary mt-3">Save</button>
+            <button className="btn btn-info mt-3">Notify</button>
+          </div>
+      </form>
+
     </div>
   )
 }

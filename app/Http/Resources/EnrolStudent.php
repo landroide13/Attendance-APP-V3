@@ -18,7 +18,7 @@ class EnrolStudent extends JsonResource
             'id' => $this->id,
             'student' => $this->student,
             'lecture' => $this->lecture,
-            //'tutor' => $this->user
+            'attendance' => $this->attendance,
         ];
     }
 }

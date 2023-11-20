@@ -63,7 +63,7 @@ function ListStudent() {
         if (response && response.status === 422) {
           setErrors(response.data.errors)
         }
-        setLoading(false)
+        setLoading(false)   
       })
     }
 
