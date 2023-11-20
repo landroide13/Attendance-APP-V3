@@ -20,9 +20,14 @@ class Attendance extends Model
         return $this->belongsTo(Status::class);  
     }
 
-    public function student()
+    public function student()  
     {
-        return $this->hasOneThrough(Student::class, EnrolStudent::class);
+        return $this->belongsTo(Student::class, EnrolStudent::class);
+    }
+
+    public function enrols()  
+    {
+        return $this->belongsTo(EnrolStudent::class);
     }
 
     

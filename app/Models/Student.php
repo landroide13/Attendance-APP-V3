@@ -17,8 +17,13 @@ class Student extends Model
         'gender',
     ];
 
-    public function attendance()
-    {
+    public function attendance()  
+    { 
         return $this->hasManyThrough(Attendance::class, EnrolStudent::class);
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(EnrolStudent::class);
     }
 }

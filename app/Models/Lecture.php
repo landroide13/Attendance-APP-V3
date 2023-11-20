@@ -23,7 +23,7 @@ class Lecture extends Model
     public function attendance()
     {
         return $this->hasManyThrough(Attendance::class, EnrolStudent::class); 
-    }
+    }  
 
 
 

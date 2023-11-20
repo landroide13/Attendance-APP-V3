@@ -10,8 +10,7 @@ function TableItem(props) {
       enrol_student_id: id, 
       status_id: '',  
     })
-
-    //console.log(student.id);
+ 
 
     const [statuses, setStatus] = useState([])
     const [loading, setLoading] = useState(false);
@@ -36,7 +35,6 @@ function TableItem(props) {
 
     const onSubmit = ev => {
       ev.preventDefault()
-      console.log({...attendance, enrol_student_id: ev.target.value})
       axiosClient.post('/attendances', attendance) 
       .then(() => {
         console.log(attendance)

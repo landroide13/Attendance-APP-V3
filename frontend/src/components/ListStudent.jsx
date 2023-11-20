@@ -5,8 +5,8 @@ import {useStateContext} from "../context/ContextProvider.jsx";
 
 function ListStudent() {
 
-    //const [students, setStudent] = useState([])
-    const [enrols, setEnrol] = useState([])
+    const [students, setStudent] = useState([])
+    //const [enrols, setEnrol] = useState([])
     const [lectures, setLectures] = useState([])
     const [loading, setLoading] = useState(false);
     const {setNotification} = useStateContext()
@@ -14,32 +14,15 @@ function ListStudent() {
     const [option, setOption] = useState('');
 
     useEffect(() => {     
-      //getStudent();
-      getEnrol();
+      getStudents();
       getLectures()
     }, []);
 
-    // const getStudent = () => {
-    //     setLoading(true)
-    //     axiosClient.get('/students')
-    //       .then(({ data }) => {
-    //         setStudent(data.data)
-    //         setLoading(false)
-    //       })
-    //       .catch(() => {
-    //         const response = err.response;
-    //       if (response && response.status === 422) {
-    //         setErrors(response.data.errors)
-    //       }
-    //       setLoading(false)
-    //     })
-    // }
-
-    const getEnrol = () => {
+    const getStudents = () => {
       setLoading(true)
-      axiosClient.get('/enrol')
+      axiosClient.get('/students')
         .then(({ data }) => {
-          setEnrol(data.data)
+          setStudent(data.data)
           setLoading(false)
         })
         .catch(() => {
@@ -67,7 +50,7 @@ function ListStudent() {
       })
     }
 
-  const filtered = enrols.filter(enrol => enrol.lecture.lecture_name === option)
+  //const filtered = enrols.filter(enrol => enrol.lecture.lecture_name === option)
 
 
   return (
@@ -80,7 +63,7 @@ function ListStudent() {
             <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
             <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
 
-            { lectures.map(lecture => (
+            { students.map(lecture => (
                 <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name }</a>
               ))
             }
@@ -90,11 +73,11 @@ function ListStudent() {
         <div className="ul-widget__body">
             <div className="ul-widget1">
 
-              { filtered.map(enrol => (
+              { students.map(student => (
                     
-                <div className="ul-widget4__item ul-widget4__users" key={ enrol.student.id }>
+                <div className="ul-widget4__item ul-widget4__users" key={ student.id }>
                   <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                  <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ enrol.student.first_name } { enrol.student.last_name }</a><span className="ul-widget2__username" href="#"></span></div>
+                  <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ student.first_name } { student.last_name }</a><span className="ul-widget2__username" href="#"></span></div>
                   <button className="btn btn-danger" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unenrol</button>          
                 </div>
 

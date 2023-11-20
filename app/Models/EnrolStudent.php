@@ -25,7 +25,7 @@ class EnrolStudent extends Model
     }
 
 
-    public function attendance()
+    public function attendance()      
     {
         return $this->hasMany(Attendance::class);
     }

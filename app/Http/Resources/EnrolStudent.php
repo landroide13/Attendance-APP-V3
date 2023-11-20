@@ -14,7 +14,7 @@ class EnrolStudent extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        return [ 
             'id' => $this->id,
             'student' => $this->student,
             'lecture' => $this->lecture,

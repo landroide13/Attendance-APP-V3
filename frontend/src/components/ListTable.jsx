@@ -4,6 +4,13 @@ import axiosClient from "../axios-client.jsx";
 
 function ListTable(props) {
 
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+
     const { enrols, lectures } = props
 
     const [statuses, setStatus] = useState([])
@@ -35,7 +42,7 @@ function ListTable(props) {
         })
     }
     
-  return (
+  return (      
     <div className="card col-md-8 offset-md-2">
         <div className="card-body">
             <div className="ul-widget__head">
@@ -54,7 +61,7 @@ function ListTable(props) {
                 </div>
                 <div className="ul-widget__head-toolbar">
                     <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">
-                        <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Date {}</a></li>
+                        <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Date {currentDate}</a></li>
                     </ul>
                 </div>                            
             </div>
@@ -65,7 +72,7 @@ function ListTable(props) {
 
                         {  filtered.map(enrol => (
 
-                            <TableItem key={enrol.id} student={enrol.student}  id={enrol.student.id}  />
+                            <TableItem key={enrol.id} student={enrol.student}  id={enrol.id}  />
 
                             ))
                         }     
