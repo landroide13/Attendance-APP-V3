@@ -57,9 +57,7 @@ function RegisterSubject() {
         })
     }
 
- 
-    const filtered =  tutors.filter(tutor => tutor.role.name == 'tutor')
-
+  const filtered =  tutors.filter(user => user.role == 'tutor')
 
   return (
     <div className="mb-4">
@@ -82,6 +80,7 @@ function RegisterSubject() {
                         {!loading &&
                         
                         <select className="form-control"  onChange={ev => setLecture({...lecture, user_id: ev.target.value})}>
+                            <option>...</option>
                             {filtered.map(tutor => (
                                
                               <option key={tutor.id} value={tutor.id}>{tutor.first_name} {tutor.last_name}</option>

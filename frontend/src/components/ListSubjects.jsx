@@ -6,6 +6,8 @@ import {useStateContext} from "../context/ContextProvider.jsx";
 function ListSubjects() {
 
     const [lectures, setLecture] = useState([])
+    const [option, setOption] = useState('')
+
     const [loading, setLoading] = useState(false);
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
@@ -29,24 +31,26 @@ function ListSubjects() {
           }
           setLoading(false)
         })
-      }
+      }  
 
 
-    //const filtered =  tutors.filter(user => user.role.name == 'tutor')
-
+  const filtered =  lectures.filter(lecture => lecture.lecture_name == option)
 
   return (
     <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
 
             <div className="ul-widget__head pb-20 v-margin">
                 <div className="ul-widget__head-label">
-                    <h3 className="ul-widget__head-title"> List By: </h3>
+                    <h3 className="ul-widget__head-title"> List Subjects: </h3>
                 </div>
                 <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                 <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
-                  <a className="dropdown-item ul-widget__link--font"  onClick={() => setOption('super_admin')}> Super Admin</a>
-                  <a className="dropdown-item ul-widget__link--font"  onClick={() => setOption('admin')} > Admins</a>
-                  <a className="dropdown-item ul-widget__link--font"  onClick={() => setOption('tutor')}>Tutors</a>
+                  {
+                    lectures.map(lecture => (
+                      <a className="dropdown-item ul-widget__link--font"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name }</a>
+                    ))
+                  }
+                  
                 </div>
             </div>
             <div className="ul-widget__body">
@@ -56,7 +60,7 @@ function ListSubjects() {
                         
                         <div className="ul-widget4__item ul-widget4__users" key={ lecture.id }>
                             <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ lecture.lecture_name } </a><span className="ul-widget2__username" href="#">{ lecture.tutor.first_name } { lecture.tutor.last_name }</span></div><span className="ul-widget4__number t-font-boldest text-success">+500</span>
+                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ lecture.lecture_name } </a><span className="ul-widget2__username" href="#">Tutor: { lecture.tutor.first_name } { lecture.tutor.last_name }</span></div><span className="ul-widget4__number t-font-boldest text-success">Students:  { lecture.enrols.length }</span>
                         </div>
                         
                       ))

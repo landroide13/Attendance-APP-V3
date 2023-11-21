@@ -1,6 +1,7 @@
 import React from 'react'
 import RegisterSubject from '../components/RegisterSubject'
 import ListSubjects from '../components/ListSubjects'
+import AttendanceList from '../components/AttendanceList'
 
 function ManageSubjects() {
 
@@ -17,11 +18,11 @@ function ManageSubjects() {
                         <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">
                             <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Create Subject</a></li>
                             <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List Subject</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">----</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">Attendance Lists</a></li>
                         </ul>
                     </div>
                 </div>
-                <div className="ul-widget__body">
+                <div className="ul-widget__body"> 
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
@@ -36,7 +37,7 @@ function ManageSubjects() {
                         </div>
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
-                            <h1>----</h1>
+                            <AttendanceList />
                         </div>
                                                     
                     </div>

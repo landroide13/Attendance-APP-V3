@@ -11,7 +11,6 @@ function TableItem(props) {
       status_id: '',  
     })
  
-
     const [statuses, setStatus] = useState([])
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null)
@@ -21,7 +20,6 @@ function TableItem(props) {
         axiosClient.get('/status')
           .then(({ data }) => {
             setStatus(data.data)
-            //console.log(data.data)
             setLoading(false)
           })
           .catch(() => {
@@ -59,7 +57,7 @@ function TableItem(props) {
     <div key={ student.id } className="ul-widget1">
   
       <form className='row' onSubmit={onSubmit}>
-        <select className="form-control col-md-2 "  onChange={ev => setAttendance({...attendance, status_id: ev.target.value})}>
+        <select className="col-md-2 form-control"  onChange={ev => setAttendance({...attendance, status_id: ev.target.value})}>
         <option>...</option>
         { statuses.map(status => (
                                
@@ -68,11 +66,12 @@ function TableItem(props) {
           ))}
         </select> 
 
-          <div className="ul-widget2__info"><option className="ul-widget2__title" href="#" value={student.id}># {id} - { student.first_name } { student.last_name } </option></div>
-          <div className="ul-widget2__actions">
-            <button className="btn btn-primary mt-3">Save</button>
-            <button className="btn btn-info mt-3">Notify</button>
+          <div className="form-text ml-3"><span className="" href="#" value={student.id}>{ student.first_name } { student.last_name }</span></div>
+          <div className="btn-group mb-3 ml-5" role="group">
+            <button type="submit" className="btn btn-sm btn-primary">Save</button>
+            <button type="button" className="btn btn-sm btn-info ml-3">Notify</button>
           </div>
+          
       </form>
 
     </div>

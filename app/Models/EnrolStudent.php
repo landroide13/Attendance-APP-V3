@@ -11,7 +11,7 @@ class EnrolStudent extends Model
 
     protected $fillable = [
         'lecture_id',
-        'student_id'
+        'student_id' 
     ];
 
     public function student()
@@ -27,7 +27,7 @@ class EnrolStudent extends Model
 
     public function attendance()      
     {
-        return $this->hasMany(Attendance::class);
+        return $this->hasMany(Attendance::class); 
     }
 
     
