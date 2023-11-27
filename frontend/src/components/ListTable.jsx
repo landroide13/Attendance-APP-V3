@@ -57,7 +57,7 @@ function ListTable(props) {
                         ))
                     }
                     
-                    </div>
+                </div>
                 </div>
                 <div className="ul-widget__head-toolbar">
                     <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">

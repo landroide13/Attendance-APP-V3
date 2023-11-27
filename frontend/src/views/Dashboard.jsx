@@ -188,7 +188,7 @@ function Dashboard() {
                   
               <StatusTable />
                     
-              <StripedTable />  
+              <StatusTable />
 
             </div> 
     </div>

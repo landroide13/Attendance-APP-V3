@@ -58,7 +58,7 @@ function Attendance() {
         </div>
         <div className="separator-breadcrumb border-top"></div>
             
-        <ListTable enrols={enrols} lectures={lectures} />
+        <ListTable enrols={enrols} lectures={lectures} />  
 
     </div>
        

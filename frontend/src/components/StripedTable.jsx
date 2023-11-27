@@ -1,52 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
+import StripTableItem from './StripTableItem'
 
-function StripedTable() {
+function StripedTable({ students, enrols }) {
 
-    const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
+  const [option, setOption] = useState({})
 
+  const filteredStudent = enrols.filter(enrol => enrol.student.id === option.id)
 
   return (
     <div className="col-md-6 mb-2">
         <div className="card text-start">
             <div className="card-body">
-                <h4 className="card-title mb-3">Students by Status</h4>
+                <div className="row">
+                    <h4 className="card-title mb-3">Attendance by Student</h4>
+
+                    <button className="btn btn-info dropdown-toggle _r_btn border-0 ml-3 mb-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ 'Select' }</button>
+                    <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
+
+                        {   students.map(student => (
+                                <a key={student.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(student)}>{ student.first_name } { student.last_name }</a>
+                            ))
+                        }
+                    </div>
+                </div>
+                
+                
                 <div className="table-responsive">
-                    <table className="table table-striped">
+
+                    <h4>{ option.first_name || null } { option.last_name || null }</h4>
+
+                    <table className="table table-striped dataTable-collapse text-center">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Avatar</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Smith Doe</td>
-                                <td><img className="rounded-circle m-0 avatar-sm-table" src={ avatar } alt="" /></td>
-                                <td>Smith@gmail.com</td>
-                                <td><span className="badge bg-success">Present</span></td>
-                                <td><a className="text-success me-2" href="#"><i className="nav-icon i-Pen-2 fw-bold"></i></a><a className="text-danger me-2" href="#"><i className="nav-icon i-Close-Window fw-bold"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jhon Doe</td>
-                                <td><img className="rounded-circle m-0 avatar-sm-table" src={ avatar } alt="" /></td>
-                                <td>Jhon@gmail.com</td>
-                                <td><span className="badge bg-info">Present</span></td>
-                                <td><a className="text-success me-2" href="#"><i className="nav-icon i-Pen-2 fw-bold"></i></a><a className="text-danger me-2" href="#"><i className="nav-icon i-Close-Window fw-bold"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Alex</td>
-                                <td><img className="rounded-circle m-0 avatar-sm-table" src={ avatar } alt="" /></td>
-                                <td>Otto@gmail.com</td>
-                                <td><span className="badge bg-warning">Leave</span></td>
-                                <td><a className="text-success me-2" href="#"><i className="nav-icon i-Pen-2 fw-bold"></i></a><a className="text-danger me-2" href="#"><i className="nav-icon i-Close-Window fw-bold"></i></a></td>
-                            </tr>
+                            {
+                                filteredStudent.map(student => (
+                                    
+                                  <StripTableItem student={student} />
+
+                                ))
+                            }
                         </tbody>
                     </table>
                 </div>

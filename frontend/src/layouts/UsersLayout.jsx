@@ -104,7 +104,16 @@ function UsersLayout() {
                           <label className="toggle" htmlFor="drop-2"></label><a href="/attendance">Manage Attendance</a>
                         </div>
                       </div>
-                    </li>       
+                    </li>
+                    
+                    <li>
+                      <div>
+                        <div>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="/records">Records</a>
+                        </div>
+                      </div>
+                    </li>
+
                 </ul>
               </div>
             </div>
