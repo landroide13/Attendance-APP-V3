@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import LectureTableItem from './LectureTableItem'
 
-function LectureTable({ lectures, enrols }) {
+function LectureTable({ lectures, enrols, date }) {
 
     const [option, setOption] = useState({})
 
@@ -12,16 +12,22 @@ function LectureTable({ lectures, enrols }) {
           <div className="card text-start">
               <div className="card-body">
                   <div className="row">
-                      <h4 className="card-title mb-3">Attendance by Lecture</h4>
-  
-                      <button className="btn btn-info dropdown-toggle _r_btn border-0 ml-3 mb-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ 'Select' }</button>
-                      <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
-  
-                        {  lectures.map(lecture => (
-                                <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture)}>{ lecture.lecture_name }</a>
-                            ))
-                        }
-                      </div>
+                      <h4 className="card-title mb-3 ml-3">Attendance by Lecture</h4>
+
+                       { date ? 
+                            <>
+                                <button className="btn btn-info dropdown-toggle _r_btn border-0 ml-3 mb-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ 'Select' }</button>
+                                <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
+
+                                {  lectures.map(lecture => (
+                                        <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture)}>{ lecture.lecture_name }</a>
+                                    ))
+                                }
+                                </div>
+                            </>
+                         : null
+                       } 
+                      
                   </div>
                   
                   <div className="table-responsive">
@@ -40,7 +46,7 @@ function LectureTable({ lectures, enrols }) {
                               {
                                 filteredLecture.map(student => (
                                       
-                                    <LectureTableItem student={student} />
+                                    <LectureTableItem student={student} date={date} />
   
                                 ))
                               }

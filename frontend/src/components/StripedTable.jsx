@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import StripTableItem from './StripTableItem'
 
-function StripedTable({ students, enrols }) {
+function StripedTable({ students, enrols, date }) {
 
   const [option, setOption] = useState({})
 
@@ -12,16 +12,23 @@ function StripedTable({ students, enrols }) {
         <div className="card text-start">
             <div className="card-body">
                 <div className="row">
-                    <h4 className="card-title mb-3">Attendance by Student</h4>
+                    <h4 className="card-title mb-3 ml-3">Attendance by Student</h4>
 
-                    <button className="btn btn-info dropdown-toggle _r_btn border-0 ml-3 mb-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ 'Select' }</button>
-                    <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
+                    { date ?
+                        <>
+                            <button className="btn btn-info dropdown-toggle _r_btn border-0 ml-3 mb-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ 'Select' }</button>
+                            <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
 
-                        {   students.map(student => (
-                                <a key={student.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(student)}>{ student.first_name } { student.last_name }</a>
-                            ))
-                        }
-                    </div>
+                                {   students.map(student => (
+                                        <a key={student.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(student)}>{ student.first_name } { student.last_name }</a>
+                                    ))
+                                }
+                            </div>
+                        </>
+                        : null
+                    }
+
+                    
                 </div>
                 
                 

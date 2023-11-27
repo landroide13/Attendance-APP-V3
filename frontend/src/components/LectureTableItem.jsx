@@ -1,36 +1,43 @@
 import React from 'react'
 
-function LectureTableItem({ student }) {
+function LectureTableItem({ student, date }) {
+
+    const filter = student.attendance.filter(attendance => attendance.date === date)
 
   return (
-    <tr> 
-        {
-            student.attendance.map(attendance => (
-                <>
-                    <td scope="col">{ attendance.date }</td>
-                </>
-            ))
-        }
 
-        {
-            <>
-                <td>{ student.student.first_name }</td>
-            </>
-        }
-         {
-            <>
-                <td>{ student.student.last_name }</td>
-            </>
-        }
+    filter.length !== 0 ?
+        <tr> 
+            { 
+                student.attendance.map(attendance => (
+                    <>
+                        <td scope="col">{ attendance.date }</td>
+                    </>
+                )) 
+            }
 
-        {
-            student.attendance.map(attendance => (
+            { 
                 <>
-                    <td scope="col">{ attendance.status }</td>
-                </>
-            ))
-        }
-    </tr>
+                    <td>{ student.student.first_name }</td>
+                </> 
+            }
+            { 
+                <>
+                    <td>{ student.student.last_name }</td>
+                </> 
+            }
+
+            { 
+                student.attendance.map(attendance => (
+                    <>
+                        <td scope="col">{ attendance.status }</td>
+                    </>
+                )) 
+            }
+        </tr>
+
+    : <h5>No Records so far</h5>
+
   )
 
 }

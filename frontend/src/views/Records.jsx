@@ -9,6 +9,7 @@ function Records() {
     const [students, setStudents] = useState([])
     const [lectures, setLectures] = useState([])
     const [date, setDate] = useState('')
+
     const [option, setOption] = useState('')
     const [loading, setLoading] = useState(false);
 
@@ -66,19 +67,35 @@ function Records() {
         getLectures();
       }, []);
 
-
   return (
     <div className="main-content">
         <div className="breadcrumb" style={{ background: '#020381' }}>   
             <h1 className="text-white">Attendance Records</h1>
         </div>
+
+        <div className="row">
+            <button className="btn btn-info dropdown-toggle _r_btn border-0 ml-3 mb-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ 'Select' }</button>
+            <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
+    
+                {  enrols.map(enrol => (
+                    <>
+                        {   enrol.attendance.map(attendance => (
+                                <a key={attendance.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setDate(attendance.date)}>{ attendance.date }</a>
+                            ))
+                        }
+                    </>
+                    ))
+                }
+            </div>
+            <h4 className='ml-3'>{ date || null }</h4>
+        </div>
         <div className="separator-breadcrumb border-top"></div>
             
         <div className="row">
+           
+            <StripedTable students={students} enrols={enrols} date={date} />
 
-            <StripedTable students={students} enrols={enrols} />
-
-            <LectureTable lectures={lectures} enrols={enrols} />
+            <LectureTable lectures={lectures} enrols={enrols} date={date} />
 
         </div>    
 
