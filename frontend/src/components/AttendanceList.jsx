@@ -80,13 +80,12 @@ console.log(date)
                         
                         <div className="ul-widget4__item ul-widget4__users" key={ enrol.id }>
                             <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ enrol.student.first_name} { enrol.student.last_name}</a><span className="ul-widget2__username" href="#"></span></div><span className="ul-widget4__number t-font-boldest text-success">{ }</span>
+                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ enrol.student.first_name} { enrol.student.last_name}</a></div>
 
-                            
                             { enrol.attendance.map(attendance => (
                                 <ul key={ enrol.id } class="list-group list-group-horizontal">
                                     <li key={attendance.id}class="list-group-item">{ attendance.date }</li>
-                                    <li key={attendance.id} class="list-group-item"><span className={ 'badge, ${attendance.status === Present ? bg-success : bg-danger}'  } >{ attendance.status }</span></li>
+                                    <li key={attendance.id} class="list-group-item"><span className={ 'badge, ${attendance.status === Present ? bg-success : bg-danger}'} >{ attendance.status }</span></li>
                                 </ul>
                              ))}
 
@@ -94,6 +93,21 @@ console.log(date)
                       ))
                      }
                 </div>
+
+                <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
+                  <ul class="pagination">
+                    <li class="paginate_button page-item previous disabled" id="user_table_previous">
+                      <a href="#" aria-controls="user_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <a href="#" aria-controls="user_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                    </li>
+                    <li class="paginate_button page-item next disabled" id="user_table_next">
+                      <a href="#" aria-controls="user_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+                    </li>
+                  </ul>
+                </div>
+
             </div>                           
     </div>
   )

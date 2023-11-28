@@ -12,13 +12,14 @@ class Attendance extends JsonResource
      *
      * @return array<string, mixed>
      */
+
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
             'enrol_student_id' => $this-> enrol_student_id,
             'status' => $this-> status -> name,
-            'date' => $this-> created_at ->format('d/m/Y'),
+            'date' => $this -> created_at -> format('d/m/Y'),
         ];
     } 
 }

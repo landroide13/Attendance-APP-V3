@@ -9,7 +9,7 @@ function LectureTableItem({ student, date }) {
     filter.length !== 0 ?
         <tr> 
             { 
-                student.attendance.map(attendance => (
+                filter.map(attendance => (
                     <>
                         <td scope="col">{ attendance.date }</td>
                     </>
@@ -28,7 +28,7 @@ function LectureTableItem({ student, date }) {
             }
 
             { 
-                student.attendance.map(attendance => (
+                filter.map(attendance => (
                     <>
                         <td scope="col">{ attendance.status }</td>
                     </>
@@ -36,7 +36,7 @@ function LectureTableItem({ student, date }) {
             }
         </tr>
 
-    : <h5>No Records so far</h5>
+    : <h5>{ null }</h5>
 
   )
 

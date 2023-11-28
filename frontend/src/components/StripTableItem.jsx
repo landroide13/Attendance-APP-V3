@@ -1,16 +1,20 @@
 import React from 'react'
 
-function StripTableItem({ student }) {
+function StripTableItem({ student, date }) {
+
+    const filter = student.attendance.filter(attendance => attendance.date === date)
+
   return (
+    filter.length !== 0 ?
     <tr> 
         {
             <>
-                <td>{ student.lecture.lecture_name }</td>
+                <td scope="col">{ student.lecture.lecture_name }</td>
             </>
         }
 
         {
-            student.attendance.map(attendance => (
+            filter.map(attendance => (
                 <>
                     <td scope="col">{ attendance.date }</td>
                     <td scope="col">{ attendance.status }</td>
@@ -18,6 +22,7 @@ function StripTableItem({ student }) {
             ))
         }
     </tr>
+    : <h5>{ null }</h5>
   )
 }
 

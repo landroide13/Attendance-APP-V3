@@ -69,7 +69,7 @@ function RegisterSubject() {
                 </div>
                 
                 <div className="col-md-6 form-group mb-3">
-                    <label htmlFor="picker1">Select</label>
+                    <label htmlFor="picker1">Select Tutor</label>
                     
                         {loading && 
                             <select className="form-control">

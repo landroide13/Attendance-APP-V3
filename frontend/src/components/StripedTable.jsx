@@ -7,6 +7,8 @@ function StripedTable({ students, enrols, date }) {
 
   const filteredStudent = enrols.filter(enrol => enrol.student.id === option.id)
 
+  //console.log(filteredStudent)
+
   return (
     <div className="col-md-6 mb-2">
         <div className="card text-start">
@@ -24,6 +26,8 @@ function StripedTable({ students, enrols, date }) {
                                     ))
                                 }
                             </div>
+
+                            <button className="btn btn-outline-info btn-sm ml-5" href="#"><i className="i-Folder-Download mr-3"></i>Export</button>
                         </>
                         : null
                     }
@@ -48,7 +52,7 @@ function StripedTable({ students, enrols, date }) {
                             {
                                 filteredStudent.map(student => (
                                     
-                                  <StripTableItem student={student} />
+                                  <StripTableItem student={student} date={date} /> 
 
                                 ))
                             }
@@ -56,6 +60,21 @@ function StripedTable({ students, enrols, date }) {
                     </table>
                 </div>
             </div>
+
+            <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
+                <ul class="pagination">
+                    <li class="paginate_button page-item previous disabled" id="user_table_previous">
+                        <a href="#" aria-controls="user_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                    </li>
+                    <li class="paginate_button page-item active">
+                        <a href="#" aria-controls="user_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                    </li>
+                    <li class="paginate_button page-item next disabled" id="user_table_next">
+                        <a href="#" aria-controls="user_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
    

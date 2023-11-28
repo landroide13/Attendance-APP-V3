@@ -24,13 +24,15 @@ function LectureTable({ lectures, enrols, date }) {
                                     ))
                                 }
                                 </div>
+
+                                <button className="btn btn-outline-info btn-sm ml-5" href="#"><i className="i-Folder-Download mr-3"></i>Export</button>
                             </>
                          : null
                        } 
                       
                   </div>
                   
-                  <div className="table-responsive">
+                    <div className="table-responsive">
                         <h4>{ option.lecture_name || null }</h4>
                       <table className="table table-striped dataTable-collapse text-center">
 
@@ -52,7 +54,21 @@ function LectureTable({ lectures, enrols, date }) {
                               }
                           </tbody>
                       </table>
-                  </div>
+                    </div>
+
+                    <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
+                        <ul class="pagination">
+                            <li class="paginate_button page-item previous disabled" id="user_table_previous">
+                            <a href="#" aria-controls="user_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                            </li>
+                            <li class="paginate_button page-item active">
+                            <a href="#" aria-controls="user_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                            </li>
+                            <li class="paginate_button page-item next disabled" id="user_table_next">
+                            <a href="#" aria-controls="user_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+                            </li>
+                        </ul>
+                    </div>
               </div>
           </div>
       </div>

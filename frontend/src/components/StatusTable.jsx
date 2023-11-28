@@ -4,15 +4,14 @@ function StatusTable() {
 
     const avatar = new URL('../assets/images/Angular_Icon.png', import.meta.url).href
 
-
   return (
    
         <div className="col-md-6">
             <div className="card o-hidden mb-2">
                 <div className="card-header d-flex align-items-left">
                     <h3 className="w-50 float-start card-title m-0">New Users</h3>
-                    
                 </div>
+
                 <div className="card-body">
                     <div className="table-responsive">
                         <table className="table dataTable-collapse text-center" id="user_table">
