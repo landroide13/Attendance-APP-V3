@@ -129,7 +129,7 @@ function EnrolStudent() {
                         }
                 </div>
                 <div className="col-md-12">
-                    <button className="btn btn-primary">Register</button>
+                    <button className="btn btn-primary">Assign Subject</button>
                 </div>
             </div>
         </form>

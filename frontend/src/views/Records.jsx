@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import StripedTable from '../components/StripedTable'
 import axiosClient from "../axios-client.jsx";
 import LectureTable from '../components/LectureTable.jsx';
+import ReportModal from '../components/ReportModal.jsx';
 
 function Records() {
 
@@ -92,11 +93,12 @@ function Records() {
         <div className="separator-breadcrumb border-top"></div>
             
         <div className="row">
-           
-            <StripedTable students={students} enrols={enrols} date={date} />
+                
+          <StripedTable students={students} enrols={enrols} date={date} />
 
-            <LectureTable lectures={lectures} enrols={enrols} date={date} />
+          <LectureTable lectures={lectures} enrols={enrols} date={date} />
 
+         
         </div>    
 
     </div>

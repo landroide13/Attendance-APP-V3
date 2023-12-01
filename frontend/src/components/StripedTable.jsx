@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import StripTableItem from './StripTableItem'
+import ReportModal from './ReportModal'
 
 function StripedTable({ students, enrols, date }) {
 
   const [option, setOption] = useState({})
 
-  const filteredStudent = enrols.filter(enrol => enrol.student.id === option.id)
+  const [open, setOpen] = useState(true)
 
-  //console.log(filteredStudent)
+  const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+  const filteredStudent = enrols.filter(enrol => enrol.student.id === option.id)
 
   return (
     <div className="col-md-6 mb-2">
@@ -27,14 +36,11 @@ function StripedTable({ students, enrols, date }) {
                                 }
                             </div>
 
-                            <button className="btn btn-outline-info btn-sm ml-5" href="#"><i className="i-Folder-Download mr-3"></i>Export</button>
+                            <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleOpen}><i className="i-Folder-Download mr-3"></i>Export</button>
                         </>
                         : null
                     }
-
-                    
                 </div>
-                
                 
                 <div className="table-responsive">
 
@@ -56,6 +62,12 @@ function StripedTable({ students, enrols, date }) {
 
                                 ))
                             }
+
+                            <ReportModal student={filteredStudent}
+                                date={date} isOpen={open}
+                                onClose={handleClose} 
+                            />
+
                         </tbody>
                     </table>
                 </div>
@@ -74,7 +86,7 @@ function StripedTable({ students, enrols, date }) {
                     </li>
                 </ul>
             </div>
-
+           
         </div>
     </div>
    

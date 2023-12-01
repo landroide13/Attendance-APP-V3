@@ -17,7 +17,7 @@ class EnrolStudentService
         return $enrol;
     }
 
-    public function update(array $details):EnrolStudent
+    public function update(array $details, EnrolStudent $enrol):EnrolStudent
     {
         $enrol = EnrolStudent::update([
             'lecture_id' => $details['lecture_id'],
