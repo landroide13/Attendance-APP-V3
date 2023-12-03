@@ -9,7 +9,7 @@ function LectureTable({ lectures, enrols, date }) {
   
     return (
       <div className="col-md-6 mb-2">
-          <div className="card text-start">
+          <div className="card text-start">  
               <div className="card-body">
                   <div className="row">
                       <h4 className="card-title mb-3 ml-3">Attendance by Lecture</h4>

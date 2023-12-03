@@ -6,7 +6,7 @@ function StripedTable({ students, enrols, date }) {
 
   const [option, setOption] = useState({})
 
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   const handleClose = () => {
         setOpen(false);
@@ -35,7 +35,7 @@ function StripedTable({ students, enrols, date }) {
                                     ))
                                 }
                             </div>
-
+                           
                             <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleOpen}><i className="i-Folder-Download mr-3"></i>Export</button>
                         </>
                         : null
@@ -67,7 +67,7 @@ function StripedTable({ students, enrols, date }) {
                                 date={date} isOpen={open}
                                 onClose={handleClose} 
                             />
-
+                        
                         </tbody>
                     </table>
                 </div>

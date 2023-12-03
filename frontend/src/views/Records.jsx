@@ -98,7 +98,6 @@ function Records() {
 
           <LectureTable lectures={lectures} enrols={enrols} date={date} />
 
-         
         </div>    
 
     </div>
