@@ -14,6 +14,10 @@ class Student extends Model
         'last_name',
         'parent_email',
         'parent_phone',
+        'parent_name',
+        'parent_2_name',
+        'parent_2_email',
+        'parent_2_phone',
         'gender',
     ];
 

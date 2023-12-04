@@ -26,6 +26,10 @@ class StudentRequest extends FormRequest
             'last_name' => ['required', 'min:3', 'max:255'],
             'parent_email' => ['required', 'email', 'max:255', 'unique:students'],
             'parent_phone' => ['required', 'min:3'],
+            'parent_name' => ['min:3', 'max:255'],
+            'parent_2_name' => ['min:3'],
+            'parent_2_phone' => ['min:3'],
+            'parent_2_email' => ['email', 'max:255'],
             'gender' => ['required'],
         ];
     }

@@ -14,6 +14,10 @@ class StudentService
             'last_name' => $userDetails['last_name'],
             'parent_email' => $userDetails['parent_email'],
             'parent_phone' => $userDetails['parent_phone'],
+            'parent_name' => $userDetails['parent_name'],
+            'parent_2_name' => $userDetails['parent_2_name'],
+            'parent_2_phone' => $userDetails['parent_2_phone'],
+            'parent_2_email' => $userDetails['parent_2_email'],
             'gender' => $userDetails['gender'],
         ]);
 

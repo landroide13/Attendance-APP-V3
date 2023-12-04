@@ -10,9 +10,13 @@ function ResgisterStudent() {
     const [student, setStudent] = useState({
         id: null,
         first_name: '', 
-        last_name:'',  
+        last_name:'', 
         parent_email: '',
         parent_phone: '',
+        parent_name: '', 
+        parent_2_name: '',
+        parent_2_email:'',
+        parent_2_phone: '',
         gender: '',
     })
 
@@ -23,6 +27,7 @@ function ResgisterStudent() {
 
     const onSubmit = ev => {
         ev.preventDefault()
+        console.log(student)
         axiosClient.post('/students', student) 
         .then(() => {
           console.log(student)
@@ -38,12 +43,10 @@ function ResgisterStudent() {
         })
     }
 
-
-
   return (
     <div className="mb-4">
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>       
             <div className="row">
                 <div className="col-md-6 form-group mb-3">
                     <label htmlFor="firstName1">First name</label>
@@ -54,17 +57,34 @@ function ResgisterStudent() {
                     <input className="form-control" value={student.last_name}  onChange={ev => setStudent({...student, last_name: ev.target.value})} id="lastName1" type="text" placeholder="Enter your last name" required/>
                 </div>
                 <div className="col-md-6 form-group mb-3">
+                    <label htmlFor="exampleInputEmail1">Parent Name</label>
+                    <input className="form-control" value={student.parent_name}  onChange={ev => setStudent({...student, parent_name: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent name" required/>     
+                </div>
+                <div className="col-md-6 form-group mb-3">
                     <label htmlFor="exampleInputEmail1">Parent Email</label>
-                    <input className="form-control" value={student.parent_email}  onChange={ev => setStudent({...student, parent_email: ev.target.value})} id="exampleInputEmail1" type="email" placeholder="Enter email" required/>     
+                    <input className="form-control" value={student.parent_email}  onChange={ev => setStudent({...student, parent_email: ev.target.value})} id="exampleInputEmail1" type="email" placeholder="Enter parent email" required/>     
                 </div>
                 <div className="col-md-6 form-group mb-3">
                     <label htmlFor="exampleInputEmail1">Parent Phone</label>
-                    <input className="form-control" value={student.parent_phone}  onChange={ev => setStudent({...student, parent_phone: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter Phone" required/>     
+                    <input className="form-control" value={student.parent_phone}  onChange={ev => setStudent({...student, parent_phone: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent Phone" required/>     
+                </div>
+                <div className="col-md-6 form-group mb-3">
+                    <label htmlFor="exampleInputEmail1">Parent-2 Name</label>
+                    <input className="form-control" value={student.parent_2_name}  onChange={ev => setStudent({...student, parent_2_name: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent 2 name" />     
+                </div>
+                <div className="col-md-6 form-group mb-3">
+                    <label htmlFor="exampleInputEmail1">Parent-2 Email</label>
+                    <input className="form-control" value={student.parent_2_email}  onChange={ev => setStudent({...student, parent_2_email: ev.target.value})} id="exampleInputEmail1" type="email" placeholder="Enter parent 2 email"/>     
+                </div>
+                <div className="col-md-6 form-group mb-3">
+                    <label htmlFor="exampleInputEmail1">Parent-2 Phone</label>
+                    <input className="form-control" value={student.parent_2_phone}  onChange={ev => setStudent({...student, parent_2_phone: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent 2 Phone"/>     
                 </div>
 
                 <div className="col-md-6 form-group mb-3">
                     <label htmlFor="picker1">Gender</label>
                     <select className="form-control"  onChange={ev => setStudent({...student, gender: ev.target.value})}>
+                        <option>----</option>
                         <option value={"male"}>Male</option>
                         <option value={"female"}>Female</option>
                     </select>
@@ -75,6 +95,22 @@ function ResgisterStudent() {
                 </div>
             </div>
         </form>
+
+        
+        <h5 className='mt-5'>Bulk Import</h5>
+        <form action="">
+
+            <div className="col-md-6 form-group mb-3">
+                <label htmlFor="formFile" className="form-label">Load CSV file</label>
+                <input className="form-control" type="file" id="formFile" />
+            </div>
+
+            <div className="col-md-12">
+                <button className="btn btn-primary">Import</button>
+            </div>
+
+        </form>
+        
 
     </div>
   )

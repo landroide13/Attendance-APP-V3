@@ -36,7 +36,7 @@ function StripedTable({ students, enrols, date }) {
                                 }
                             </div>
                            
-                            <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleOpen}><i className="i-Folder-Download mr-3"></i>Export</button>
+                            <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleOpen}>Export PDF</button>
                         </>
                         : null
                     }
