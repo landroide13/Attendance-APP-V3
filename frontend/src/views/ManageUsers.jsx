@@ -6,9 +6,6 @@ import EnrolStudent from '../components/EnrolStudent'
 
 function ManageUsers() {
 
-    
-    
-
   return (
     <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2 mt-2 mb-2">
         <div className="card">

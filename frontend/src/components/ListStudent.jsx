@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
+import {Link} from "react-router-dom";
 
 
 function ListStudent() {
@@ -70,7 +71,7 @@ function ListStudent() {
   const filtered = enrols.filter(enrol => enrol.lecture.lecture_name === option)
 
 
-  return (
+  return (     
     <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
 
         <div className="ul-widget__head pb-20 v-margin">
@@ -94,7 +95,7 @@ function ListStudent() {
                     
                 <div className="ul-widget4__item ul-widget4__users" key={ enrol.id }>
                   <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                  <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ enrol.student.first_name } { enrol.student.last_name }</a><span className="ul-widget2__username" href="#"></span></div>
+                  <div className="ul-widget2__info ul-widget4__users-info"><Link className="ul-widget2__title" to={'/manageStudents/' + enrol.student.id}>{ enrol.student.first_name } { enrol.student.last_name }</Link><span className="ul-widget2__username" href="#"></span></div>
                   <button className="btn btn-danger" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unenrol</button>          
                 </div>
 

@@ -28,7 +28,7 @@ function ManageStudents() {
 
                             <ResgisterStudent />
 
-                        </div>
+                        </div>  
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
 

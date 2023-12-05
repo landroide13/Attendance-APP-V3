@@ -10,6 +10,7 @@ import Profile from './views/Profile';
 import ManageSubjects from './views/ManageSubjects';
 import Records from './views/Records';
 
+
 const router = createBrowserRouter([
     {
         path:'/',
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: '/manageStudents',
                 element: <ManageStudents />
+            },
+            {
+                path: '/manageStudents/:id',
+                element: <Profile key="studentInfo" />
             },
             {
                 path: '/manageSubjects',
