@@ -65,7 +65,7 @@ const ReportPdf = ({ student, date }) =>{
 
         rowText:{
             fontSize: 18,
-            marginLeft: 4,
+            //marginLeft: 4,
             marginRight: 13,
             marginLeft: 13,
         },

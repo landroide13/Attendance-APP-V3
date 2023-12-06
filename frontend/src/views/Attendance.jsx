@@ -31,7 +31,7 @@ function Attendance() {
     axiosClient.get('/lectures')
       .then(({ data }) => {
         setLecture(data.data)
-        console.log(data.data)
+        //console.log(data.data)
         setLoading(false)
       })
       .catch(() => {
@@ -58,7 +58,7 @@ function Attendance() {
         </div>
         <div className="separator-breadcrumb border-top"></div>
             
-        <ListTable enrols={enrols} lectures={lectures} />  
+        <ListTable enrols={enrols} lectures={lectures} />      
 
     </div>
        

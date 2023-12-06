@@ -102,7 +102,7 @@ function RegisterForm() {
 
                         {!loading &&
                         
-                        <select className="form-control"  onChange={ev => setUser({...user, role_id: ev.target.value})}>
+                        <select className="form-control"  onChange={ev => setUser({...user, role_id: ev.target.value})}> 
                             {roles.map(role => (
                                
                               <option key={role.id} value={role.id}>{role.name}</option>

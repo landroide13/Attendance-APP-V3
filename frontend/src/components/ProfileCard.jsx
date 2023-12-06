@@ -9,8 +9,8 @@ function ProfileCard({ lecture }) {
             <div className="timeline-badge"><i className="badge-icon bg-danger text-white i-Love-User"></i></div>
             <div className="timeline-card card">
                 <div className="card-body">
-                    <div className="mb-1"><strong className="me-1">{ lecture.lecture_name }</strong>
-                        <p className="text-muted">Enroll at: { lecture.created_at }</p>
+                    <div className="mb-1"><strong className="me-1">Subject name: { lecture.lecture_name }</strong>
+                        <p className="text-muted">Tutor: { lecture.tutor.first_name } { lecture.tutor.last_name }</p>
                     </div>
                 </div>
             </div>   
