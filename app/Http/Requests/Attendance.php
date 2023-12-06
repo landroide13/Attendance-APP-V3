@@ -24,6 +24,7 @@ class Attendance extends FormRequest
         return [
             'enrol_student_id' => ['required'],
             'status_id' => ['required'],
+            'attendance_time' => ['date']
         ];
     }
 }

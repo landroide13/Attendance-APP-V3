@@ -13,7 +13,7 @@ class Attendance extends Model
     protected $fillable = [
         'enrol_student_id',
         'status_id',
-        'attendance_date'
+        'attendance_time'
     ];
 
     public function status()

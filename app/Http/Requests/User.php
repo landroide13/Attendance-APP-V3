@@ -28,6 +28,7 @@ class User extends FormRequest
             'password' => ['required', 'min:4', 'max:8', 'confirmed'],
             'role_id' => ['required'],
             'phone' => ['max:255'],
+            'gender' => ['required']
         ];
     }
 }

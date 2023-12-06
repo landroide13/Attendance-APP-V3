@@ -16,6 +16,7 @@ class UserServices
             'password' => bcrypt($userDetails['password']),
             'role_id' => $userDetails['role_id'],
             'phone' => $userDetails['phone'],
+            'gender' => $userDetails['gender']
         ]);
 
         return $user;

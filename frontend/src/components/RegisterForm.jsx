@@ -15,7 +15,8 @@ function RegisterForm() {
         phone: '',
         password: '',
         role_id:'',
-        password_confirmation: ''
+        password_confirmation: '',
+        gender: ''
     })
 
     const [roles, setRoles] = useState([])
@@ -90,9 +91,17 @@ function RegisterForm() {
                     <label htmlFor="phone">Phone</label>
                     <input className="form-control" value={user.phone}  onChange={ev => setUser({...user, phone: ev.target.value})} id="phone" placeholder="Enter phone" />
                 </div>
+                <div className="col-md-6 form-group mb-3">
+                    <label htmlFor="picker2">Gender</label>
+                    <select className="form-control" value={user.gender}  onChange={ev => setUser({...user, gender: ev.target.value})} id="gender" placeholder="Enter Gender">
+                      <option>...</option>
+                      <option value={'male'}>Male</option>
+                      <option value={'female'}>Female</option>
+                    </select>
+                </div>
 
                 <div className="col-md-6 form-group mb-3">
-                    <label htmlFor="picker1">Select</label>
+                    <label htmlFor="picker1">Role</label>
                     
                         {loading && 
                             <select className="form-control">
@@ -103,6 +112,7 @@ function RegisterForm() {
                         {!loading &&
                         
                         <select className="form-control"  onChange={ev => setUser({...user, role_id: ev.target.value})}> 
+                            <option>...</option>
                             {roles.map(role => (
                                
                               <option key={role.id} value={role.id}>{role.name}</option>
