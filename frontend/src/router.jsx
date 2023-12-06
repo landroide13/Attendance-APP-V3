@@ -9,6 +9,7 @@ import ManageStudents from './views/ManageStudents';
 import Profile from './views/Profile';
 import ManageSubjects from './views/ManageSubjects';
 import Records from './views/Records';
+import MyHours from './views/MyHours';
 
 
 const router = createBrowserRouter([
@@ -52,8 +53,8 @@ const router = createBrowserRouter([
                 element: <ManageSubjects />
             },
             {
-                path: '/profile',
-                element: <Profile />
+                path: '/myHours',
+                element: <MyHours />
             },
            
             {

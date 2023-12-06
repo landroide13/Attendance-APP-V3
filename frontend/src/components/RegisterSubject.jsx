@@ -77,7 +77,7 @@ function RegisterSubject() {
                             </select>
                         }
 
-                        {!loading &&
+                      {!loading &&
                         
                         <select className="form-control"  onChange={ev => setLecture({...lecture, user_id: ev.target.value})}>
                             <option>...</option>
@@ -88,7 +88,7 @@ function RegisterSubject() {
                             ))}
                         </select>
                         
-                        }
+                      }
                 </div>
                 <div className="col-md-12">
                     <button className="btn btn-primary">Register</button>
