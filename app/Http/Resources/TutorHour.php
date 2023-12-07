@@ -14,8 +14,7 @@ class TutorHour extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return 
-        [
+        return[
             'user_id' => $this->user_id,
             'date' => $this->date,
             'hours' => $this->hours

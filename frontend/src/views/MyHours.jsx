@@ -1,5 +1,6 @@
 import React from 'react'
 import HoursForm from '../components/HoursForm'
+import ListHours from '../components/ListHours'
 
 function MyHours() {
   return (
@@ -28,7 +29,7 @@ function MyHours() {
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
 
-                            <p>Some list</p>                          
+                            <ListHours />                         
 
                         </div>
                                                 

@@ -36,7 +36,7 @@ Route::apiResource('attendances', AttendanceController::class);
 Route::apiResource('status', StatusController::class);
 Route::apiResource('enrol', EnrolStudentController::class);
 Route::apiResource('roles', RoleController::class);
-Route::apiResource('tutorHours', TutorHourController::class);
+Route::apiResource('hours', TutorHourController::class);
 
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');

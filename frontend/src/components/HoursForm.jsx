@@ -10,16 +10,15 @@ function HoursForm() {
       hours: ''
     })
 
-    const today = new Date();
+  const today = new Date();
 
+  const [users, setUser] = useState([])
+  const [loading, setLoading] = useState(false);
+  const {setNotification} = useStateContext()
 
-    const [users, setUser] = useState([])
-    const [loading, setLoading] = useState(false);
-    const {setNotification} = useStateContext()
+  const [option, setOption] = useState('tutor');
 
-    const [option, setOption] = useState('tutor');
-
-    const getUsers = () => {
+  const getUsers = () => {
         setLoading(true)
         axiosClient.get('/users')
           .then(({ data }) => {
@@ -33,14 +32,14 @@ function HoursForm() {
           }
           setLoading(false)
         })
-    }
+  }
 
-    useEffect(() => {
+  useEffect(() => {
         getUsers()
-    }, [])   
+  }, [])   
 
 
-    const handleSubmit = ev => {
+  const handleSubmit = ev => {
       ev.preventDefault()
 
       let checkDate = new Date(tutorHours.date)
@@ -51,7 +50,7 @@ function HoursForm() {
       return
     }
     console.log(tutorHours)
-    axiosClient.post('/tutorHours', tutorHours) 
+    axiosClient.post('/hours', tutorHours) 
     .then(() => {
       console.log(tutorHours)
       navigate('/dashboard')
@@ -62,12 +61,12 @@ function HoursForm() {
       const response = err.response;
       if (response && response.status === 422) {
         setErrors(response.data.errors)
-      }
+      }  
     })
 
-    }
+  }
 
-    const filtered =  users.filter(user => user.role == option)
+  const filtered =  users.filter(user => user.role == option)
 
   return (
     <form className='' onSubmit={handleSubmit}>

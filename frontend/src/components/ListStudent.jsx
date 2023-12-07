@@ -3,7 +3,6 @@ import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
 import {Link} from "react-router-dom";
 
-
 function ListStudent() {
 
     const [students, setStudent] = useState([])
@@ -74,7 +73,7 @@ function ListStudent() {
   return (     
     <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
 
-        <div className="ul-widget__head pb-20 v-margin">
+        <div className="ul-widget__head pb-20 v-margin">  
             <div className="ul-widget__head-label">
                 <h3 className="ul-widget__head-title">Student List By Subject: <span className='text-success'> { option } </span></h3>
             </div>
