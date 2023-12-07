@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
+import AttendanceModal from './AttendanceModal.jsx';
 
 function AttendanceList() {
 
     const [subjects, setSubjects] = useState([])
     const [option, setOption] = useState('')
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const [open, setOpen] = useState(false)
 
     const [date, setDate] = useState(null)
     const [enrols, setEnrol] = useState([])
@@ -40,7 +44,7 @@ function AttendanceList() {
         axiosClient.get('/enrol')
           .then(({ data }) => {
             setEnrol(data.data)
-            setLoading(false)
+            setLoading(false)   
           })
           .catch(() => {
             const response = err.response;
@@ -49,49 +53,78 @@ function AttendanceList() {
           }
           setLoading(false)
         })
-    }  
+    }
+    
+    const handleAttendance = item => {
+      setSelectedItem(item)
+      setOpen(true)
+    }
+
+    const handleClose = () =>{
+      setOpen(false)
+    }
 
 const filtered =  enrols.filter(enrol => enrol.lecture.lecture_name === option)
-
-console.log(date)
 
   return (
     <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
 
             <div className="ul-widget__head pb-20 v-margin">
                 <div className="ul-widget__head-label">
-                    <h3 className="ul-widget__head-title"> List Attendance</h3>
+                    <h3 className="ul-widget__head-title">List Attendance</h3>
                 </div>
 
                 <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ option || 'Select' }</button>
                 <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                     {
-                        subjects.map(subject => (
-                            <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.lecture_name)}>{ subject.lecture_name }</a>
-                        ))
+                      subjects.map(subject => (
+                        <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.lecture_name)}>{ subject.lecture_name }</a>
+                      ))
                     }
                 </div>
-
             </div>
-            <div className="ul-widget__body">
+            <div className="ul-widget__body"> 
                 <div className="ul-widget1">
 
-                    {  filtered.map(enrol => (
-                        
-                        <div className="ul-widget4__item ul-widget4__users" key={ enrol.id }>
-                            <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ enrol.student.first_name} { enrol.student.last_name}</a></div>
+                  <table className="table table-striped dataTable-collapse text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Student Name</th>
+                        <th className='' scope="col">Status per Day</th>
+                      </tr>
+                    </thead>
 
-                            { enrol.attendance.map(attendance => (
-                                <ul key={ enrol.id } class="list-group list-group-horizontal">
-                                    <li key={attendance.id}class="list-group-item">{ attendance.date }</li>
-                                    <li key={attendance.id} class="list-group-item"><span className={ 'badge, ${attendance.status === Present ? bg-success : bg-danger}'} >{ attendance.status }</span></li>
-                                </ul>
-                             ))}
+                    <tbody>
+                      {  filtered.map(enrol => (
+                          
+                          <tr key={ enrol.id }>
+                              
+                            <td>{ enrol.student.first_name} { enrol.student.last_name}</td>
 
-                        </div>
-                      ))
-                     }
+                              { enrol.attendance.map(attendance => (
+
+                                <td key={attendance.id}>
+                                  <div>{ attendance.date }</div>
+                                  <div onClick={() => handleAttendance(attendance)}><span className='badge badge-success' >{ attendance.status }</span></div>
+                                </td>
+                                
+                              ))}
+                          </tr>
+                        ))
+                      }
+
+                      { selectedItem &&
+                      
+                        <AttendanceModal 
+                          attendance={selectedItem} 
+                          onClose={handleClose}  
+                          open={open} />
+                      
+                      }
+                      
+                    </tbody>
+                  </table>
+
                 </div>
 
                 <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">

@@ -11,7 +11,7 @@ function StripedTable({ students, enrols, date }) {
   const handleClose = () => {
         setOpen(false);
     };
-
+ 
     const handleOpen = () => {
         setOpen(true);
     };

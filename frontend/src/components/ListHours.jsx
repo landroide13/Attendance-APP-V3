@@ -72,7 +72,7 @@ function ListHours() {
             </div>
         </div>
         <div className="ul-widget__body">
-            <div className="ul-widget1">
+            <div className="ul-widget1">  
 
                 <table className="table table-striped dataTable-collapse text-center">
                     <thead>
