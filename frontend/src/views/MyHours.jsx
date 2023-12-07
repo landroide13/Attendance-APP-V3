@@ -13,9 +13,9 @@ function MyHours() {
                     <div className="ul-widget__head-toolbar">
                         <ul className="nav nav-tabs nav-tabs-line nav-tabs-bold ul-widget-nav-tabs-line ul-widget-nav-tabs-line" role="tablist">
                             <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#ul-widget2-tab1-content" role="tab">Register Hours</a></li>
-                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">List ---</a></li>
+                            <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab2-content" role="tab">Hours List</a></li>
                             <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">---</a></li>
-                        </ul>
+                        </ul>  
                     </div>
                 </div>
                 <div className="ul-widget__body">
