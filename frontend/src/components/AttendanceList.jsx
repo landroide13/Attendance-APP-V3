@@ -18,6 +18,16 @@ function AttendanceList() {
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
 
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [itemsPerPage] = useState(1);
+
+    const filtered =  enrols.filter(enrol => enrol.lecture.lecture_name === option)
+
+    // Get current items
+    // const indexOfLastItem = currentPage * itemsPerPage;
+    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    // const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
+
     useEffect(() => {     
         getSubjects();
         getEnrol();
@@ -64,84 +74,95 @@ function AttendanceList() {
       setOpen(false)
     }
 
-const filtered =  enrols.filter(enrol => enrol.lecture.lecture_name === option)
+    // const pageNumbers = [];
+    // for (let i = 1; i <= Math.ceil(filtered.length / itemsPerPage); i++) {
+    //   pageNumbers.push(i);
+    // }
+
 
   return (
     <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
 
-            <div className="ul-widget__head pb-20 v-margin">
-                <div className="ul-widget__head-label">
-                    <h3 className="ul-widget__head-title">List Attendance</h3>
-                </div>
+      <div className="ul-widget__head pb-20 v-margin">
+        <div className="ul-widget__head-label">
+          <h3 className="ul-widget__head-title">List Attendance</h3>
+        </div>
+        <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ option || 'Select' }</button>
+        <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
+          {
+            subjects.map(subject => (
+              <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.lecture_name)}>{ subject.lecture_name }</a>
+              ))
+          }
+        </div>
+      </div>
+      <div className="ul-widget__body"> 
+        <div className="ul-widget1">
 
-                <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ option || 'Select' }</button>
-                <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
-                    {
-                      subjects.map(subject => (
-                        <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.lecture_name)}>{ subject.lecture_name }</a>
-                      ))
-                    }
-                </div>
-            </div>
-            <div className="ul-widget__body"> 
-                <div className="ul-widget1">
+          <table className="table table-striped dataTable-collapse text-center">
+            <thead>
+              <tr>
+                <th scope="col">Student Name</th>
+                <th className='' scope="col">Status per Day</th>
+              </tr>
+            </thead>
 
-                  <table className="table table-striped dataTable-collapse text-center">
-                    <thead>
-                      <tr>
-                        <th scope="col">Student Name</th>
-                        <th className='' scope="col">Status per Day</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {  filtered.map(enrol => (
+              <tbody>
+                {  filtered.map(enrol => (
                           
-                          <tr key={ enrol.id }>
+                  <tr key={ enrol.id }>
                               
-                            <td>{ enrol.student.first_name} { enrol.student.last_name}</td>
+                    <td>{ enrol.student.first_name} { enrol.student.last_name}</td>
 
-                              { enrol.attendance.map(attendance => (
+                    { enrol.attendance.map(attendance => (
 
-                                <td key={attendance.id}>
-                                  <div>{ attendance.date }</div>
-                                  <div onClick={() => handleAttendance(attendance)}><span className='badge badge-success' >{ attendance.status }</span></div>
-                                </td>
-                                
-                              ))}
-                          </tr>
-                        ))
-                      }
+                      <td key={attendance.id}>
+                        <div>{ new Date(attendance.attendance_time).getDate() }/{ new Date(attendance.attendance_time).getMonth() }/{ new Date(attendance.attendance_time).getFullYear() }</div>
+                        <div onClick={() => handleAttendance(attendance.id)}><span className='badge badge-success' >{ attendance.status }</span></div>
+                      </td>
+                                  
+                      )) }
+                    </tr>
+                    ))
+                }
 
-                      { selectedItem &&
+              { selectedItem &&
                       
-                        <AttendanceModal 
-                          attendance={selectedItem} 
-                          onClose={handleClose}  
-                          open={open} />
+                <AttendanceModal 
+                id={selectedItem} 
+                onClose={handleClose}  
+                open={open} />
                       
-                      }
+              }
                       
-                    </tbody>
-                  </table>
+            </tbody>
+          </table>
+        </div>
 
-                </div>
+        <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
+          <ul class="pagination">
+            <li class="paginate_button page-item previous disabled" id="user_table_previous">
+              <a href="#" aria-controls="user_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+            </li>
 
-                <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button page-item previous disabled" id="user_table_previous">
-                      <a href="#" aria-controls="user_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                    </li>
-                    <li class="paginate_button page-item active">
-                      <a href="#" aria-controls="user_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                    </li>
-                    <li class="paginate_button page-item next disabled" id="user_table_next">
-                      <a href="#" aria-controls="user_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
-                    </li>
-                  </ul>
-                </div>
+            {/* {pageNumbers.map(number => (
 
-            </div>                           
+                <li class="paginate_button page-item active">
+                  <a onClick={() => setCurrentPage(number)} className="page-link">
+                    {number}
+                  </a>
+                </li>
+            ))} */}
+
+            <li class="paginate_button page-item active">
+              <a href="#" aria-controls="user_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+            </li>
+            <li class="paginate_button page-item next disabled" id="user_table_next">
+              <a href="#" aria-controls="user_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+            </li>
+          </ul>
+        </div>
+      </div>                           
     </div>
   )
 }

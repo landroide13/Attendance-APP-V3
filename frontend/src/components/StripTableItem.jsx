@@ -2,7 +2,7 @@ import React from 'react'
 
 function StripTableItem({ student, date }) {
 
-    const filter = student.attendance.filter(attendance => attendance.date === date) 
+    const filter = student.attendance.filter(attendance => attendance.attendance_time === date) 
 
   return (
     filter.length !== 0 ?
@@ -16,7 +16,7 @@ function StripTableItem({ student, date }) {
         {
             filter.map(attendance => (
                 <>
-                    <td scope="col">{ attendance.date }</td>
+                    <td scope="col">{ attendance.attendance_time }</td>
                     <td scope="col">{ attendance.status }</td>
                 </>
             ))

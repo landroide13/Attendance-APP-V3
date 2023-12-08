@@ -68,6 +68,8 @@ function Records() {
         getLectures();
       }, []);
 
+      console.log(date)
+
   return (
     <div className="main-content">
         <div className="breadcrumb" style={{ background: '#020381' }}>   
@@ -81,13 +83,19 @@ function Records() {
                 {  enrols.map(enrol => (
                     <>
                         {   enrol.attendance.map(attendance => (
-                                <a key={attendance.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setDate(attendance.date)}>{ attendance.date }</a>
+                                <a key={attendance.id} 
+                                className="dropdown-item ul-widget__link--font text-success"
+                                onClick={() => setDate(attendance.attendance_time)}>
+                                  { new Date(attendance.attendance_time).getDate() }-
+                                  { new Date(attendance.attendance_time).getMonth() }-
+                                  { new Date(attendance.attendance_time).getFullYear() }
+                                </a>
                             ))
                         }
                     </>
                     ))
                 }
-            </div>
+            </div>  
             <h4 className='ml-3'>{ date || null }</h4>
         </div>
         <div className="separator-breadcrumb border-top"></div>

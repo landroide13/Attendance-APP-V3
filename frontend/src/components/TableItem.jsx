@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle, } from 'react'
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import axiosClient from "../axios-client.jsx";
 
 const TableItem = (props) => {

@@ -1,12 +1,52 @@
-import React, { useState, useEffect, useParams } from 'react'
-import axiosClient from "../axios-client.jsx";
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
+import axiosClient from "../axios-client.jsx"
 import {useStateContext} from "../context/ContextProvider.jsx";
 
-function AttendanceModal({ open, onClose, attendance }) {
+function AttendanceModal({ open, onClose, id }) {
 
     if (!open) return null;
 
-    //let { id } = useParams();
+    const navigate = useNavigate();
+
+    const [errors, setErrors] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState([]);
+    const [attendance, setAttendance] = useState({
+        id: null,
+        status_id: '',
+        attendance_time: '',
+        enrol_student_id: ''
+    })
+
+    useEffect(() => {
+        getStatus();
+        setLoading(true)
+        axiosClient.get(`/attendances/${id}`)
+          .then(({data}) => {
+            setAttendance(data.data)
+            setLoading(false)
+          })
+          .catch(() => {
+            setLoading(false)
+          })
+      }, [])
+
+      const getStatus = () => {  
+        setLoading(true)
+        axiosClient.get('/status')
+        .then(({ data }) => {
+          setStatus(data.data)
+          setLoading(false)
+        })
+        .catch(() => {
+          const response = err.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+          setLoading(false)
+        })
+      }  
 
     const styles = {
         main: {
@@ -27,13 +67,13 @@ function AttendanceModal({ open, onClose, attendance }) {
         },
     };
 
-    const handleEdit = () => {
+    const handleEdit = ev => {
         ev.preventDefault()
-        axiosClient.put('/attendance/', user) 
+        axiosClient.put(`/attendances/${id}`, attendance) 
         .then(() => {
-          console.log(user)
-          navigate('/dashboard')
-          window.confirm("User was successfully created")
+          window.confirm("Status successfully Edited")
+           navigate('/dashboard')
+           onClose;
           //setNotification('User was successfully created')
         })
         .catch(err => {
@@ -49,16 +89,25 @@ function AttendanceModal({ open, onClose, attendance }) {
         
         <div class="card-body">
 
-            <h5>Change Status { attendance.id } </h5>
+            <h5>Edit Status #{ id } </h5>
 
+            { !loading && (
             <form onSubmit={handleEdit}>
-                <div class="mb-3">
-                    <label class="form-label">Date</label>
-                    <input type="text" value={attendance.date} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                </div>
+
+                <input type="text" value={attendance.attendance_time} hidden/>
+
+                <input type="text" value={attendance.enrol_student_id} hidden/>
+
                 <div class="mb-3">
                     <label class="form-label">Status</label>
-                    <input type="text" value={attendance.status} class="form-control" id="exampleInputPassword1" />
+
+                    <select className="form-control"  onChange={ev => setAttendance({...attendance, status_id: ev.target.value })}>
+                        <option>...</option>
+                        {status.map(status => (  
+                            <option key={status.id} value={status.id}>{status.name}</option>
+                        ))}
+                    </select>
+
                 </div>
                 
                 <div className="">
@@ -67,7 +116,7 @@ function AttendanceModal({ open, onClose, attendance }) {
                 </div>
 
             </form>
-
+            )}
         </div>
 
     </div>

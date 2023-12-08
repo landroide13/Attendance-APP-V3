@@ -12,9 +12,11 @@ function StripedTable({ students, enrols, date }) {
         setOpen(false);
     };
  
-    const handleOpen = () => {
+    const handleOpen = () => {  
         setOpen(true);
     };
+
+    console.log(" from " + date)
 
   const filteredStudent = enrols.filter(enrol => enrol.student.id === option.id)
 
@@ -52,13 +54,13 @@ function StripedTable({ students, enrols, date }) {
                                 <th scope="col">Subject</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Status</th>
-                            </tr>
+                            </tr>  
                         </thead>
                         <tbody>
                             {
                                 filteredStudent.map(student => (
                                     
-                                  <StripTableItem student={student} date={date} /> 
+                                  <StripTableItem student={student} date={date} />   
 
                                 ))
                             }
