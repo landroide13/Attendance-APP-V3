@@ -1,7 +1,10 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import axiosClient from "../axios-client.jsx";
+import { useNavigate } from "react-router-dom";
 
 const TableItem = forwardRef((props, ref) => {
+
+    const navigate = useNavigate();
 
     const { student, id, presentDate } = props
     const date = new Date();
@@ -17,8 +20,6 @@ const TableItem = forwardRef((props, ref) => {
       status_id: '1' || null,
       attendance_time: `${year}-${month}-${day}`
     })
-
-    console.log(attendanceDay)
  
     const [statuses, setStatus] = useState([])
     const [loading, setLoading] = useState(false);
@@ -54,9 +55,9 @@ const TableItem = forwardRef((props, ref) => {
       console.log(attendance)
       axiosClient.post('/attendances', attendance) 
       .then(() => {
-        navigate('/dashboard')
+        navigate('/manageSubjects')  
         window.confirm("Attendance successfully done")
-        //setNotification('User was successfully created')
+        //setNotification('Attendanec was successfully created')
       })
       .catch(err => {
         const response = err.response;

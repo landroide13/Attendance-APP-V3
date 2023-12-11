@@ -23,7 +23,7 @@ function ListTable(props) {
     const filtered = enrols.filter(enrol => enrol.lecture.lecture_name === option)
 
     const child = filtered.length
-
+    
     useEffect(() => {     
         getStatus();
         formRef.current = formRef.current.slice(0, child);
@@ -74,7 +74,7 @@ function ListTable(props) {
                   <button className="btn btn-info dropdown-toggle _r_btn border-0 mt-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                   <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                     { lectures.map(lecture => (
-                      <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name }</a>
+                      <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture.lecture_name)} required>{ lecture.lecture_name }</a>
                       ))
                     }
                   </div>

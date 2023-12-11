@@ -26,7 +26,7 @@ function ManageSubjects() {
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
-                            <RegisterSubject />
+                            <RegisterSubject />  
    
                         </div>
                             
@@ -37,7 +37,7 @@ function ManageSubjects() {
                         </div>
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
-                            <AttendanceList />   
+                            <AttendanceList />      
                         </div> 
                                                     
                     </div>

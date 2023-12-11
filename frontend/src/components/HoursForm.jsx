@@ -14,7 +14,7 @@ function HoursForm() {
 
   const [users, setUser] = useState([])
   const [loading, setLoading] = useState(false);
-  const {setNotification} = useStateContext()
+  const {setNotification, user} = useStateContext()
 
   const [option, setOption] = useState('tutor');
 
@@ -84,7 +84,7 @@ function HoursForm() {
         <div className="d-flex flex-row">
             <div className="col-md-2">
                 <label htmlFor="exampleFormControlInput1" className="form-label">Hours</label>
-                <input type="number" step="0.01" className="form-control" id="exampleFormControlInput1" onChange={ev => setTutorHrs({...tutorHours, hours: ev.target.value})} placeholder="Hours" />
+                <input type="number" step="0.01" className="form-control" id="exampleFormControlInput1" onChange={ev => setTutorHrs({...tutorHours, hours: ev.target.value})} placeholder="" />
             </div>
 
             <div className="col-md-6">

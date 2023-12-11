@@ -1,9 +1,16 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import {useStateContext} from "../context/ContextProvider.jsx";
 
 function UsersLayout() {
 
   const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
+
+  // const {user, token, setUser, setToken, notification} = useStateContext();
+
+  // if(!token){
+  //   return <Navigate to='/login' />
+  // }
 
   return (
     <div className="text-start">
@@ -25,7 +32,7 @@ function UsersLayout() {
             <div className="header-part-right">
                 <div className="dropdown"><i className="i-Safe-Box text-muted header-icon text-white-50" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div className="menu-icon-grid text-gray-300" > <a href="/profile"><i className="i-Checked-User"></i>Profile</a> </div>
+                    <div className="menu-icon-grid text-gray-300" > <a href="#"><i className="i-Checked-User"></i>Profile</a> </div>
                   </div>
                 </div>
                 
@@ -109,7 +116,7 @@ function UsersLayout() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2"></label><a href="/records"></a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="#"></a>
                         </div>
                       </div>
                     </li>
