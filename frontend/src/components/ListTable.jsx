@@ -4,8 +4,9 @@ import axiosClient from "../axios-client.jsx";
 
 function ListTable(props) {
 
-    const date = new Date();
+    const formRef = useRef([]);
 
+    const date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -17,16 +18,16 @@ function ListTable(props) {
    
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null);
-
-
     const { enrols, lectures } = props
 
     const filtered = enrols.filter(enrol => enrol.lecture.lecture_name === option)
 
-  
+    const child = filtered.length
+
     useEffect(() => {     
-        getStatus()
-      }, []);
+        getStatus();
+        formRef.current = formRef.current.slice(0, child);
+      }, [child]);
 
     const getStatus = () => {
         setLoading(true)
@@ -44,37 +45,21 @@ function ListTable(props) {
         })
     }
 
-    const checkDate = (currentDate, date) =>{
-      if (currentDate.getTime() > date.getTime()) {
-        window.confirm("The given date is in the futre, action not allow.")
-        console.log('The given date is in the future.');
-        return
-      }
+    // const checkDate = (currentDate, date) =>{
+    //   if (currentDate.getTime() > date.getTime()) {
+    //     window.confirm("The given date is in the futre, action not allow.")
+    //     console.log('The given date is in the future.');
+    //     return
+    //   }
+    // }
+
+    const onDateHandle = ev =>{
+      setPresentDate(ev.target.value)
     }
 
-    const allPresent = ev => {
+    const onSubmit = ev => {   
       ev.preventDefault()
-      let checkDate = new Date(presentDate)
-
-      if (checkDate.getTime() > date.getTime()) {
-        window.confirm("The given date is in the futre, action not allow.")
-        console.log('The given date is in the future.');
-        return
-      } else {
-        console.log(attendance)
-        axiosClient.post('/attendances', attendances) 
-        .then(() => {
-        //console.log(attendance)
-        //navigate('/dashboard')
-        window.confirm("Attendance successfully done")
-      })}
-    }
-
-    const onSubmit = ev => {
-      ev.preventDefault()
-      if (childFormRef.current) {
-        childFormRef.current.map(ref => ref.current.handleSubmit());
-      }
+      formRef.current.forEach(ref => ref.handleSubmit())
     }
     
   return (      
@@ -84,7 +69,7 @@ function ListTable(props) {
                 <div className="ul-widget__head-label">
                   <h3 className="ul-widget__head-title">Take Attendance: { option }</h3>
 
-                  <input type="date" onChange={ev => setPresentDate(ev.target.value)} className="form-control mb-3 mt-3" id="exampleFormControlInput1" required/>
+                  <input type="date" onChange={onDateHandle} className="form-control mb-3 mt-3" id="exampleFormControlInput1" required/>
                  
                   <button className="btn btn-info dropdown-toggle _r_btn border-0 mt-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                   <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
@@ -107,18 +92,16 @@ function ListTable(props) {
  
                       <div className='d-flex flex-column'>
 
-                        {  filtered.map(enrol => (
+                        {  filtered.map((enrol, index) => (
 
-                          <TableItem  
+                          <TableItem ref={el => formRef.current[index] = el}   
                             key={enrol.id} student={enrol.student} 
                             id={enrol.id} presentDate={presentDate} />
 
                         ))}
                         
-
                         <div className="d-flex flex-row mt-3">
-                          {/* <button className="btn col-md-2 offset-md-2 btn-primary" onClick={onSubmit} >Save</button> */}
-                          <button className='btn btn-success col-md-2 offset-md-2' onClick={allPresent} >All Present</button>
+                          <button className='btn btn-success col-md-2 offset-md-2' onClick={onSubmit}>Save</button>
                         </div>
 
                       </div>

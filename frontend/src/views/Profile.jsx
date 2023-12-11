@@ -91,12 +91,12 @@ function Profile() {
                                         { lecture.id == subject.lecture_id &&
 
                                             <>
-                                                <ul className="timeline clearfix">
+                                                {/* <ul className="timeline clearfix">
                                                     <li className="timeline-line"></li>
                                                     <li className="timeline-group text-center">
                                                         <button className="btn btn-icon-text btn-primary"><i className="i-Calendar-4"></i> { subject.created_at }</button>
                                                     </li>
-                                                </ul>
+                                                </ul> */}
 
                                                 <ProfileCard lecture={lecture} />
                                             </>
@@ -104,11 +104,9 @@ function Profile() {
                                    </>
                                 
                                 ))}
-                            </>
+                            </>   
                         ))}
 
-                       
-                      
                     </div>
 
                     <div className="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
@@ -116,38 +114,25 @@ function Profile() {
                         <hr />
                                 <div className="row">
                                     <div className="col-md-4 col-6">
-                                        <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Calendar text-16 me-1"></i> Birth Date</p><span>1 Jan, 1994</span>
+                                    <div className="mb-4">
+                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i>Parent 1 phone</p><span>{ student.parent_phone }</span>
                                         </div>
                                         <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Edit-Map text-16 me-1"></i> Birth Place</p><span>Dhaka, DB</span>
+                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i>Parent 1 Email</p><span>{ student.parent_email }</span>
                                         </div>
                                         <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Globe text-16 me-1"></i> Lives In</p><span>Dhaka, DB</span>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 col-6">
-                                        <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i> Gender</p><span>1 Jan, 1994</span>
-                                        </div>
-                                        <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i> Email</p><span>example@ui-lib.com</span>
-                                        </div>
-                                        <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Cloud-Weather text-16 me-1"></i> Website</p><span>www.ui-lib.com</span>
+                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i>Gender</p><span>{ student.gender }</span>
                                         </div>
                                     </div>
                                     <div className="col-md-4 col-6">
                                         <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Face-Style-4 text-16 me-1"></i> Profession</p><span>Digital Marketer</span>
+                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i>Parent 2 phone</p><span>{ student.parent_phone }</span>
                                         </div>
                                         <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Professor text-16 me-1"></i> Experience</p><span>8 Years</span>
-                                        </div>
-                                        <div className="mb-4">
-                                            <p className="text-primary mb-1"><i className="i-Home1 text-16 me-1"></i> School</p><span>School of Digital Marketing</span>
+                                            <p className="text-primary mb-1"><i className="i-MaleFemale text-16 me-1"></i>Parent 2 Email</p><span>{ student.parent_email }</span>
                                         </div>
                                     </div>
+    
                                 </div>
                             <hr />
                     </div>

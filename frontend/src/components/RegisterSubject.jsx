@@ -19,14 +19,13 @@ function RegisterSubject() {
     const [errors, setErrors] = useState(null)
 
     useEffect(() => {     
-        getUsers();
+        getUsers();   
       }, []);
 
     const getUsers = () => {
         setLoading(true)
         axiosClient.get('/users')
           .then(({ data }) => {
-            console.log(data.data)
             setTutor(data.data)
             setLoading(false)
           })
@@ -44,7 +43,6 @@ function RegisterSubject() {
         ev.preventDefault()
         axiosClient.post('/lectures', lecture) 
         .then(() => {
-          console.log(lecture)
           navigate('/dashboard')
           window.confirm("Subject was successfully created")
           //setNotification('User was successfully created')

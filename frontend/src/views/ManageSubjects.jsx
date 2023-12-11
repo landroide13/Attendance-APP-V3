@@ -27,7 +27,7 @@ function ManageSubjects() {
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
                             <RegisterSubject />
-
+   
                         </div>
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">

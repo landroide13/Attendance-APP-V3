@@ -14,4 +14,6 @@ class TutorHour extends Model
         'date',
         'hours'
     ];
+
+    
 }

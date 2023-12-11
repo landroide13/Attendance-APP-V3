@@ -93,7 +93,7 @@ function AttendanceList() {
             subjects.map(subject => (
               <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.lecture_name)}>{ subject.lecture_name }</a>
               ))
-          }
+          }  
         </div>
       </div>
       <div className="ul-widget__body"> 
@@ -139,26 +139,26 @@ function AttendanceList() {
           </table>
         </div>
 
-        <div class="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
-          <ul class="pagination">
-            <li class="paginate_button page-item previous disabled" id="user_table_previous">
-              <a href="#" aria-controls="user_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+        <div className="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
+          <ul className="pagination">
+            <li className="paginate_button page-item previous disabled" id="user_table_previous">
+              <a href="#" aria-controls="user_table" data-dt-idx="0"  className="page-link">Previous</a>
             </li>
 
             {/* {pageNumbers.map(number => (
 
-                <li class="paginate_button page-item active">
+                <li className="paginate_button page-item active">
                   <a onClick={() => setCurrentPage(number)} className="page-link">
                     {number}
                   </a>
                 </li>
             ))} */}
 
-            <li class="paginate_button page-item active">
-              <a href="#" aria-controls="user_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+            <li className="paginate_button page-item active">
+              <a href="#" aria-controls="user_table" data-dt-idx="1"  className="page-link">1</a>
             </li>
-            <li class="paginate_button page-item next disabled" id="user_table_next">
-              <a href="#" aria-controls="user_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
+            <li className="paginate_button page-item next disabled" id="user_table_next">
+              <a href="#" aria-controls="user_table" data-dt-idx="2"  className="page-link">Next</a>
             </li>
           </ul>
         </div>

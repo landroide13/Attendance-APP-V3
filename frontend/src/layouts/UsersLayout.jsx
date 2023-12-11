@@ -109,7 +109,7 @@ function UsersLayout() {
                     <li>
                       <div>
                         <div>
-                          <label className="toggle" htmlFor="drop-2"></label><a href="/records">Records</a>
+                          <label className="toggle" htmlFor="drop-2"></label><a href="/records"></a>
                         </div>
                       </div>
                     </li>

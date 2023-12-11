@@ -20,7 +20,6 @@ function ListSubjects() {
         setLoading(true)
         axiosClient.get('/lectures')
           .then(({ data }) => {
-            console.log(data.data)
             setLecture(data.data)
             setLoading(false)
           })
@@ -47,12 +46,12 @@ function ListSubjects() {
                 <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                   {
                     lectures.map(lecture => (
-                      <a className="dropdown-item ul-widget__link--font"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name }</a>
+                      <a key={lecture.id} className="dropdown-item ul-widget__link--font"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name }</a>
                     ))
                   }
                   
                 </div>
-            </div>
+            </div> 
             <div className="ul-widget__body">
                 <div className="ul-widget1">
 

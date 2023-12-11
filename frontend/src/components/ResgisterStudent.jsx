@@ -7,6 +7,8 @@ function ResgisterStudent() {
 
     const navigate = useNavigate();
 
+    const [selectedFile, setSelectedFile] = useState(null);
+
     const [student, setStudent] = useState({
         id: null,
         first_name: '', 
@@ -17,7 +19,7 @@ function ResgisterStudent() {
         parent_2_name: '',
         parent_2_email:'',
         parent_2_phone: '',
-        gender: '',
+        gender: '',  
     })
 
     const [loading, setLoading] = useState(false);
@@ -41,6 +43,32 @@ function ResgisterStudent() {
             setErrors(response.data.errors)
           }
         })
+    }
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleUpload = ev =>{
+        ev.preventDefault()
+
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        axiosClient.post('http://localhost/api/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(() => {
+            navigate('/dashboard')
+            window.confirm("User was successfully created")
+            console.log('File uploaded successfully', response.data);
+        })
+        .catch(err => {
+            console.error('Error uploading file', err);
+        })
+            
     }
 
   return (
@@ -91,27 +119,26 @@ function ResgisterStudent() {
                 </div>
 
                 <div className="col-md-12">
-                    <button className="btn btn-primary">Register</button>
+                    <button className="btn btn-primary">Register</button>  
                 </div>
             </div>
         </form>
 
         
         <h5 className='mt-5'>Bulk Import</h5>
-        <form action="">
+        <form action="" onSubmit={handleUpload}>
 
             <div className="col-md-6 form-group mb-3">
                 <label htmlFor="formFile" className="form-label">Load CSV file</label>
-                <input className="form-control" type="file" id="formFile" />
+                <input className="form-control" onChange={handleFileChange} type="file" id="formFile" />
             </div>
 
             <div className="col-md-12">
                 <button className="btn btn-primary">Import</button>
-            </div>
+            </div>  
 
         </form>
         
-
     </div>
   )
 }
