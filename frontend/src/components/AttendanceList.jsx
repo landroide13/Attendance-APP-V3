@@ -76,11 +76,11 @@ function AttendanceList() {
 
     const handleNext = () => {
       seNext(next + 2)
-      setPrev(prev - 2)
+      setPrev(prev - 2)  
     }
 
   return (
-    <div className="col-lg-12 col-md-12 col-xl-10 mb-2">
+    <div className="col-lg-12 col-md-12 col-xl-12 mb-3">
 
       <div className="ul-widget__head pb-20 v-margin">
         <div className="ul-widget__head-label">
@@ -103,7 +103,7 @@ function AttendanceList() {
             <thead>
               <tr>
                 <th scope="col">Student Name</th>
-                <th className='offset-md-6' scope="col">Status per Day</th>
+                <th className='' scope="col">Date</th>
               </tr>
             </thead>
 
@@ -117,14 +117,14 @@ function AttendanceList() {
                     { enrol.attendance.map(attendance => (
 
                       <td key={attendance.id}>
-                        <div style={{ fontSize: '1.2em' }}>{ new Date(attendance.attendance_time).getDate() }/{ new Date(attendance.attendance_time).getMonth() }/{ new Date(attendance.attendance_time).getFullYear() }</div>
+                        <div style={{ fontSize: '1.2em' }}>{ new Date(attendance.attendance_time).getDate() }/{ new Date(attendance.attendance_time).getMonth() + 1 }/{ new Date(attendance.attendance_time).getFullYear() }</div>
                         <div onClick={() => handleAttendance(attendance.id)}><span className='badge badge-success' style={{ fontSize: '1em' }}>{ attendance.status }</span></div>
                       </td>
                                   
                       )).slice(prev,next) }
                   </tr>
-                    ))
-                }
+                
+                ))}
 
               { selectedItem &&
                       
@@ -138,7 +138,7 @@ function AttendanceList() {
           </table>
         </div>
 
-        <div className="dataTables_paginate paging_simple_numbers mt-5 offset-md-4" id="user_table_paginate">
+        <div className="dataTables_paginate paging_simple_numbers mt-5 col-md-8 offset-md-4" id="user_table_paginate">
           <ul className="pagination">
 
             <li className="paginate_button page-item previous" id="user_table_previous">
@@ -151,6 +151,7 @@ function AttendanceList() {
 
           </ul>
         </div>
+
       </div>                           
     </div>
   )

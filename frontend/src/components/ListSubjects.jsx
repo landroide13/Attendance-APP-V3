@@ -55,11 +55,11 @@ function ListSubjects() {
             <div className="ul-widget__body">
                 <div className="ul-widget1">
 
-                    {  lectures.map(lecture => (
+                    {  filtered.map(lecture => (
                         
                         <div className="ul-widget4__item ul-widget4__users" key={ lecture.id }>
                             <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info"><a className="ul-widget2__title" href="#">{ lecture.lecture_name } </a><span className="ul-widget2__username" href="#">Tutor: { lecture.tutor.first_name } { lecture.tutor.last_name }</span></div><span className="ul-widget4__number t-font-boldest text-success">Students:  { lecture.enrols.length }</span>
+                            <div className="ul-widget2__info ul-widget4__users-info">{ lecture.lecture_name }<span className="ul-widget2__username" href="#" style={{ fontSize: '1em' }}>Tutor: { lecture.tutor.first_name } { lecture.tutor.last_name }</span></div><span className="ul-widget4__number t-font-boldest text-success">Students:  { lecture.enrols.length }</span>
                         </div>
                         
                       ))

@@ -7,7 +7,7 @@ function ManageSubjects() {
 
 
   return (
-    <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2 mt-2 mb-2">
+    <div className="col-lg-12 col-md-12 col-xl-10 ml-3 mb-3">
         <div className="card">
             <div className="card-body">
                 <div className="ul-widget__head">
@@ -22,7 +22,7 @@ function ManageSubjects() {
                         </ul>
                     </div>
                 </div>
-                <div className="ul-widget__body"> 
+                <div className="ul-widget__body">  
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
@@ -32,12 +32,12 @@ function ManageSubjects() {
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
 
-                            <ListSubjects />
+                            <ListSubjects />   
 
                         </div>
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
-                            <AttendanceList />      
+                            <AttendanceList />       
                         </div> 
                                                     
                     </div>

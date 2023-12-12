@@ -61,7 +61,7 @@ function Profile() {
     console.log( )
 
   return (
-    <div className="main-content">
+    <div className="main-content ">
         <div className="breadcrumb">
             <h1>{ student.first_name } 's Profiles</h1>
             <ul>
@@ -81,7 +81,7 @@ function Profile() {
                     <li className="nav-item"><a className="nav-link active" id="timeline-tab" data-bs-toggle="tab" href="#timeline" role="tab" aria-controls="timeline" aria-selected="false">Subjects</a></li>
                     <li className="nav-item"><a className="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">Contact Detail</a></li>
                 </ul>
-                <div className="tab-content" id="profileTabContent">
+                <div className="tab-content " id="profileTabContent">
                     <div className="tab-pane fade active show" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
                         
                         { lectures && lectures.map(lecture => (
