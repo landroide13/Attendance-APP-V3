@@ -19,6 +19,10 @@ class Student extends Model
         'parent_2_email',
         'parent_2_phone',
         'gender',
+        'school_thoughts',
+        'student_studying',
+        'aditional_info',
+        'birth_date'
     ];
 
     public function attendance()  

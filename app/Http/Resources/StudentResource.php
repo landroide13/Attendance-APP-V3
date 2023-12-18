@@ -26,6 +26,10 @@ class StudentResource extends JsonResource
             'gender' => $this->gender,
             'attendance' => $this -> attendance,
             'subjects' => $this -> subjects,
+            'school_thoughts' => $this -> school_thoughts,
+            'student_studying' => $this -> student_studying,
+            'aditional_info' => $this -> aditional_info,
+            'birth_date' => $this -> birth_date
         ];
     }
 }

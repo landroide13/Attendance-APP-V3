@@ -19,7 +19,11 @@ function ResgisterStudent() {
         parent_2_name: '',
         parent_2_email:'',
         parent_2_phone: '',
-        gender: '',  
+        gender: '',
+        school_thoughts: '',
+        student_studying: '',
+        aditional_info: '',
+        birth_date: '' 
     })
 
     const [loading, setLoading] = useState(false);
@@ -89,30 +93,42 @@ function ResgisterStudent() {
                     <label htmlFor="picker1">Gender</label>
                     <select className="form-control"  onChange={ev => setStudent({...student, gender: ev.target.value})}>
                         <option>----</option>
-                        <option value={"male"}>Male</option>
-                        <option value={"female"}>Female</option>
+                        <option value={"Male"}>Male</option>
+                        <option value={"Female"}>Female</option>
                     </select>
                 </div>
 
-                <div className="col-md-2 form-group mb-3">
+                <div className="col-md-4 form-group mb-3">
                     <label htmlFor="exampleInputEmail1">Birth Date</label>
-                    <input className="form-control"  id="exampleInputEmail1" type="text" placeholder="Date birth"/>     
+                    <input className="form-control"  id="exampleInputEmail1" onChange={ev => setStudent({...student, birth_date: ev.target.value})} type="date" placeholder="Date birth"/>     
                 </div>
 
                 <div className="row col-md-12 g-3">
                     <div className="col-auto form-group mb-3">
                         <label htmlFor="exampleInputEmail1">School of Thoughts</label>
-                        <input className="form-control"  id="exampleInputEmail1" type="text" placeholder="School of Thoughts"/>     
+                        <select className="form-control" onChange={ev => setStudent({...student, school_thoughts: ev.target.value})}>
+                            <option>----</option>
+                            <option value={"Hanfi"}>Hanfi</option>
+                            <option value={"Shafei"}>Shafei</option>
+                            <option value={"Maliki"}>Maliki</option>
+                            <option value={"Hanbali"}>Hanbali</option>
+                        </select>     
                     </div>
 
                     <div className="col-auto form-group mb-3">
                         <label htmlFor="exampleInputEmail1">Student Studying</label>
-                        <input className="form-control"  id="exampleInputEmail1" type="text" placeholder="Student Studying"/>     
+                        <select className="form-control" onChange={ev => setStudent({...student, student_studying: ev.target.value})}>
+                            <option>----</option>
+                            <option value={"Qaaidah"}>Qaaidah</option>
+                            <option value={"Juz Amma"}>Juz Amma</option>
+                            <option value={"Quran"}>Quran</option>
+                            <option value={"None"}>None</option>
+                        </select> 
                     </div>
 
                     <div className="col-auto form-group mb-3">
                         <label htmlFor="exampleInputEmail1">Aditional Information</label>
-                        <textarea className="form-control"  id="exampleInputEmail1" rows='3' type="text" placeholder="Allergy/Disability"></textarea>     
+                        <textarea className="form-control" onChange={ev => setStudent({...student, aditional_info: ev.target.value})}  id="exampleInputEmail1" rows='3' type="text" placeholder="Allergy/Disability"></textarea>     
                     </div>
                 </div>
 
@@ -165,7 +181,7 @@ function ResgisterStudent() {
             </div>
 
             <div className="col-md-2">
-                <button type='submit' className="btn btn-primary mb-3">Import</button>
+                <button type='submit' className="btn btn-success mb-3">Import</button>
             </div>  
 
         </form>

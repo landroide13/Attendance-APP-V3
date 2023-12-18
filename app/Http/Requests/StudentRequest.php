@@ -31,6 +31,10 @@ class StudentRequest extends FormRequest
             'parent_2_phone' => ['min:3'],
             'parent_2_email' => ['email', 'max:255'],
             'gender' => ['required'],
+            'school_thoughts' => ['required'],
+            'student_studying' => ['required'],
+            'aditional_info' => ['max:255'],
+            'birth_date' => ['required']
         ];
     }
 }
