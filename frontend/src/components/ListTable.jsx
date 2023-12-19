@@ -18,9 +18,10 @@ function ListTable(props) {
    
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null);
-    const { enrols, lectures } = props
 
-    const filtered = enrols.filter(enrol => enrol.lecture.lecture_name === option)
+    const { enrols, lectures, lectureTutor } = props
+
+    const filtered = enrols.filter(enrol => enrol.lecture.lecture_id === option.id)
 
     const child = filtered.length
     
@@ -45,14 +46,6 @@ function ListTable(props) {
         })
     }
 
-    // const checkDate = (currentDate, date) =>{
-    //   if (currentDate.getTime() > date.getTime()) {
-    //     window.confirm("The given date is in the futre, action not allow.")
-    //     console.log('The given date is in the future.');
-    //     return
-    //   }
-    // }
-
     const onDateHandle = ev =>{
       setPresentDate(ev.target.value)
     }
@@ -67,16 +60,16 @@ function ListTable(props) {
         <div className="card-body">
             <div className="ul-widget__head">
                 <div className="ul-widget__head-label">
-                  <h3 className="ul-widget__head-title">Take Attendance: { option }</h3>
+                  <h3 className="ul-widget__head-title">Take Attendance: { option.lecture_name }</h3>
 
-                  <input type="date" onChange={onDateHandle} className="form-control mb-3 mt-3" id="exampleFormControlInput1" required/>
+                  <input type="date" value={presentDate} onChange={onDateHandle} className="form-control mb-3 mt-3" id="exampleFormControlInput1"/>
                  
                   <button className="btn btn-info dropdown-toggle _r_btn border-0 mt-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                   <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                     { lectures.map(lecture => (
-                      <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture.lecture_name)} required>{ lecture.lecture_name }</a>
+                      <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture)} required>{ lecture.lecture_name }</a>
                       ))
-                    }
+                    }    
                   </div>
                 </div>
                 <div className="ul-widget__head-toolbar">

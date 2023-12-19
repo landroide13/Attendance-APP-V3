@@ -10,7 +10,7 @@ class LectureService
     {
         $lecture = Lecture::create([
             'lecture_name' => $details['lecture_name'],
-            'user_id' => $details['user_id'],
+            'decription' => $details['decription'],
         ]);
 
         return $lecture;   

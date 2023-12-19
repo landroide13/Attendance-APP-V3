@@ -10,7 +10,7 @@ class EnrolStudent extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lecture_id',
+        'lecture_tutor_id',
         'student_id' 
     ];
 
@@ -19,9 +19,9 @@ class EnrolStudent extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function lecture()
+    public function lecture_tutor()
     {
-        return $this->belongsTo(Lecture::class);
+        return $this->belongsTo(lecture_tutor::class);
     }
 
 

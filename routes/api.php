@@ -12,6 +12,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\EnrolStudentController;
+use App\Http\Controllers\LectureTutorController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -28,6 +29,8 @@ Route::apiResource('status', StatusController::class);
 Route::apiResource('enrol', EnrolStudentController::class);
 Route::apiResource('roles', RoleController::class);
 Route::apiResource('hours', TutorHourController::class);
+Route::apiResource('lectureTutors', LectureTutorController::class);
+
 
 Route::post('/upload', [FileUploadController::class, 'upload']);
 

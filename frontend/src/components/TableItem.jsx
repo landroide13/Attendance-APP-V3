@@ -48,7 +48,7 @@ const TableItem = forwardRef((props, ref) => {
 
       if (checkDate.getTime() > date.getTime()) {
         window.confirm("The given date is in the futre, action not allow.")
-        console.log('The given date is in the future.');
+        //console.log('The given date is in the future.');
         return
       }
 
@@ -62,7 +62,7 @@ const TableItem = forwardRef((props, ref) => {
       .catch(err => {
         const response = err.response;
         if (response && response.status === 422) {
-          setErrors(response.data.errors)
+          setErrors(response.data.errors)  
         }})
       }
     }))

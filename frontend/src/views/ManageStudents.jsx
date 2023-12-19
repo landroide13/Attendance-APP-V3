@@ -7,7 +7,7 @@ function ManageStudents() {
 
     
   return (
-    <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2 mt-2 mb-2">
+    <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2">
         <div className="card">
             <div className="card-body">
                 <div className="ul-widget__head">
@@ -26,19 +26,17 @@ function ManageStudents() {
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
 
-                            <ResgisterStudent />  
+                            <ResgisterStudent />       
 
                         </div>  
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
-
-                            <ListStudent />
-
+                            <ListStudent />     
                         </div>
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
 
-                          <EnrolStudent />    
+                          <EnrolStudent />      
 
                         </div>
                                                     

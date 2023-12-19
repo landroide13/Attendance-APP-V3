@@ -6,7 +6,7 @@ function UsersLayout() {
 
   const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
-  // const {user, token, setUser, setToken, notification} = useStateContext();
+  const {user, token, setUser, setToken, notification} = useStateContext();
 
   // if(!token){
   //   return <Navigate to='/login' />
@@ -138,6 +138,12 @@ function UsersLayout() {
         <div className="main-content-wrap d-flex flex-column">  
           <Outlet />
         </div>
+
+        { notification &&
+          <div className="notification col-md-4">
+            { notification }
+          </div>
+        }
 
       <div className="flex-grow-1"></div>
             <div className="app-footer text-white" style={{ background: '#020381' }}>

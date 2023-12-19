@@ -6,6 +6,7 @@ import {useStateContext} from "../context/ContextProvider.jsx";
 function Attendance() {
 
   const [lectures, setLecture] = useState([])
+  const [lectureTutors, setLectureTutors] = useState([])
   const [enrols, setEnrol] = useState([])
   const [option, setOption] = useState('')
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,25 @@ function Attendance() {
     })
   }
 
-  useEffect(() => {     
+  const getLectureTutors = () => {
+    setLoading(true)
+    axiosClient.get('/lectures')
+      .then(({ data }) => {
+        setLectureTutors(data.data)
+        //console.log(data.data)
+        setLoading(false)
+      })
+      .catch(() => {
+        const response = err.response;
+      if (response && response.status === 422) {
+        setErrors(response.data.errors)
+      }
+      setLoading(false)   
+    })
+  }
+
+  useEffect(() => {  
+    getLectureTutors();   
     getEnrol();
     getLectures()
   }, []);
@@ -58,7 +77,7 @@ function Attendance() {
         </div>
         <div className="separator-breadcrumb border-top"></div>
             
-        <ListTable enrols={enrols} lectures={lectures} />      
+        <ListTable lectureTutor={lectureTutors}  enrols={enrols} lectures={lectures} />           
 
     </div>
        

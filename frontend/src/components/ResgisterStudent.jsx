@@ -37,9 +37,9 @@ function ResgisterStudent() {
         axiosClient.post('/students', student) 
         .then(() => {
           console.log(student)
-          navigate('/dashboard')
-          window.confirm("User was successfully created")
-          //setNotification('User was successfully created')
+          navigate('/manageStudents')
+          window.confirm("Student was successfully created")
+          setNotification('Student was successfully created')
         })
         .catch(err => {
           const response = err.response;
@@ -72,7 +72,6 @@ function ResgisterStudent() {
         .catch(err => {
             console.error('Error uploading file', err);
         })
-            
     }
 
   return (
@@ -98,13 +97,13 @@ function ResgisterStudent() {
                     </select>
                 </div>
 
-                <div className="col-md-4 form-group mb-3">
-                    <label htmlFor="exampleInputEmail1">Birth Date</label>
-                    <input className="form-control"  id="exampleInputEmail1" onChange={ev => setStudent({...student, birth_date: ev.target.value})} type="date" placeholder="Date birth"/>     
-                </div>
-
                 <div className="row col-md-12 g-3">
-                    <div className="col-auto form-group mb-3">
+                    <div className="col-md-4 form-group mb-3">
+                        <label htmlFor="exampleInputEmail1">Birth Date</label>
+                        <input className="form-control"  id="exampleInputEmail1" onChange={ev => setStudent({...student, birth_date: ev.target.value})} type="date" placeholder="Date birth"/>     
+                    </div>
+
+                    <div className="col-md-4 form-group mb-3">
                         <label htmlFor="exampleInputEmail1">School of Thoughts</label>
                         <select className="form-control" onChange={ev => setStudent({...student, school_thoughts: ev.target.value})}>
                             <option>----</option>
@@ -115,7 +114,7 @@ function ResgisterStudent() {
                         </select>     
                     </div>
 
-                    <div className="col-auto form-group mb-3">
+                    <div className="col-md-4 form-group mb-3">
                         <label htmlFor="exampleInputEmail1">Student Studying</label>
                         <select className="form-control" onChange={ev => setStudent({...student, student_studying: ev.target.value})}>
                             <option>----</option>
@@ -125,11 +124,11 @@ function ResgisterStudent() {
                             <option value={"None"}>None</option>
                         </select> 
                     </div>
+                </div>
 
-                    <div className="col-auto form-group mb-3">
-                        <label htmlFor="exampleInputEmail1">Aditional Information</label>
-                        <textarea className="form-control" onChange={ev => setStudent({...student, aditional_info: ev.target.value})}  id="exampleInputEmail1" rows='3' type="text" placeholder="Allergy/Disability"></textarea>     
-                    </div>
+                <div className="col-md-10 form-group mb-3">
+                    <label htmlFor="exampleInputEmail1">Aditional Information</label>
+                    <textarea className="form-control" onChange={ev => setStudent({...student, aditional_info: ev.target.value})}  id="exampleInputEmail1" rows='2' type="text" placeholder="Allergy/Disability"></textarea>     
                 </div>
 
                 <div className="row col-md-12 g-3">
@@ -166,12 +165,12 @@ function ResgisterStudent() {
                     </div>
                     
                 </div>
-
+ 
             </div>
         </form>
 
-        
-        <h5 className='mt-3'>Bulk Import</h5>
+        <hr />
+        <h5 className=''>Bulk Import</h5>
        
         <form onSubmit={handleUpload} className="row">
 

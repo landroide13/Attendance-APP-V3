@@ -40,7 +40,8 @@ export const ContextProvider = ({children}) =>{
             setUser,
             token,
             setToken,
-            setNotification  
+            setNotification,
+            notification  
         }}>
             { children }
         </StateContext.Provider>

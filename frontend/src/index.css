@@ -11,4 +11,18 @@
 @import "./assets/css/plugins/bootstrap/bootstrap.css";
 @import "./assets/css/plugins/bootstrap/bootstrap.min.css";
 
+.notification { 
+    position: fixed;
+    right: 47rem;
+    top: 10rem;
+    z-index: 100;
+    padding: 1rem 1.5rem;
+    background-color: #00a762;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+
+
+
 
