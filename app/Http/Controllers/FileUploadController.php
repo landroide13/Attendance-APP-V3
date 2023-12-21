@@ -28,7 +28,6 @@ class FileUploadController extends Controller
             $student = new Student();
             $enrolStudent = new EnrolStudent();
 
-            
             $student->fill($record);
             
             $student->save();

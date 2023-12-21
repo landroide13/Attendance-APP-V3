@@ -25,13 +25,15 @@ class Student extends Model
         'birth_date'
     ];
 
-    public function attendance()  
-    { 
-        return $this->hasManyThrough(Attendance::class, EnrolStudent::class);
+    // public function attendance()  
+    // { 
+    //     return $this->hasMany(Attendance::class);
+    // }
+
+    public function lectures()
+    {
+        return $this->belongsToMany(Lecture::class, 'lecture_students', 'student_id', 'lecture_id');
     }
 
-    public function subjects()
-    {
-        return $this->hasMany(EnrolStudent::class);
-    }
+
 }

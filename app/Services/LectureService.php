@@ -16,5 +16,11 @@ class LectureService
         return $lecture;   
     }
 
+    public function getLectureStudents($lecture_id)
+    {
+        $lecture = Lecture::with('students')->findOrFail($lecture_id);
+        return $lecture->students;
+    }
+
 
 }

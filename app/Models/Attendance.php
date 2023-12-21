@@ -21,10 +21,15 @@ class Attendance extends Model
         return $this->belongsTo(Status::class);  
     }
 
-    public function student()  
-    {
-        return $this->belongsTo(Student::class, EnrolStudent::class);
-    }
+    // public function student()  
+    // {
+    //     return $this->belongsTo(Student::class);
+    // }
+
+    // public function lecture()
+    // {
+    //     return $this-> belongsTo(Lecture::class);
+    // }
 
     public function enrols()  
     {

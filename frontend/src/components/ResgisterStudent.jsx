@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
@@ -8,6 +8,8 @@ function ResgisterStudent() {
     const navigate = useNavigate();
 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [subjects, setSubjects] = useState([]);
+    const [lecture, setLecture] = useState('');
 
     const [student, setStudent] = useState({
         id: null,
@@ -20,7 +22,7 @@ function ResgisterStudent() {
         parent_2_email:'',
         parent_2_phone: '',
         gender: '',
-        school_thoughts: '',
+        school_thoughts: '',   
         student_studying: '',
         aditional_info: '',
         birth_date: '' 
@@ -30,16 +32,36 @@ function ResgisterStudent() {
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
 
+    const getSubjects = () => {
+        setLoading(true)
+        axiosClient.get('/lectures')
+          .then(({ data }) => {
+            setSubjects(data.data)
+            setLoading(false)
+          })
+          .catch(() => {
+            const response = err.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors)
+          }
+          setLoading(false)
+        })
+    }
+
+    useEffect(() => {
+        getSubjects();
+    }, [])
+
 
     const onSubmit = ev => {
         ev.preventDefault()
         console.log(student)
+        setLoading(true)
         axiosClient.post('/students', student) 
         .then(() => {
-          console.log(student)
-          navigate('/manageStudents')
+          //navigate('/manageStudents')
           window.confirm("Student was successfully created")
-          setNotification('Student was successfully created')
+          //setNotification('Student was successfully created')
         })
         .catch(err => {
           const response = err.response;
@@ -52,6 +74,10 @@ function ResgisterStudent() {
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
     };
+
+    const handleLecture = ev =>{
+        setLecture(ev.target.value)
+    }
 
     const handleUpload = ev =>{
         ev.preventDefault()
@@ -74,6 +100,7 @@ function ResgisterStudent() {
         })
     }
 
+
   return (
     <div className="col-md-12">
 
@@ -87,20 +114,21 @@ function ResgisterStudent() {
                     <label htmlFor="lastName1">Last name</label>
                     <input className="form-control" value={student.last_name}  onChange={ev => setStudent({...student, last_name: ev.target.value})} id="lastName1" type="text" placeholder="Enter your last name" required/>
                 </div>
-                
-                <div className="col-md-2 form-group mb-3">
-                    <label htmlFor="picker1">Gender</label>
-                    <select className="form-control"  onChange={ev => setStudent({...student, gender: ev.target.value})}>
-                        <option>----</option>
-                        <option value={"Male"}>Male</option>
-                        <option value={"Female"}>Female</option>
-                    </select>
-                </div>
 
+                <div className="col-md-4 form-group mb-3">
+                    <label htmlFor="exampleInputEmail1">Select Course</label>
+                    <select className="form-control" onChange={handleLecture}>
+                        <option>----</option>
+                        { subjects.map(subject => (
+                            <option key={subject.id} value={subject.id}>{subject.lecture_name}</option>
+                        ))}
+                    </select> 
+                </div>
+                
                 <div className="row col-md-12 g-3">
                     <div className="col-md-4 form-group mb-3">
                         <label htmlFor="exampleInputEmail1">Birth Date</label>
-                        <input className="form-control"  id="exampleInputEmail1" onChange={ev => setStudent({...student, birth_date: ev.target.value})} type="date" placeholder="Date birth"/>     
+                        <input className="form-control"  id="exampleInputEmail1" onChange={ev => setStudent({...student, birth_date: ev.target.value})} type="date" placeholder="Date birth" required/>     
                     </div>
 
                     <div className="col-md-4 form-group mb-3">
@@ -128,7 +156,16 @@ function ResgisterStudent() {
 
                 <div className="col-md-10 form-group mb-3">
                     <label htmlFor="exampleInputEmail1">Aditional Information</label>
-                    <textarea className="form-control" onChange={ev => setStudent({...student, aditional_info: ev.target.value})}  id="exampleInputEmail1" rows='2' type="text" placeholder="Allergy/Disability"></textarea>     
+                    <textarea className="form-control" onChange={ev => setStudent({...student, aditional_info: ev.target.value})}  id="exampleInputEmail1" rows='2' type="text" placeholder="Allergy/Disability" required></textarea>     
+                </div>
+
+                <div className="col-md-2 form-group mb-3">
+                    <label htmlFor="picker1">Gender</label>
+                    <select className="form-control"  onChange={ev => setStudent({...student, gender: ev.target.value})}>
+                        <option>----</option>
+                        <option value={"Male"}>Male</option>
+                        <option value={"Female"}>Female</option>
+                    </select>
                 </div>
 
                 <div className="row col-md-12 g-3">
@@ -149,15 +186,15 @@ function ResgisterStudent() {
                 <div className="row col-md-12 g-3">
                     <div className="col-auto form-group">
                         <label htmlFor="exampleInputEmail1">Parent-2 Name</label>
-                        <input className="form-control" value={student.parent_2_name}  onChange={ev => setStudent({...student, parent_2_name: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent 2 name" />     
+                        <input className="form-control" value={student.parent_2_name}  onChange={ev => setStudent({...student, parent_2_name: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent 2 name" required />     
                     </div>
                     <div className="col-auto form-group">
                         <label htmlFor="exampleInputEmail1">Parent-2 Email</label>
-                        <input className="form-control" value={student.parent_2_email}  onChange={ev => setStudent({...student, parent_2_email: ev.target.value})} id="exampleInputEmail1" type="email" placeholder="Enter parent 2 email"/>     
+                        <input className="form-control" value={student.parent_2_email}  onChange={ev => setStudent({...student, parent_2_email: ev.target.value})} id="exampleInputEmail1" type="email" placeholder="Enter parent 2 email" required/>     
                     </div>
                     <div className="col-auto form-group">
                         <label htmlFor="exampleInputEmail1">Parent-2 Phone</label>
-                        <input className="form-control" value={student.parent_2_phone}  onChange={ev => setStudent({...student, parent_2_phone: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent 2 Phone"/>     
+                        <input className="form-control" value={student.parent_2_phone}  onChange={ev => setStudent({...student, parent_2_phone: ev.target.value})} id="exampleInputEmail1" type="text" placeholder="Enter parent 2 Phone" required/>     
                     </div>
 
                     <div className="col-md-8 offset-md-10">

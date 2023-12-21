@@ -57,10 +57,11 @@ class User extends Authenticatable
         return Str::lower($this->role->name) === Str::lower($roleName);
     }
 
-    public function enrol()
+    public function lectures()
     {
-        return $this->hasManyThrough(EnrolStudent::class, Lecture::class);
+        return $this -> belongsToMany(Subject::class, 'lecture_tutors');
     }
 
+    
 
 }

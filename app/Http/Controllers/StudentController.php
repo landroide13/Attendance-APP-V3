@@ -18,7 +18,6 @@ class StudentController extends Controller
     {
         return StudentResource::collection(StudentModel::latest()->get());
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -28,6 +27,13 @@ class StudentController extends Controller
 
         return response(new StudentResource($newStudent), 203);
     }
+
+    public function enrollInLecture(Request $request, $id, StudentService $studentService)
+    {
+        $studentService->enrollStudentInToLecture($id, $request->lecture_id);
+
+        return response()->json(['message' => 'Student enrolled in subjects successfully']);
+    }  
 
     /**
      * Display the specified resource.

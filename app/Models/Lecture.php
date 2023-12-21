@@ -22,7 +22,7 @@ class Lecture extends Model
 
     public function attendance()
     {
-        return $this->hasManyThrough(Attendance::class, EnrolStudent::class); 
+        return $this->hasMany(Attendance::class); 
     }  
 
     public function enrols()
@@ -30,6 +30,17 @@ class Lecture extends Model
         return $this->hasMany(EnrolStudent::class); 
     }
 
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'lecture_students');
+    }
+
+    // public function tutors()
+    // {
+    //     return $this-> belongsToMany(Tutor::class, 'lecture_tutors');
+    // }
+
+    
 
 
 }

@@ -33,13 +33,15 @@ class EnrolStudentController extends Controller
         return response(new EnrolStudentResource($newEnrol), 203);
     }
 
+    
+
     /**
      * Display the specified resource.
      */
     public function show(EnrolStudentModel $enrol)
     {
         return new EnrolStudentResource($enrol);
-    }
+    }  
 
     /**
      * Update the specified resource in storage.

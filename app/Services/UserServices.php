@@ -22,9 +22,12 @@ class UserServices
         return $user;
     }
 
-    public function update(array $userDetails):User
+    public function update(array $userDetails, string $id):User
     {
-        $user = User::update([
+        $updateUser = User::findOrFail($id);
+
+        $updateUser -> update([
+            'id' => $id,
             'first_name' => $userDetails['first_name'],
             'last_name' => $userDetails['last_name'],
             'email' => $userDetails['email'],
@@ -33,7 +36,7 @@ class UserServices
             'phone' => $userDetails['phone'],
         ]);
 
-        return $user;
+        return $updateUser;
     }
 
 
