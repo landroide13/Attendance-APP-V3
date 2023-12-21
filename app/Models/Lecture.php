@@ -14,31 +14,20 @@ class Lecture extends Model
         'description'
     ];
 
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function attendance()
     {
         return $this->hasMany(Attendance::class); 
-    }  
-
-    public function enrols()
-    {
-        return $this->hasMany(EnrolStudent::class); 
-    }
+    } 
 
     public function students()
     {
         return $this->belongsToMany(Student::class, 'lecture_students');
     }
 
-    // public function tutors()
-    // {
-    //     return $this-> belongsToMany(Tutor::class, 'lecture_tutors');
-    // }
+    public function tutors()
+    {
+        return $this-> belongsToMany(User::class, 'lecture_users');
+    }
 
     
 

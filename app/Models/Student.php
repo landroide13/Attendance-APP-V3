@@ -25,10 +25,10 @@ class Student extends Model
         'birth_date'
     ];
 
-    // public function attendance()  
-    // { 
-    //     return $this->hasMany(Attendance::class);
-    // }
+    public function attendance()  
+    { 
+        return $this->hasMany(Attendance::class);
+    }
 
     public function lectures()
     {

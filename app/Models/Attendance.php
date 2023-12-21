@@ -11,7 +11,8 @@ class Attendance extends Model
     use HasFactory;
 
     protected $fillable = [
-        'enrol_student_id',
+        'lecture_id',
+        'student_id',
         'status_id',
         'attendance_time',
     ];
@@ -21,20 +22,14 @@ class Attendance extends Model
         return $this->belongsTo(Status::class);  
     }
 
-    // public function student()  
-    // {
-    //     return $this->belongsTo(Student::class);
-    // }
-
-    // public function lecture()
-    // {
-    //     return $this-> belongsTo(Lecture::class);
-    // }
-
-    public function enrols()  
+    public function student()  
     {
-        return $this->belongsTo(EnrolStudent::class);
+        return $this->belongsTo(Student::class);
     }
 
+    public function lecture()
+    {
+        return $this-> belongsTo(Lecture::class);
+    }
     
 }

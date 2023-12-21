@@ -9,7 +9,8 @@ class AttendanceService
     public function store(array $details):Attendance
     {
         $attendance = Attendance::create([
-            'enrol_student_id' => $details['enrol_student_id'],
+            'student_id' => $details['student_id'],
+            'lecture_id' => $details['lecture_id'],
             'status_id' => $details['status_id'],
             'attendance_time' => $details['attendance_time']
         ]);
@@ -22,7 +23,8 @@ class AttendanceService
         $updateAttendance = Attendance::findOrFail($id);
 
         $updateAttendance -> update([
-            'enrol_student_id' => $details['enrol_student_id'],
+            'student_id' => $details['student_id'],
+            'lecture_id' => $details['lecture_id'],
             'status_id' => $details['status_id'],
             'attendance_time' => $details['attendance_time']
         ]);

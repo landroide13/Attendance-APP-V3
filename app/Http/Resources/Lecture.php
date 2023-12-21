@@ -19,7 +19,8 @@ class Lecture extends JsonResource
             'id' => $this->id,
             'lecture_name' => $this->lecture_name,
             'description' => $this->description,
-            
+            'tutors' => $this-> tutors,
+            'students' => $this->students
         ];
     }
 }

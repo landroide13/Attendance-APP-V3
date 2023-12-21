@@ -22,7 +22,8 @@ class Attendance extends FormRequest
     public function rules(): array
     {
         return [
-            'enrol_student_id' => ['required'],
+            'student_id' => ['required'],
+            'lecture_id' => ['required'],
             'status_id' => ['required'],
             'attendance_time' => ['required']
         ];

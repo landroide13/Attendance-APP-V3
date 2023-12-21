@@ -17,7 +17,8 @@ class Attendance extends JsonResource
     {
         return [
             'id' => $this->id,
-            'enrol_student_id' => $this-> enrol_student_id,
+            'lecture_id' => $this-> lecture_id,
+            'student_id' => $this-> student_id,
             'status' => $this-> status -> name,
             'attendance_time' => $this -> attendance_time,
         ];
