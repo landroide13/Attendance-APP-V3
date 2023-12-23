@@ -34,6 +34,15 @@ class LectureController extends Controller
         return response(new LectureResource($newLecture), 203);
     }
 
+    public function assignInLecture(Request $request, $id, LectureService $lectureService) 
+    {
+        
+        $lectureService->assignTutorInToLecture($id, $request->lecture_id);  
+
+        return response()->json(['message' => 'Tutor Assign in subject successfully']);
+
+    }
+
     /**
      * Display the specified resource.
      */

@@ -12,7 +12,7 @@ class AttendanceService
             'student_id' => $details['student_id'],
             'lecture_id' => $details['lecture_id'],
             'status_id' => $details['status_id'],
-            'attendance_time' => $details['attendance_time']
+            'attendance_time' => $details['attendance_time'] 
         ]);
    
         return $attendance;

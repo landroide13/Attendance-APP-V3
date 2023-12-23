@@ -20,7 +20,9 @@ class Lecture extends JsonResource
             'lecture_name' => $this->lecture_name,
             'description' => $this->description,
             'tutors' => $this-> tutors,
-            'students' => $this->students
+            'students' => $this-> students,  
+            'attendance' => $this-> attendance, 
+            'attendance' => Attendance::collection($this->whenLoaded('attendance'))
         ];
     }
 }

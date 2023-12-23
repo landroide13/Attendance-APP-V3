@@ -14,16 +14,20 @@ function ListTable(props) {
 
     const [statuses, setStatus] = useState([])
     const [option, setOption] = useState('')
-    const [presentDate, setPresentDate] = useState('')
+    const [presentDate, setPresentDate] = useState('')  
    
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null);
 
-    const { enrols, lectures, lectureTutor } = props
+    const { lectures } = props
 
-    const filtered = enrols.filter(enrol => enrol.lecture.lecture_id === option.id)
+    const filtered = lectures.filter(lecture => lecture.id === option.id)
 
-    const child = filtered.length
+    const [{ students } = { }] = filtered.length > 0 ? filtered : [{}]
+
+    const child = students && students.length
+
+    console.log(option.id)
     
     useEffect(() => {     
         getStatus();
@@ -85,14 +89,14 @@ function ListTable(props) {
  
                       <div className='d-flex flex-column'>
 
-                        {  filtered.map((enrol, index) => (
+                          { students && students.map((student, index) => (
 
-                          <TableItem ref={el => formRef.current[index] = el}   
-                            key={enrol.id} student={enrol.student} 
-                            id={enrol.id} presentDate={presentDate} />
+                            <TableItem ref={el => formRef.current[index] = el}   
+                              key={student.id} student={student} lectureId={option.id}
+                              id={student.id} presentDate={presentDate} />
 
-                        ))}
-                        
+                          ))}
+  
                         <div className="d-flex flex-row mt-3">
                           <button className='btn btn-success col-md-2 offset-md-2' onClick={onSubmit}>Save</button>
                         </div>

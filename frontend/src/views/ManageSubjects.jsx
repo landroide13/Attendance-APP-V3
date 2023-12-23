@@ -22,20 +22,20 @@ function ManageSubjects() {
                             <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab3-content" role="tab">Assign Subject</a></li>
                             <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#ul-widget2-tab4-content" role="tab">Attendance Lists</a></li>
                         </ul>
-                    </div>
+                    </div>  
                 </div>
                 <div className="ul-widget__body">  
                     <div className="tab-content">
                         <div className="tab-pane active" id="ul-widget2-tab1-content">
-                            <RegisterSubject />    
+                            <RegisterSubject />     
                         </div>
                             
                         <div className="tab-pane" id="ul-widget2-tab2-content">
-                            <ListSubjects />    
+                            <ListSubjects />     
                         </div>
 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
-                            <AssignSubject />
+                            <AssignSubject /> 
                         </div>
 
                         <div className="tab-pane" id="ul-widget2-tab4-content">

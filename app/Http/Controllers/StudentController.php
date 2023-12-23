@@ -28,11 +28,13 @@ class StudentController extends Controller
         return response(new StudentResource($newStudent), 203);
     }
 
-    public function enrollInLecture(Request $request, $id, StudentService $studentService)
+    public function enrollInLecture(Request $request, $id, StudentService $studentService) 
     {
-        $studentService->enrollStudentInToLecture($id, $request->lecture_id);
+        
+        $studentService->enrollStudentInToLecture($id, $request->lecture_id);  
 
         return response()->json(['message' => 'Student enrolled in subjects successfully']);
+
     }  
 
     /**

@@ -21,10 +21,10 @@ class Lecture extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'lecture_students');
+        return $this-> belongsToMany(Student::class, 'lecture_students');
     }
 
-    public function tutors()
+    public function tutors()  
     {
         return $this-> belongsToMany(User::class, 'lecture_users');
     }

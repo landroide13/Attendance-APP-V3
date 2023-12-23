@@ -18,7 +18,6 @@ function ListSubjects() {
 
     const getSubjects = () => {
         setLoading(true)
-        console.log(lectures)
         axiosClient.get('/lectures')
           .then(({ data }) => {
             setLecture(data.data)
@@ -33,7 +32,7 @@ function ListSubjects() {
         })
       }  
 
-
+  
   const filtered =  lectures.filter(lecture => lecture.lecture_name == option)
 
   return (
@@ -43,7 +42,7 @@ function ListSubjects() {
                 <div className="ul-widget__head-label">
                     <h3 className="ul-widget__head-title"> List Subjects: </h3>
                 </div>
-                <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+                {/* <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                 <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                   {
                     filtered.map(lecture => (
@@ -51,7 +50,7 @@ function ListSubjects() {
                     ))
                   }
                     
-                </div>
+                </div> */}
             </div> 
             <div className="ul-widget__body">
                 <div className="ul-widget1">

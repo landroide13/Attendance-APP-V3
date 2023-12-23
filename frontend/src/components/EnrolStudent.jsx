@@ -7,11 +7,8 @@ function EnrolStudent() {
 
     const navigate = useNavigate();
 
-    const [enrol, setEnrol] = useState({
-        id: null,
-        lecture_id: '', 
-        student_id:'',  
-    })
+    const [studentId, setStudentId] = useState('')
+    const [lectureId, setlectureId] = useState('')
 
     const [students, setStudent] = useState([])
     const [lectures, setLecture] = useState([])
@@ -44,7 +41,6 @@ function EnrolStudent() {
         setLoading(true)
         axiosClient.get('/lectures')
           .then(({ data }) => {
-            console.log(data.data)
             setLecture(data.data)
             setLoading(false)
           })
@@ -57,12 +53,22 @@ function EnrolStudent() {
         })
       }  
 
+      const handleLectureId = ev => {
+        setlectureId(ev.target.value)
+      }
+  
+      const handleStudentId = ev => {
+        setStudentId(ev.target.value)
+      }
+  
+
 
     const onSubmit = ev => {
         ev.preventDefault()
-        axiosClient.post('/enrol', enrol) 
+
+        axiosClient.post(`/students/${studentId}/enroll`, { lecture_id: lectureId }) 
         .then(() => {
-          console.log(enrol)
+          console.log(lectureId)
           navigate('/manageStudents')
           window.confirm("Enrolment successfully done")
           //setNotification('User was successfully created')
@@ -71,13 +77,11 @@ function EnrolStudent() {
           const response = err.response;
           if (response && response.status === 422) {
             setErrors(response.data.errors)
+            console.log('Errors' + errors)
           }
         })
     }
-
-
-
-
+   
   return (
     <div className="mb-4">
         <form onSubmit={onSubmit}>
@@ -94,7 +98,7 @@ function EnrolStudent() {
 
                         {!loading &&
                         
-                        <select className="form-control"  onChange={ev => setEnrol({...enrol, student_id: ev.target.value})}>
+                        <select className="form-control" onChange={handleStudentId}>
                              <option>...</option>
                             {students.map(student => (
                                
@@ -117,7 +121,7 @@ function EnrolStudent() {
 
                         {!loading &&
                         
-                        <select className="form-control"  onChange={ev => setEnrol({...enrol, lecture_id: ev.target.value})}>
+                        <select className="form-control" onChange={handleLectureId}>
                              <option>...</option>
                             {lectures.map(lecture => (
                                

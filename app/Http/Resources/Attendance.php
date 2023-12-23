@@ -20,7 +20,7 @@ class Attendance extends JsonResource
             'lecture_id' => $this-> lecture_id,
             'student_id' => $this-> student_id,
             'status' => $this-> status -> name,
-            'attendance_time' => $this -> attendance_time,
+            'attendance_time' => $this -> attendance_time,  
         ];
     } 
 }

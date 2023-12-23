@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Models\Lecture;
 
 class LectureService
@@ -20,7 +21,23 @@ class LectureService
     {
         $lecture = Lecture::with('students')->findOrFail($lecture_id);
         return $lecture->students;
+    } 
+
+    public function assignTutorInToLecture($id, $lecture_id)
+    { 
+        $tutor = User::findOrFail($id);
+
+        $tutor -> lectures()->attach($lecture_id);
     }
+
+    public function unassignTutor($id, $lecture_id) 
+    {
+        $tutor = User::findOrFail($id);
+
+        $tutor ->lectures()->detach($lecture_id);
+    }
+    
+    
 
 
 }

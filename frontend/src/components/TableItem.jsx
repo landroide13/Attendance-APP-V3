@@ -6,17 +6,17 @@ const TableItem = forwardRef((props, ref) => {
 
     const navigate = useNavigate();
 
-    const { student, id, presentDate } = props
+    const { student, id, presentDate, lectureId } = props
+
     const date = new Date();
-    
     let day = new Date(presentDate).getDate();
     let month = new Date(presentDate).getMonth() + 1;
     let year = new Date(presentDate).getFullYear();
-    let attendanceDay =  `${year}-${month}-${day}`;
 
-    const [attendance, setAttendance] = useState({
+    const [attendance, setAttendance] = useState({ 
       id: null,
-      enrol_student_id: id, 
+      student_id: id,
+      lecture_id: lectureId,
       status_id: '1' || null,
       attendance_time: `${year}-${month}-${day}`
     })
@@ -48,16 +48,15 @@ const TableItem = forwardRef((props, ref) => {
 
       if (checkDate.getTime() > date.getTime()) {
         window.confirm("The given date is in the futre, action not allow.")
-        //console.log('The given date is in the future.');
+       
         return
       }
-
       console.log(attendance)
       axiosClient.post('/attendances', attendance) 
       .then(() => {
         navigate('/manageSubjects')  
         window.confirm("Attendance successfully done")
-        //setNotification('Attendanec was successfully created')
+        //setNotification('Attendanca was successfully created')
       })
       .catch(err => {
         const response = err.response;
@@ -82,9 +81,7 @@ const TableItem = forwardRef((props, ref) => {
           <select className="col-md-2 form-control"  onChange={handleChange}>
           <option>...</option>
           { statuses.map(status => (
-                                
-            <option key={status.id} value={status.id}>{status.name}</option>
-                    
+              <option key={status.id} value={status.id}>{status.name}</option>
             ))}      
           </select>    
 

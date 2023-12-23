@@ -24,12 +24,13 @@ class StudentResource extends JsonResource
             'parent_2_email' => $this -> parent_2_email,
             'parent_2_phone' => $this -> parent_2_phone, 
             'gender' => $this->gender,
+            'subjects' => $this-> lectures,
             'attendance' => $this -> attendance,
-            'subjects' => $this -> lectures,
             'school_thoughts' => $this -> school_thoughts,
             'student_studying' => $this -> student_studying,
             'aditional_info' => $this -> aditional_info,
-            'birth_date' => $this -> birth_date
+            'birth_date' => $this -> birth_date,
+            'lectures' => Lecture::collection($this->whenLoaded('lectures'))
         ];
     }
 }

@@ -11,44 +11,10 @@ function Profile() {
     const [loading, setLoading] = useState(false);
 
     let {id} = useParams();
-
-    const getLectures = () => {
-        setLoading(true)
-        axiosClient.get('/lectures')
-          .then(({ data }) => {
-            setLectures(data.data)
-            setLoading(false)
-          })
-          .catch(() => {
-            const response = err.response;
-          if (response && response.status === 422) {
-            setErrors(response.data.errors)
-          }
-          setLoading(false)   
-        })
-      }
-    
-      const getLectureTutors = () => {
-        setLoading(true)
-        axiosClient.get('/lectureTutors')
-          .then(({ data }) => {
-            setLectureTutors(data.data)
-            setLoading(false)
-          })
-          .catch(() => {
-            const response = err.response;
-          if (response && response.status === 422) {
-            setErrors(response.data.errors)
-          }
-          setLoading(false)   
-        })
-      }  
-      
+  
     if (id) {
         useEffect(() => {  
           setLoading(true)
-          getLectureTutors();
-          getLectures();
           axiosClient.get(`/students/${id}`)
             .then(({data}) => {
               setStudent(data.data)
@@ -99,24 +65,11 @@ function Profile() {
                 <div className="tab-content" id="profileTabContent">
                     <div className="tab-pane fade active show" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
                         
-                        { lectures && lectures.map(lecture => (
-                            <>
-                                { lectureTutors && lectureTutors.map(lectureTutor => (
-                                <>
-                                    { subjects && subjects.map(subject => (
-                                        <>
-                                            { lecture.id == lectureTutor.lecture_id & lectureTutor.id == subject.lecture_tutor_id  &&
-
-                                                <ProfileCard lecture={lecture} />  
-                                               
-                                            }
-                                        </>
-                                    ))}
-                                </>
-                                ))}
-                            </>   
-                        ))}
-
+                      { subjects && subjects.map(subject => (
+                        
+                        <ProfileCard lecture={subject} />  
+                                            
+                      ))}
                     </div>
 
                     <div className="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">

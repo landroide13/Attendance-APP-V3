@@ -43,15 +43,23 @@ class StudentService
             'student_studying' => $userDetails['student_studying'],
             'aditional_info' => $userDetails['aditional_info'],
             'birth_date' => $userDetails['birth_date'],
-        ]);
+        ]);  
 
         return $updateStudent;
     }
 
-    public function enrollStudentInToLecture(string $id, string $lecture_id)
+    public function enrollStudentInToLecture($id, $lecture_id)
+    { 
+        $student = Student::findOrFail($id);
+
+        $student->lectures()->attach($lecture_id);
+    }
+
+    public function unenrollStudent($id, $lecture_id) 
     {
         $student = Student::findOrFail($id);
-        $student->lectures()->attach($lecture_id);
+
+        $student->lectures()->detach($lecture_id);
     }
 
 

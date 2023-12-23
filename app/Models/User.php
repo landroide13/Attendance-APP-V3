@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function lectures()
     {
-        return $this -> belongsToMany(Subject::class, 'lecture_tutors');
+        return $this -> belongsToMany(lecture::class, 'lecture_users');
     }
 
     

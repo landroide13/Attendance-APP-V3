@@ -12,20 +12,22 @@ function AttendanceList() {
     const [open, setOpen] = useState(false)
 
     const [date, setDate] = useState(null)
-    const [enrols, setEnrol] = useState([])
+    const [students, setStudents] = useState([])
 
     const [loading, setLoading] = useState(false);
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
 
-    const filtered =  enrols.filter(enrol => enrol.lecture.lecture_name === option)
+    const filtered =  subjects.filter(subject => subject.lecture_name === option)
+
+    console.log(filtered)
 
     const [prev, setPrev] = useState(0)
     const [next, seNext] = useState(2)
 
     useEffect(() => {     
         getSubjects();
-        getEnrol();
+        getStudents();
       }, []); 
 
     const getSubjects = () => {
@@ -44,11 +46,11 @@ function AttendanceList() {
         })
     }
     
-    const getEnrol = () => {
+    const getStudents = () => {
         setLoading(true)
         axiosClient.get('/enrol')
           .then(({ data }) => {
-            setEnrol(data.data)
+            setStudents(data.data)
             setLoading(false)   
           })
           .catch(() => {
@@ -108,20 +110,20 @@ function AttendanceList() {
             </thead>
 
               <tbody>
-                {  filtered.map(enrol => (
+                {  filtered.map(subject => (
                           
-                  <tr key={ enrol.id }>
+                  <tr key={ subject.id }>
                               
-                    <td>{ enrol.student.first_name} { enrol.student.last_name}</td>
+                    <td>{ subject.lecture_name}</td>
 
-                    { enrol.attendance.map(attendance => (
+                    { subject.students.map(student => (
 
-                      <td key={attendance.id}>
-                        <div style={{ fontSize: '1.2em' }}>{ new Date(attendance.attendance_time).getDate() }/{ new Date(attendance.attendance_time).getMonth() + 1 }/{ new Date(attendance.attendance_time).getFullYear() }</div>
-                        <div onClick={() => handleAttendance(attendance.id)}><span className='badge badge-success' style={{ fontSize: '1em' }}>{ attendance.status }</span></div>
+                      <td key={student.id}>
+                        <div style={{ fontSize: '1.2em' }}>{student.first_name}</div>
+                        <div onClick={() => handleAttendance(student.id)}><span className='badge badge-success' style={{ fontSize: '1em' }}></span></div>
                       </td>
                                   
-                      )).slice(prev,next) }
+                      )) }
                   </tr>
                 
                 ))}

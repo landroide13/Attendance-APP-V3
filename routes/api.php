@@ -25,6 +25,8 @@ Route::apiResource('students', StudentController::class);
 Route::post('/students/{student}/enroll', [StudentController::class, 'enrollInLecture']);
 
 Route::apiResource('lectures', LectureController::class);
+Route::post('/lectures/{user}/assing', [LectureController::class, 'assignInLecture']);
+
 Route::apiResource('attendances', AttendanceController::class);
 Route::apiResource('status', StatusController::class);
 Route::apiResource('enrol', EnrolStudentController::class);

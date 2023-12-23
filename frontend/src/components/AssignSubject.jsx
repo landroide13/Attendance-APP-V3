@@ -7,11 +7,8 @@ function AssignSubject() {
 
     const navigate = useNavigate();
 
-    const [lectureTutor, setLectureTutor] = useState({
-        id: null,
-        lecture_id: '', 
-        user_id:'',  
-    })
+    const [tutorId, setTutorId] = useState('')
+    const [lectureId, setLectureId] = useState('')
 
     const [tutors, setTutor] = useState([])
     const [lectures, setLectures] = useState([])
@@ -54,12 +51,20 @@ function AssignSubject() {
           }
           setLoading(false)
         })
-      }  
+      }
+      
+      const handleLecture = ev => {
+        setLectureId(ev.target.value)
+      }
+  
+      const handleTutor = ev => {
+        setTutorId(ev.target.value)
+      }
 
 
     const onSubmit = ev => {
         ev.preventDefault()
-        axiosClient.post('/lectureTutors', lectureTutor) 
+        axiosClient.post(`/lectures/${tutorId}/assing`, { lecture_id: lectureId } ) 
         .then(() => {
           navigate('/manageSubjects') 
           window.confirm("Subject was successfully Assign")
@@ -74,15 +79,14 @@ function AssignSubject() {
     }
 
     const filteredtutor =  tutors.filter(user => user.role == 'tutor')
-    console.log(tutors)
-
+   
     return (
         <div className="mb-4">
             <form onSubmit={onSubmit}>
                 <div className="row">
                     <div className="col-md-6 form-group mb-3">
                         <label htmlFor="firstName1">Select Lecture</label>
-                        <select className="form-control"  onChange={ev => setLectureTutor({...lectureTutor, lecture_id: ev.target.value})}>
+                        <select className="form-control"  onChange={handleLecture}>
                             <option>...</option>
                             { lectures.map(lecture => (
                                    
@@ -97,7 +101,7 @@ function AssignSubject() {
     
                          
                             
-                        <select className="form-control"  onChange={ev => setLectureTutor({...lectureTutor, user_id: ev.target.value})}>
+                        <select className="form-control"  onChange={handleTutor}>
                             <option>...</option>
                             {filteredtutor.map(tutor => (
                                 <option key={tutor.id} value={tutor.id}>{tutor.first_name} {tutor.last_name}</option>
