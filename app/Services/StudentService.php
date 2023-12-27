@@ -3,52 +3,22 @@
 namespace App\Services;
 
 use App\Models\Student;
+use App\Jobs\CreateStudent;
+use App\Jobs\DeleteStudent;
+use App\Jobs\UpdateStudent;
 
 class StudentService
 {
 
-    public function store(array $userDetails):Student
+    public function store(array $userDetails)
     {
-        $student = Student::create([
-            'first_name' => $userDetails['first_name'],
-            'last_name' => $userDetails['last_name'],
-            'parent_email' => $userDetails['parent_email'],
-            'parent_phone' => $userDetails['parent_phone'],
-            'parent_name' => $userDetails['parent_name'],
-            'parent_2_name' => $userDetails['parent_2_name'],
-            'parent_2_phone' => $userDetails['parent_2_phone'],
-            'parent_2_email' => $userDetails['parent_2_email'],
-            'gender' => $userDetails['gender'],
-            'school_thoughts' => $userDetails['school_thoughts'],
-            'student_studying' => $userDetails['student_studying'],
-            'aditional_info' => $userDetails['aditional_info'],
-            'birth_date' => $userDetails['birth_date'],
-        ]);
-
-        return $student;
+        CreateStudent::dispatch($userDetails);
     }
 
     public function updateStudent(array $userDetails, Student $student):Student
-    {
-        //$student = Student::find($id);
+    { 
+        UpdateStudent::dispatch($userDetails, $student);
 
-        $student->update([
-            'first_name' => $userDetails['first_name'],
-            'last_name' => $userDetails['last_name'],
-            'parent_email' => $userDetails['parent_email'],
-            'parent_phone' => $userDetails['parent_phone'],
-            'parent_name' => $userDetails['parent_name'],
-            'parent_2_name' => $userDetails['parent_2_name'],
-            'parent_2_phone' => $userDetails['parent_2_phone'],
-            'parent_2_email' => $userDetails['parent_2_email'],
-            'gender' => $userDetails['gender'],
-            'school_thoughts' => $userDetails['school_thoughts'],
-            'student_studying' => $userDetails['student_studying'],
-            'aditional_info' => $userDetails['aditional_info'],
-            'birth_date' => $userDetails['birth_date'],
-        ]);  
-
-        return $student;
     }
 
     public function enrollStudentInToLecture($id, $lecture_id)
@@ -65,6 +35,10 @@ class StudentService
         $student->lectures()->detach($lecture_id);
     }
 
+    public function deleteStudent(Student $student)
+    {
+        DeleteStudent::dispatch($student);
+    }
 
 
 

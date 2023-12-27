@@ -23,9 +23,9 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $studentRequest, StudentService $studentService)
     {
-        $newStudent = $studentService -> store($studentRequest -> validated());
+        $newStudent = $studentService ->store($studentRequest->validated());
 
-        return response(new StudentResource($newStudent), 203);
+        return response('Student created successfully', 203);
     }
 
     public function enrollInLecture(Request $request, $id, StudentService $studentService) 
@@ -52,14 +52,16 @@ class StudentController extends Controller
     {
         $update = $studentService -> updateStudent($request->validated(), $student);
 
-        return response(new StudentResource($update), 201);
+        return response('Student Updated Successfully', 203);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Student $student, StudentService $studentService)
     {
-       //
+       $studentService -> deleteStudent($student);
+
+       return response('Student Deleted Successfully', 203);
     }
 }

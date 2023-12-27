@@ -1,6 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import axiosClient from "../axios-client.jsx";
 import { useNavigate } from "react-router-dom";
+import {useStateContext} from "../context/ContextProvider.jsx";
 
 const TableItem = forwardRef((props, ref) => {
 
@@ -15,7 +16,7 @@ const TableItem = forwardRef((props, ref) => {
 
     const [attendance, setAttendance] = useState({ 
       id: null,
-      student_id: id,
+      student_id: id,     
       lecture_id: lectureId,
       status_id: '1' || null,
       attendance_time: `${year}-${month}-${day}`
@@ -24,6 +25,7 @@ const TableItem = forwardRef((props, ref) => {
     const [statuses, setStatus] = useState([])
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null)
+    const {setNotification} = useStateContext()
 
     const getStatus = () => {  
       setLoading(true)
@@ -48,15 +50,14 @@ const TableItem = forwardRef((props, ref) => {
 
       if (checkDate.getTime() > date.getTime()) {
         window.confirm("The given date is in the futre, action not allow.")
-       
         return
       }
       console.log(attendance)
       axiosClient.post('/attendances', attendance) 
       .then(() => {
+        setNotification('Attendance was successfully created')
         navigate('/manageSubjects')  
-        window.confirm("Attendance successfully done")
-        //setNotification('Attendanca was successfully created')
+        // window.confirm("Attendance successfully done")
       })
       .catch(err => {
         const response = err.response;

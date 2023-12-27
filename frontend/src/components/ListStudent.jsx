@@ -7,7 +7,6 @@ import StudentModal from './StudentModal'
 function ListStudent() {
 
     const [students, setStudent] = useState([])
-    const [lectures, setLectures] = useState([])
     const [loading, setLoading] = useState(false);
     const {setNotification} = useStateContext()
 
@@ -34,21 +33,6 @@ function ListStudent() {
         setLoading(false)
       })
     }
-
-    // const handleDelete = id => {
-    //   axiosClient.delete(`/students/${id}`)
-    //     .then(() => {
-    //       setLoading(false)
-    //     })
-    //     .catch(() => {
-    //       const response = err.response;
-    //     if (response && response.status === 422) {
-    //       setErrors(response.data.errors)
-    //     }
-    //     setLoading(false)
-    //   })
-    // }
-
 
     const handleItem = item => {
       console.log(item)

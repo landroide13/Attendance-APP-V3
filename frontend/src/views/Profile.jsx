@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import axiosClient from "../axios-client.jsx";
 import ProfileCard from '../components/ProfileCard.jsx';
+import {useStateContext} from "../context/ContextProvider.jsx";
+import { useNavigate } from "react-router-dom"
 
 function Profile() {
 
     const [student, setStudent] = useState({});
-    const [lectureTutors, setLectureTutors] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {setNotification} = useStateContext()
 
     let {id} = useParams();
+    const navigate = useNavigate();
   
     if (id) {
         useEffect(() => {  
@@ -17,14 +20,31 @@ function Profile() {
           axiosClient.get(`/students/${id}`)
             .then(({data}) => {
               setStudent(data.data)
-              //console.log(data.data)
               setLoading(false)
             })
             .catch(() => {
               setLoading(false)
             })
         }, [])
-      }
+    }
+
+     const handleDelete = id => {
+      axiosClient.delete(`/students/${id}`)
+        .then(() => {
+          setLoading(false)
+          setNotification('Student deleted' + ' ' + id)
+          navigate('/manageStudents')
+        })
+        .catch(() => {
+          const response = err.response;
+        if (response && response.status === 422) {
+          setErrors(response.data.errors)
+        }
+        setLoading(false)
+      })
+    }
+
+
 
     const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
@@ -32,10 +52,7 @@ function Profile() {
 
     const pic2 = new URL('../assets/images/photo-wide-2.jpg', import.meta.url).href
 
-
     const { lectures } = student
-
-    //console.log( lectures )
 
   return (
     <div className="main-content ">
@@ -43,6 +60,7 @@ function Profile() {
             <h1>{ student.first_name }'s Profiles</h1>
             <ul>
             </ul>
+            <button className="btn btn-danger ml-5" onClick={() => handleDelete(student.id)}  type="button">Delete</button>
         </div>
         <div className="separator-breadcrumb border-top"></div>
         <div className="card user-profile o-hidden mb-4">
@@ -63,7 +81,7 @@ function Profile() {
                         
                       { lectures && lectures.map(subject => (
                         
-                        <ProfileCard lecture={subject} />  
+                        <ProfileCard key={subject.id} lecture={subject} />  
                                             
                       ))}
                     </div>

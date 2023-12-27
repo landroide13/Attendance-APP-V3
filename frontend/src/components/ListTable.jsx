@@ -16,7 +16,7 @@ function ListTable(props) {
     const [option, setOption] = useState('')
     const [presentDate, setPresentDate] = useState('')  
    
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);  
     const [errors, setErrors] = useState(null);
 
     const { lectures } = props
@@ -26,8 +26,6 @@ function ListTable(props) {
     const [{ students } = { }] = filtered.length > 0 ? filtered : [{}] 
 
     const child = students && students.length
-
-    console.log(option.id)
     
     useEffect(() => {     
         getStatus();
@@ -35,8 +33,8 @@ function ListTable(props) {
       }, [child]);
 
     const getStatus = () => {
-        setLoading(true)
-        axiosClient.get('/status')
+      setLoading(true)
+      axiosClient.get('/status')
           .then(({ data }) => {
             setStatus(data.data)
             setLoading(false)
@@ -46,8 +44,8 @@ function ListTable(props) {
           if (response && response.status === 422) {
             setErrors(response.data.errors)
           }
-          setLoading(false)
-        })
+        setLoading(false)
+      })
     }
 
     const onDateHandle = ev =>{
@@ -66,7 +64,7 @@ function ListTable(props) {
                 <div className="ul-widget__head-label">
                   <h3 className="ul-widget__head-title">Take Attendance: { option.lecture_name }</h3>
 
-                  <input type="date" value={presentDate} onChange={onDateHandle} className="form-control mb-3 mt-3" id="exampleFormControlInput1"/>
+                  <input type="date" value={presentDate} onChange={onDateHandle} className="form-control mb-3 mt-3" id="exampleFormControlInput1" required/>
                  
                   <button className="btn btn-info dropdown-toggle _r_btn border-0 mt-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                   <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
@@ -94,7 +92,6 @@ function ListTable(props) {
                             <TableItem ref={el => formRef.current[index] = el}   
                               key={student.id} student={student} lectureId={option.id}
                               id={student.id} presentDate={presentDate} />
-
                           ))}
   
                         <div className="d-flex flex-row mt-3">
