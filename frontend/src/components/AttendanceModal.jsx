@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axiosClient from "../axios-client.jsx"
 import {useStateContext} from "../context/ContextProvider.jsx";
 
-function AttendanceModal({ open, onClose, id }) {
+function AttendanceModal({ open, onClose, attendanceId }) {
 
     if (!open) return null;
 
@@ -16,13 +16,14 @@ function AttendanceModal({ open, onClose, id }) {
         id: null,
         status_id: '',
         attendance_time: '',
-        enrol_student_id: ''
+        student_id: '',
+        lecture_id: ''
     })
 
     useEffect(() => {
         getStatus();
         setLoading(true)
-        axiosClient.get(`/attendances/${id}`)
+        axiosClient.get(`/attendances/${attendanceId}`)
           .then(({data}) => {
             setAttendance(data.data)
             setLoading(false)
@@ -64,17 +65,18 @@ function AttendanceModal({ open, onClose, id }) {
         inputText: {
           padding: "10px",
           color: "red",
-        },
+        },  
     };
 
     const handleEdit = ev => {
         ev.preventDefault()
-        axiosClient.put(`/attendances/${id}`, attendance) 
+        console.log(attendance)  
+        axiosClient.put(`/attendances/${attendanceId}`, attendance) 
         .then(() => {
           window.confirm("Status successfully Edited")
            navigate('/dashboard')
            onClose;
-          //setNotification('User was successfully created')
+          setNotification('Status successfully Edited')
         })
         .catch(err => {
           const response = err.response;
@@ -85,19 +87,23 @@ function AttendanceModal({ open, onClose, id }) {
     }
 
   return (
-    <div class="card" style={{ ...styles.main }}>
+    <div className="card" style={{ ...styles.main }}>
         
         <div class="card-body">
 
-            <h5>Edit Status #{ id } </h5>
+            <h5>Edit Attendance </h5>
+            <h6> #{ attendanceId } </h6>
 
             { !loading && (
             <form onSubmit={handleEdit}>
 
-                <input type="text" value={attendance.attendance_time} hidden/>
+                <input type="text" value={attendance.student_id} onChange={ev => setAttendance({...attendance, student_id: ev.target.value })} hidden/>
 
-                <input type="text" value={attendance.enrol_student_id} hidden/>
-
+                <div className='mb-3'>
+                  <label class="form-label">Date</label>
+                  <input className="form-control" type="date" value={attendance.attendance_time}  onChange={ev => setAttendance({...attendance, attendance_time: ev.target.value })} />
+                </div>
+               
                 <div class="mb-3">
                     <label class="form-label">Status</label>
 
@@ -108,7 +114,7 @@ function AttendanceModal({ open, onClose, id }) {
                         ))}
                     </select>
 
-                </div>
+                </div>   
                 
                 <div className="">
                     <button type="submit" class="btn btn-primary">Edit</button>

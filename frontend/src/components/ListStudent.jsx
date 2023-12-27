@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
 import {Link} from "react-router-dom";
+import StudentModal from './StudentModal'
 
 function ListStudent() {
 
@@ -11,10 +12,11 @@ function ListStudent() {
     const {setNotification} = useStateContext()
 
     const [option, setOption] = useState('');
+    const [open, setOpen] = useState(false)
+    const [selectId, setSelectId] = useState(null);
 
     useEffect(() => {     
       getStudents();
-      getLectures()
     }, []);
 
     const getStudents = () => {
@@ -33,20 +35,29 @@ function ListStudent() {
       })
     }
 
-    const getLectures = () => {
-      setLoading(true)
-      axiosClient.get('/lectures')
-        .then(({ data }) => {
-          setLectures(data.data)
-          setLoading(false)
-        })
-        .catch(() => {
-          const response = err.response;
-        if (response && response.status === 422) {
-          setErrors(response.data.errors)
-        }
-        setLoading(false)   
-      })
+    // const handleDelete = id => {
+    //   axiosClient.delete(`/students/${id}`)
+    //     .then(() => {
+    //       setLoading(false)
+    //     })
+    //     .catch(() => {
+    //       const response = err.response;
+    //     if (response && response.status === 422) {
+    //       setErrors(response.data.errors)
+    //     }
+    //     setLoading(false)
+    //   })
+    // }
+
+
+    const handleItem = item => {
+      console.log(item)
+      setSelectId(item)
+      setOpen(true)
+    }
+
+    const handleClose = () =>{
+      setOpen(false)
     }
 
   return (        
@@ -61,17 +72,24 @@ function ListStudent() {
             <div className="ul-widget1">
 
               { students.map(student => (
-                    
+                       
                 <div className="ul-widget4__item ul-widget4__users" key={ student.id }>
                   <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
                   <div className="ul-widget2__info ul-widget4__users-info"><Link className="ul-widget2__title" to={'/manageStudents/' + student.id}>{ student.first_name } { student.last_name }</Link><span className="ul-widget2__username" href="#"></span></div>
-                  <button className="btn btn-success mr-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit</button>
-                  <button className="btn btn-danger" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unenrol</button>          
+                  <button className="btn btn-success mr-3" type="button"   onClick={() => handleItem(student.id)}>Edit</button>
                 </div>
 
               ))}
             </div>
-        </div>                     
+        </div>    
+
+      { selectId &&
+                         
+        <StudentModal 
+          id={selectId} 
+          onClose={handleClose}   
+          open={open} />
+      } 
                     
     </div>
   )

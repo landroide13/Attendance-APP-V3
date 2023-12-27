@@ -18,18 +18,16 @@ class AttendanceService
         return $attendance;
     }
 
-    public function update(array $details, string $id):Attendance
+    public function update(array $details, Attendance $attendance):Attendance
     {
-        $updateAttendance = Attendance::findOrFail($id);
-
-        $updateAttendance -> update([
+        $attendance -> update([  
             'student_id' => $details['student_id'],
             'lecture_id' => $details['lecture_id'],
             'status_id' => $details['status_id'],
             'attendance_time' => $details['attendance_time']
         ]);
    
-        return $updateAttendance;
+        return $attendance;
     }
 
     

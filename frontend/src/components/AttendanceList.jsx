@@ -7,27 +7,26 @@ function AttendanceList() {
 
     const [subjects, setSubjects] = useState([])
     const [option, setOption] = useState('')
-    const [selectedItem, setSelectedItem] = useState(null);
 
-    const [open, setOpen] = useState(false)
+    const [attendanceId, setAttendanceId] = useState(null);
 
-    const [date, setDate] = useState(null)
-    const [students, setStudents] = useState([])
+    const [open, setOpen] = useState(false)  
 
     const [loading, setLoading] = useState(false);
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
 
-    const filtered =  subjects.filter(subject => subject.lecture_name === option)
+    const filtered =  subjects.filter(subject => subject.id === option)
+    
+    const [{ attendance } = { }] = filtered.length > 0 ? filtered : [{}] 
 
-    console.log(filtered)
+    const [{ students } = { }] = filtered.length > 0 ? filtered : [{}] 
 
     const [prev, setPrev] = useState(0)
     const [next, seNext] = useState(2)
 
     useEffect(() => {     
         getSubjects();
-        getStudents();
       }, []); 
 
     const getSubjects = () => {
@@ -45,40 +44,25 @@ function AttendanceList() {
           setLoading(false)
         })
     }
-    
-    const getStudents = () => {
-        setLoading(true)
-        axiosClient.get('/enrol')
-          .then(({ data }) => {
-            setStudents(data.data)
-            setLoading(false)   
-          })
-          .catch(() => {
-            const response = err.response;
-          if (response && response.status === 422) {
-            setErrors(response.data.errors)
-          }
-          setLoading(false)
-        })
+
+    const studentName = id => {
+      let student =  students.filter(student => student.id === id)
+      return student
+    }
+
+    const optionName = id => {
+      let subject =  subjects.filter(subject => subject.id === id)
+      const [{ lecture_name }] = subject
+      return lecture_name
     }
     
-    const handleAttendance = item => {
-      setSelectedItem(item)
+    const handleAttendance = id => {
+      setAttendanceId(id)
       setOpen(true)
     }
 
     const handleClose = () =>{
       setOpen(false)
-    }
-
-    const handlePrev = () => {
-      setPrev(prev + 2)
-      seNext(next - 2)
-    }
-
-    const handleNext = () => {
-      seNext(next + 2)
-      setPrev(prev - 2)  
     }
 
   return (
@@ -88,67 +72,80 @@ function AttendanceList() {
         <div className="ul-widget__head-label">
           <h3 className="ul-widget__head-title">List Attendance</h3>
         </div>
-        <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ option || 'Select' }</button>
+        <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{ option && optionName(option) || 'Select' }</button>
         <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
           {
             subjects.map(subject => (
-              <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.lecture_name)}>{ subject.lecture_name }</a>
+              <a className="dropdown-item ul-widget__link--font" key={subject.id}  onClick={() => setOption(subject.id)}>{ subject.lecture_name }</a>
             ))
           }  
         </div>
         <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" >Export PDF</button>
+        <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" >Export CSV</button>
       </div>
       <div className="ul-widget__body"> 
         <div className="ul-widget1">
 
-          <table className="table table-striped dataTable-collapse text-center">
+        <div className="table-responsive">
+          <table className="table table-striped dataTable-collapse">
             <thead>
               <tr>
-                <th scope="col">Student Name</th>
-                <th className='' scope="col">Date</th>
-              </tr>
+                <th  scope="col" >Date</th>
+                <th  scope="col" >Student Name</th>
+                <th  scope="col" >status</th>
+                </tr>
             </thead>
 
-              <tbody>
-                {  filtered.map(subject => (
-                          
-                  <tr key={ subject.id }>
-                              
-                    <td>{ subject.lecture_name}</td>
+            <tbody className="table-group-divider">
 
-                    { subject.students.map(student => (
+              <td> 
+                {attendance && attendance.map(att => (
+                         
+                  <tr  key={ att.id } onClick={() => handleAttendance(att.id)} style={{ fontSize: '1.2em' }} >{ new Date(att.attendance_time).getDate() }/{ new Date(att.attendance_time).getMonth() + 1 }/{ new Date(att.attendance_time).getFullYear() }</tr>
+                  
+                ))}
+              </td>   
 
-                      <td key={student.id}>
-                        <div style={{ fontSize: '1.2em' }}>{student.first_name}</div>
-                        <div onClick={() => handleAttendance(student.id)}><span className='badge badge-success' style={{ fontSize: '1em' }}></span></div>
-                      </td>
+              <td >
+                {students && students.map(student => {
+
+                  const [{ first_name , last_name }] = studentName(student.id)
+     
+                  return <tr key={student.id} style={{ fontSize: '1.2em' }} > { first_name } { last_name }</tr>
                                   
-                      )) }
-                  </tr>
+                }) }
+              </td> 
+
+              <td > 
+                {attendance && attendance.map(att => (
+                         
+                  <tr  key={ att.id } style={{ fontSize: '1.2em' }} >{ att.status}</tr>
                 
                 ))}
-
-              { selectedItem &&
-                      
+              </td>   
+            
+              { attendanceId &&
+                         
                 <AttendanceModal 
-                id={selectedItem} 
-                onClose={handleClose}  
+                attendanceId={attendanceId}
+                onClose={handleClose}   
                 open={open} />
               }
                       
             </tbody>
           </table>
         </div>
+      </div>
 
         <div className="dataTables_paginate paging_simple_numbers mt-5 col-md-8 offset-md-4" id="user_table_paginate">
           <ul className="pagination">
 
             <li className="paginate_button page-item previous" id="user_table_previous">
-              <a href="#" aria-controls="user_table" data-dt-idx="0" onClick={handlePrev} className="page-link">Previous</a>
+              <a href="#" aria-controls="user_table" data-dt-idx="0"  className="page-link">Previous</a>
             </li> 
 
             <li className="paginate_button page-item next" id="user_table_next">
-              <a href="#" aria-controls="user_table" data-dt-idx="2" onClick={handleNext}  className="page-link">Next</a>
+              <a href="#" aria-controls="user_table" data-dt-idx="2"   className="page-link">Next</a>
             </li>
 
           </ul>

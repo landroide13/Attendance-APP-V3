@@ -44,10 +44,10 @@ class AttendanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AttendanceRequest $attendanceRequest, AttendanceService $attendanceService ,string $id)
+    public function update(AttendanceRequest $attendanceRequest, AttendanceService $attendanceService , AttendanceModel $attendance)
     {
-        $updateAttendance = $attendanceService -> update($attendanceRequest -> validated(), $id);
-
+        $updateAttendance = $attendanceService -> update($attendanceRequest -> validated(), $attendance);
+    
         return response(new AttendanceResource($updateAttendance), 203);
     }
 

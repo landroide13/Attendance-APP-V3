@@ -23,7 +23,7 @@ function ListTable(props) {
 
     const filtered = lectures.filter(lecture => lecture.id === option.id)
 
-    const [{ students } = { }] = filtered.length > 0 ? filtered : [{}]
+    const [{ students } = { }] = filtered.length > 0 ? filtered : [{}] 
 
     const child = students && students.length
 

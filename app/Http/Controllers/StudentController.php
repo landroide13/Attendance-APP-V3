@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student as StudentModel;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Services\StudentService;   
+use App\Http\Requests\StudentUpdate;
 use App\Http\Requests\StudentRequest;
 use App\Http\Resources\StudentResource;
 
@@ -16,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return StudentResource::collection(StudentModel::latest()->get());
+        return StudentResource::collection(Student::latest()->get());
     }
     /**
      * Store a newly created resource in storage.
@@ -46,13 +46,13 @@ class StudentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. 
      */
-    public function update(StudentRequest $studentRequest, StudentResource $studentResource , Student $student)
+    public function update(StudentService $studentService, StudentUpdate $request, Student $student)
     {
-        $edit = $studentService -> update($studentRequest -> validated(), $student -> id);
+        $update = $studentService -> updateStudent($request->validated(), $student);
 
-        return response(new StudentResource($edit), 201);
+        return response(new StudentResource($update), 201);
     }
 
     /**
@@ -60,6 +60,6 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+       //
     }
 }

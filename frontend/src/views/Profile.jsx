@@ -6,7 +6,6 @@ import ProfileCard from '../components/ProfileCard.jsx';
 function Profile() {
 
     const [student, setStudent] = useState({});
-    const [lectures, setLectures] = useState([]);
     const [lectureTutors, setLectureTutors] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -33,13 +32,10 @@ function Profile() {
 
     const pic2 = new URL('../assets/images/photo-wide-2.jpg', import.meta.url).href
 
-    const pic3 = new URL('../assets/images/photo-wide-3.jpg', import.meta.url).href
 
-    const pic4 = new URL('../assets/images/photo-wide-4.jpg', import.meta.url).href
+    const { lectures } = student
 
-    const { subjects } = student
-
-    console.log( subjects )
+    //console.log( lectures )
 
   return (
     <div className="main-content ">
@@ -65,7 +61,7 @@ function Profile() {
                 <div className="tab-content" id="profileTabContent">
                     <div className="tab-pane fade active show" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
                         
-                      { subjects && subjects.map(subject => (
+                      { lectures && lectures.map(subject => (
                         
                         <ProfileCard lecture={subject} />  
                                             
