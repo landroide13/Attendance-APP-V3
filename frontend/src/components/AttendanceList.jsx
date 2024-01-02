@@ -12,18 +12,17 @@ function AttendanceList() {
 
     const [open, setOpen] = useState(false)  
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);  
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
-
+  
     const filtered =  subjects.filter(subject => subject.id === option)
     
     const [{ attendance } = { }] = filtered.length > 0 ? filtered : [{}] 
 
     const [{ students } = { }] = filtered.length > 0 ? filtered : [{}] 
 
-    const [prev, setPrev] = useState(0)
-    const [next, seNext] = useState(2)
+    console.log(filtered)
 
     useEffect(() => {     
         getSubjects();
@@ -46,8 +45,11 @@ function AttendanceList() {
     }
 
     const studentName = id => {
-      let student =  students.filter(student => student.id === id)
-      return student
+      let student = students && students.filter(student => student.id === id)
+      const [ data ] = student
+      const { first_name, last_name } = data || { }
+      console.log(first_name)
+      return first_name + " " + last_name
     }
 
     const optionName = id => {
@@ -107,11 +109,12 @@ function AttendanceList() {
               </td>   
 
               <td >
-                {students && students.map(student => {
+                {attendance && attendance.map(att => {
 
-                  const [{ first_name , last_name }] = studentName(student.id)
+                 const[ data ] = studentName(att.student_id)
+                  
      
-                  return <tr key={student.id} style={{ fontSize: '1.2em' }} > { first_name } { last_name }</tr>
+                  return <tr key={att.id} style={{ fontSize: '1.2em' }} >{ studentName(att.student_id) }</tr>
                                   
                 }) }
               </td> 
