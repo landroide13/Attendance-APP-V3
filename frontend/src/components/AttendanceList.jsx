@@ -44,7 +44,7 @@ function AttendanceList() {
         })
     }
 
-    const studentName = id => {
+    const studentName = id => { 
       let student = students && students.filter(student => student.id === id)
       const [ data ] = student
       const { first_name, last_name } = data || { }

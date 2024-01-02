@@ -16,7 +16,7 @@ function UsersLayout() {
     <div className="text-start">
       <div className="app-admin-wrap layout-horizontal-bar">
         <div className="main-header" style={{ height: 90, marginTop: -40, background: '#020381'}}>
-            <div className='mr-5 ml-5'><h2 className="me-2 text-white">Madrasahtul Islamiyah</h2></div>
+            <div className='mr-5 ml-5'><h4 className="me-2 text-white">Madrasahtul Islamiyah</h4></div>
             <div className="menu-toggle">
                 <div></div>
                 <div></div>
