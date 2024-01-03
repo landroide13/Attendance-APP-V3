@@ -28,30 +28,30 @@ function StatusTable(props) {
         })
     }  
 
-    const avatar = new URL('../assets/images/Angular_Icon.png', import.meta.url).href
+    const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
 
     const studentData = idx => { 
         let student = students && students.filter(student => student.id === idx)
         const [ data ] = student || []
-        console.log(data)
         return data
     }
 
   return (
    
         <div className="col-md-6">
-            <div className="card o-hidden mb-2">
+            <div className="card mb-3">
+
                 <div className="card-header d-flex align-items-left">
                     <h3 className="w-50 float-start card-title m-0">Students on Leave</h3>
                 </div>
 
                 <div className="card-body">
                     <div className="table-responsive">
-                        <table className="table  text-center">
+                        <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">#ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
@@ -61,8 +61,6 @@ function StatusTable(props) {
                                 { leave && leave.map(le => { 
 
                                    const { id , first_name, last_name, parent_email } = studentData(le.student_id) || { }
-
-                                   console.log(first_name)
                                     
                                 return(
                                          <tr>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import StatusTable from '../components/StatusTable'
 import StripedTable from '../components/StripedTable'
 import axiosClient from "../axios-client.jsx";
+ 
 
 function Dashboard() {
 
@@ -87,7 +88,7 @@ function Dashboard() {
   const leave = attendance.filter(att => att.status == 'Leave')
 
 
-  const avatar = new URL('../assets/images/Angular_Icon.png', import.meta.url).href
+  const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
   return (
     <div className="main-content">
@@ -131,7 +132,7 @@ function Dashboard() {
                                 <div className="card card-icon-big mb-4">
                                     <div className="card-body text-center"><i className="i-Add-User"></i>
                                       <p className="text-muted mt-2 mb-2">Total Tutors</p>
-                                      <p className="text-primary text-title text-18 mt-2 mb-0">{ tutors.length }</p>
+                                      <p className="text-primary text-24 line-height-1 m-0">{ tutors.length }</p>
                                     </div>
                                 </div>
                             </div>
@@ -139,14 +140,14 @@ function Dashboard() {
                                 <div className="card card-icon-big mb-4">
                                     <div className="card-body text-center"><i className="i-Add-User"></i>
                                       <p className="text-muted mt-2 mb-2">Total Admins</p>
-                                      <p className="line-height-1 text-title text-18 mt-2 mb-0">{ admins.length }</p>
+                                      <p className="line-height-1 text-24 line-height-1 m-0">{ admins.length }</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="card card-icon-big mb-4">
                                     <div className="card-body text-center"><i className="i-Bell"></i>
-                                        <p className="line-height-1 text-title text-18 mt-2 mb-0">4021</p>
+                                        <p className="line-height-1 text-24 line-height-1 m-0">4021</p>
                                     </div>
                                 </div>
                             </div>
@@ -196,74 +197,61 @@ function Dashboard() {
                   </div>  
 
             <div className="row">
+              <div className="col-lg-6 col-md-6">
+                <div className="card mb-4">
+                  <div className="card-body">
+                    <div className="card-title">Admins</div>
 
-                <div className="col-lg-6 col-md-6">
-                  <div className="card mb-4">
-                    <div className="card-body">
-                    <div className="card-title">Super Admins and Admins</div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
+                    { admins && admins.map(admin => ( 
+
+                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3 mr-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
-                          <h6 className="m-0">David Hopkins</h6>
-                          <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                          <h6 className="m-0">{ admin.first_name } { admin.last_name } </h6>
+                          <p className="m-0 text-small text-muted">{ admin.email }</p>
                         </div>
                         <div>
                           <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
-                        <div className="flex-grow-1">
-                          <h6 className="m-0">James Mitchell</h6>
-                          <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                        </div>
-                        <div>
-                          <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
-                        </div>
-                      </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
-                        <div className="flex-grow-1">
-                          <h6 className="m-0">Jessica Mitchell</h6>
-                          <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                        </div>
-                      <div>
-                        <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
-                      </div>
-                    </div>
+                    ))}
+                
                   </div>
                 </div>
               </div>
 
               <div className="col-lg-6 col-md-6">
-                  <div className="card mb-4">
-                    <div className="card-body">
-                    <div className="card-title">Tutors</div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
-                        <div className="flex-grow-1">
-                          <h6 className="m-0">David Hopkins</h6>
-                          <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                        </div>
-                        <div>
-                          <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
-                        </div>
-                      </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
-                        <div className="flex-grow-1">
-                          <h6 className="m-0">James Mitchell</h6>
-                          <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                        </div>
-                        <div>
-                          <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
-                        </div>
-                      </div>
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3" src={ avatar } alt="" />
-                        <div className="flex-grow-1">
-                          <h6 className="m-0">Jessica Mitchell</h6>
-                          <p className="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                        </div>
-                      <div>
-                        <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
-                      </div>
+                  <div className="card mb-3">
+                    
+                    <div className="card-header d-flex align-items-left">
+                      <h3 className="w-50 float-start card-title m-0">Tutors</h3>
                     </div>
-                  </div>
+
+                    <div className="card-body">
+                      <div className="table-responsive">
+                        <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
+                          <thead>
+                            <tr>
+                              <th scope="col">#ID</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Email</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            { tutors && tutors.map(tutor => ( 
+
+                             <tr>
+                              <th scope="row">{ tutor.id }</th>
+                              <td className="m-0">{ tutor.first_name } { tutor.last_name }</td>
+                              <td className="m-0">{ tutor.email }</td>
+                            </tr>
+
+                            ))}
+                          </tbody>
+                        </table>
+
+                      </div>
+                  </div>  
                 </div>
               </div>
 

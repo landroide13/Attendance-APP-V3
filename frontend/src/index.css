@@ -11,6 +11,9 @@
 @import "./assets/css/plugins/bootstrap/bootstrap.css";
 @import "./assets/css/plugins/bootstrap/bootstrap.min.css";
 
+@import "./assets/css/plugins/datatables.min.css";
+
+
 .notification { 
     position: fixed;
     right: 47rem;

@@ -41,7 +41,7 @@ function Profile() {
           setErrors(response.data.errors)
         }
         setLoading(false)
-      })
+      }) 
     }
 
 
