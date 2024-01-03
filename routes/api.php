@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\LectureController;
@@ -33,6 +34,7 @@ Route::apiResource('enrol', EnrolStudentController::class);
 Route::apiResource('roles', RoleController::class);
 Route::apiResource('hours', TutorHourController::class);
 Route::apiResource('lectureTutors', LectureTutorController::class);
+Route::apiResource('terms', TermController::class);
 
 
 Route::post('/upload', [FileUploadController::class, 'upload']);

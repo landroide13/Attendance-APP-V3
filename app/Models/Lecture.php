@@ -29,6 +29,10 @@ class Lecture extends Model
         return $this-> belongsToMany(User::class, 'lecture_users');
     }
 
+    public function term()
+    {
+        return $this->belongsTo(Term::class);  
+    }
     
 
 
