@@ -21,7 +21,7 @@ class Lecture extends JsonResource
             'description' => $this->description,
             'tutors' => $this-> tutors,
             'students' => $this-> students,
-            //'students' => StudentResource::collection($this->whenLoaded('students')),  
+            'term' => $this-> term,
             'attendance' => $this-> attendance, 
             'attendance' => Attendance::collection($this->whenLoaded('attendance'))
         ];

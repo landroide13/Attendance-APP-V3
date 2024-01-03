@@ -21,7 +21,7 @@ class LectureController extends Controller
      */
     public function index()
     {
-        return LectureResource::collection(LectureModel::all());
+        return LectureResource::collection(LectureModel::latest() -> get());  
     }
 
     /**

@@ -15,6 +15,7 @@ class TermResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this-> id,
             'year' => $this->year,
             'term' => $this->term,
             'lectures' => $this->lectures

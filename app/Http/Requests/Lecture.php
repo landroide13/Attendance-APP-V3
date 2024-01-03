@@ -24,6 +24,7 @@ class Lecture extends FormRequest
         return [
             'lecture_name' => ['required', 'min:4', 'max:100'],
             'description' => ['max:100'],
+            'term_id' =>['required']
         ];
     }
 }

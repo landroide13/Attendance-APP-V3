@@ -59,7 +59,7 @@ function ListSubjects() {
                         
                         <div className="ul-widget4__item ul-widget4__users" key={ lecture.id }>
                             <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info">{ lecture.lecture_name }<span className="ul-widget2__username" href="#" style={{ fontSize: '1em' }}>Description</span></div><span className="ul-widget4__number t-font-boldest text-success"></span>
+                            <div className="ul-widget2__info ul-widget4__users-info">{ lecture.lecture_name }<span className="ul-widget2__username" href="#" style={{ fontSize: '1em' }}>Term</span></div><span className="ul-widget4__number t-font-boldest text-success">{ lecture.term.term } / { lecture.term.year }</span>
                         </div>
                         
                       ))

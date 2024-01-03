@@ -11,7 +11,8 @@ class LectureService
     {
         $lecture = Lecture::create([
             'lecture_name' => $details['lecture_name'],
-            'decription' => $details['decription'],
+            'description' => $details['description'],
+            'term_id' => $details['term_id'],
         ]);
 
         return $lecture;   
@@ -23,7 +24,7 @@ class LectureService
         return $lecture->students;
     } 
 
-    public function assignTutorInToLecture($id, $lecture_id)
+    public function assignTutorInToLecture($id, $lecture_id) 
     { 
         $tutor = User::findOrFail($id);
 

@@ -11,7 +11,8 @@ class Lecture extends Model
 
     protected $fillable = [
         'lecture_name',
-        'description'
+        'description',
+        'term_id'
     ];
 
     public function attendance()
