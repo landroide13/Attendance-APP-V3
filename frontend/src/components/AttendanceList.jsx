@@ -77,7 +77,7 @@ function AttendanceList() {
           <tbody>
 
             {attendance && attendance.map(att => ( 
-              <ItemAttendanceList key={att.id} attendance={att} students={students} />       
+              <ItemAttendanceList key={att.id} attendance={att} students={students} />        
             ))}
                     
           </tbody>

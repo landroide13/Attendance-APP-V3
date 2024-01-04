@@ -90,7 +90,7 @@ function AssignSubject() {
                             <option>...</option>
                             { lectures.map(lecture => (
                                    
-                                <option key={lecture.id} value={lecture.id}>{lecture.lecture_name}</option>
+                                <option key={lecture.id} value={lecture.id}>{lecture.lecture_name} / {lecture.term.term} - {lecture.term.year}</option>
                         
                             ))}
                         </select>

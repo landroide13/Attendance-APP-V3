@@ -55,18 +55,21 @@ function ListSubjects() {
             <div className="table-responsive">
                 <table className="table table-striped display table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}> 
 
-                    { filtered && filtered.map(lecture => (
+                    { filtered && filtered.map(lecture => {
+
+                       const [{ first_name, last_name }] = lecture.tutors
                         
-                        <tr key={ lecture.id }>
+                        return <tr key={ lecture.id }>
                             
                           <td className='d-flex flex-column'>
                             <span style={{ fontSize: '1.2em' }} className="text-success">{ lecture.lecture_name }</span>
+                            <span style={{ fontSize: '1em' }}>Tutor: { first_name }  { last_name }</span>
                             <span style={{ fontSize: '1em' }}>Term: { lecture.term.term } / { lecture.term.year }</span>
                           </td>
 
                         </tr>
                         
-                      )) 
+                      }) 
                     }
                 </table>
             </div>                           

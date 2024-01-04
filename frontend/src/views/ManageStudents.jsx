@@ -7,7 +7,7 @@ function ManageStudents() {
 
     
   return (
-    <div className="col-lg-8 col-md-6 col-xl-8 offset-md-2">
+    <div className="col-lg-8 col-md-8 col-xl-8 offset-md-2 mb-3">
         <div className="card">
             <div className="card-body">
                 <div className="ul-widget__head">

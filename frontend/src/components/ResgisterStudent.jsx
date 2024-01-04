@@ -91,7 +91,7 @@ function ResgisterStudent() {
         })
         .then(() => {
             navigate('/dashboard')
-            window.confirm("User was successfully created")
+            window.confirm("File upload successfully created")
             console.log('File uploaded successfully', response.data);
         })
         .catch(err => {
@@ -119,7 +119,7 @@ function ResgisterStudent() {
                     <select className="form-control" onChange={handleLecture}>
                         <option>----</option>
                         { subjects.map(subject => (
-                            <option key={subject.id} value={subject.id}>{subject.lecture_name}</option>
+                            <option key={subject.id} value={subject.id}>{ subject.lecture_name } / {subject.term.term} - { subject.term.year}</option>
                         ))}
                     </select> 
                 </div>
@@ -210,9 +210,8 @@ function ResgisterStudent() {
        
         <form onSubmit={handleUpload} className="row">
 
-            
             <div className="col-md-4">
-                <input className="form-control" onChange={handleFileChange} type="file" id="formFile" />
+                <input className="form-control" onChange={handleFileChange} type="file" accept=".csv" id="formFile" />
             </div>
 
             <div className="col-md-2">

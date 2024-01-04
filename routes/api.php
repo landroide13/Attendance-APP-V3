@@ -36,7 +36,7 @@ Route::apiResource('hours', TutorHourController::class);
 Route::apiResource('lectureTutors', LectureTutorController::class);
 Route::apiResource('terms', TermController::class);
 
-
+  
 Route::post('/upload', [FileUploadController::class, 'upload']);
 
 
