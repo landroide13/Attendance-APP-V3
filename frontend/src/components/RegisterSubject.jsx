@@ -70,17 +70,19 @@ function RegisterSubject() {
                     <input className="form-control" value={lecture.description}  onChange={ev => setLecture({...lecture, description: ev.target.value})} id="firstName1" type="text" placeholder="Enter Subject Name" required />
                 </div>
 
-                {!loading &&
-                        
-                  <select className="form-control"  onChange={ev => setLecture({...lecture, term_id: ev.target.value})}> 
-                    <option>...</option>
-                    {terms.map(term => (
-                               
-                      <option key={term.id} value={term.id} > {term.term} - {term.year}</option>
-                    
-                      ))}
-                  </select>
-                }
+                <div className="col-md-4 form-group mb-3">
+                  <label htmlFor="exampleInputEmail1">Term</label>
+                  {!loading &&
+                    <select className="form-control"  onChange={ev => setLecture({...lecture, term_id: ev.target.value})}> 
+                      <option>...</option>
+                      {terms.map(term => (  
+                                
+                        <option key={term.id} value={term.id} > {term.term} - {term.year}</option>
+                      
+                        ))}
+                    </select>
+                  }
+                </div>
                 
                 <div className="col-md-12 mt-3">
                     <button className="btn btn-primary">Create</button>

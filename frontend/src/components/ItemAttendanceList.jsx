@@ -8,7 +8,7 @@ function ItemAttendanceList(props) {
     
     const styles = {
         'Present':  'bg-primary text-white' ,
-        'Absent': 'bg-alert' ,
+        'Absent': 'bg-danger text-white' ,
         'Leave': 'bg-warning',
       };
 

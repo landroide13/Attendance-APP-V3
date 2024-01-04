@@ -68,9 +68,9 @@ function AttendanceList() {
         <table className="table text-center table-striped display table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
           <thead>
             <tr>
-              <td>Date</td>
-              <td>Student Name</td>
-              <td>status</td>
+              <th>Date</th>
+              <th>Student Name</th>
+              <th>status</th> 
             </tr>
           </thead>
 

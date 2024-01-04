@@ -12,25 +12,25 @@ function ListSubjects() {
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
 
-    useEffect(() => {     
-        getSubjects();
-      }, []);
+  useEffect(() => {     
+    getSubjects();
+  }, []);
 
-    const getSubjects = () => {
-        setLoading(true)
-        axiosClient.get('/lectures')
-          .then(({ data }) => {
-            setLecture(data.data)
-            setLoading(false)
-          })
-          .catch(() => {
-            const response = err.response;
-          if (response && response.status === 422) {
-            setErrors(response.data.errors)
-          }
-          setLoading(false)
-        })
-      }  
+  const getSubjects = () => {
+    setLoading(true)
+    axiosClient.get('/lectures')
+      .then(({ data }) => {
+      setLecture(data.data)
+      setLoading(false)
+    })
+    .catch(() => {
+    const response = err.response;
+    if (response && response.status === 422) {
+      setErrors(response.data.errors)
+    }
+    setLoading(false)
+    })
+  }  
 
   
   const filtered =  lectures.filter(lecture => lecture.lecture_name == option)
@@ -42,29 +42,33 @@ function ListSubjects() {
                 <div className="ul-widget__head-label">
                     <h3 className="ul-widget__head-title"> List Subjects: </h3>
                 </div>
-                {/* <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+                <button className="btn btn-info dropdown-toggle _r_btn border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                 <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                   {
-                    filtered.map(lecture => (
-                      <a key={lecture.id} className="dropdown-item ul-widget__link--font"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name }</a>
+                    lectures.map(lecture => (
+                      <a key={lecture.id} className="dropdown-item ul-widget__link--font"  onClick={() => setOption(lecture.lecture_name)}>{ lecture.lecture_name } / { lecture.term.term } - { lecture.term.year } </a>
                     ))
                   }
                     
-                </div> */}
+                </div>
             </div> 
-            <div className="ul-widget__body">
-                <div className="ul-widget1">
+            <div className="table-responsive">
+                <table className="table table-striped display table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}> 
 
-                    {  lectures.map(lecture => (
+                    { filtered && filtered.map(lecture => (
                         
-                        <div className="ul-widget4__item ul-widget4__users" key={ lecture.id }>
-                            <div className="ul-widget4__img"><img id="userDropdown" src="#" alt="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" /></div>
-                            <div className="ul-widget2__info ul-widget4__users-info">{ lecture.lecture_name }<span className="ul-widget2__username" href="#" style={{ fontSize: '1em' }}>Term</span></div><span className="ul-widget4__number t-font-boldest text-success">{ lecture.term.term } / { lecture.term.year }</span>
-                        </div>
+                        <tr key={ lecture.id }>
+                            
+                          <td className='d-flex flex-column'>
+                            <span style={{ fontSize: '1.2em' }} className="text-success">{ lecture.lecture_name }</span>
+                            <span style={{ fontSize: '1em' }}>Term: { lecture.term.term } / { lecture.term.year }</span>
+                          </td>
+
+                        </tr>
                         
                       )) 
                     }
-                </div>
+                </table>
             </div>                           
     </div>
   )

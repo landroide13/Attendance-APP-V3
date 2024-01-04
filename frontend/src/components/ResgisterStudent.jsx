@@ -81,7 +81,6 @@ function ResgisterStudent() {
 
     const handleUpload = ev =>{
         ev.preventDefault()
-
         const formData = new FormData();
         formData.append('file', selectedFile);
 
