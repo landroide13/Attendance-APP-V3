@@ -89,7 +89,7 @@ function AttendanceModal({ open, onClose, attendanceId }) {
   return (
     <div className="card" style={{ ...styles.main }}>
         
-        <div class="card-body">
+        <div className="card-body">
 
             <h5>Edit Attendance </h5>
             <h6> #{ attendanceId } </h6>
@@ -100,12 +100,12 @@ function AttendanceModal({ open, onClose, attendanceId }) {
                 <input type="text" value={attendance.student_id} onChange={ev => setAttendance({...attendance, student_id: ev.target.value })} hidden/>
 
                 <div className='mb-3'>
-                  <label class="form-label">Date</label>
+                  <label className="form-label">Date</label>
                   <input className="form-control" type="date" value={attendance.attendance_time}  onChange={ev => setAttendance({...attendance, attendance_time: ev.target.value })} />
                 </div>
                
-                <div class="mb-3">
-                    <label class="form-label">Status</label>
+                <div className="mb-3">
+                    <label className="form-label">Status</label>
 
                     <select className="form-control"  onChange={ev => setAttendance({...attendance, status_id: ev.target.value })}>
                         <option>...</option>
@@ -117,8 +117,8 @@ function AttendanceModal({ open, onClose, attendanceId }) {
                 </div>   
                 
                 <div className="">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                    <a href="#" class="btn btn-danger ml-5 mt-7" onClick={onClose}>Close</a>
+                    <button type="submit" className="btn btn-primary">Edit</button>
+                    <a href="#" className="btn btn-danger ml-5 mt-7" onClick={onClose}>Close</a>
                 </div>
 
             </form>

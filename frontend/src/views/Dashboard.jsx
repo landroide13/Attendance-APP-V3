@@ -12,7 +12,7 @@ function Dashboard() {
   const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {   
+  useEffect(() => {     
     getUsers();  
     getStudents();
     getSubjects();

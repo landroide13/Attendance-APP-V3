@@ -62,7 +62,7 @@ function ListSubjects() {
                             <div className="ul-widget2__info ul-widget4__users-info">{ lecture.lecture_name }<span className="ul-widget2__username" href="#" style={{ fontSize: '1em' }}>Term</span></div><span className="ul-widget4__number t-font-boldest text-success">{ lecture.term.term } / { lecture.term.year }</span>
                         </div>
                         
-                      ))
+                      )) 
                     }
                 </div>
             </div>                           
