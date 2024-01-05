@@ -25,7 +25,6 @@ function RegisterSubject() {
           .then(({ data }) => {
             setTerm(data.data)
             setLoading(false)
-            console.log(terms)
           })
           .catch(() => {
             const response = err.response;

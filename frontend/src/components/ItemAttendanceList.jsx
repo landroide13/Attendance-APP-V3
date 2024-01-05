@@ -24,13 +24,11 @@ function ItemAttendanceList(props) {
       }
 
     const studentName = id => { 
-        let student = students && students.filter(student => student.id === id)
-        const [ data ] = student
-        const { first_name, last_name } = data || { }
-        return first_name + " " + last_name
+      let student = students && students.filter(student => student.id === id)
+      const [ data ] = student
+      const { first_name, last_name } = data || { }
+      return first_name + " " + last_name
     }
-
-    console.log(attendance.status)
 
   return ( 
     <>

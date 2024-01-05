@@ -21,7 +21,41 @@ function AttendanceList() {
 
     useEffect(() => {     
         getSubjects();
-      }, []); 
+      }, []);
+
+    const studentName = id => { 
+      let student = students && students.filter(student => student.id === id)
+      const [ data ] = student
+      const { first_name, last_name } = data || { }
+      return first_name + " " + last_name
+    }  
+
+    const convertArrayToCSV = (attendance) => {
+      const [{ lecture_name }] = filtered && filtered
+      const title = lecture_name + '\n'
+      const headers = 'Student Name, Status, Date\n';
+
+      const rows = attendance && attendance.map(att =>
+      `${ studentName(att.student_id)}, ${att.status},${ new Date(att.attendance_time).getDate() + '/' + (new Date(att.attendance_time).getMonth() + 1)+ "/" + new Date(att.attendance_time).getFullYear()}`
+      ).join('\n');
+
+      return title + headers + rows;
+    };
+
+  const downloadCSV = (csvString, filename = 'students.csv') => {
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadCSV = () => {
+    const csvData = convertArrayToCSV(attendance);
+    downloadCSV(csvData, 'students.csv');
+  };
 
   const getSubjects = () => {
     setLoading(true)
@@ -61,7 +95,7 @@ function AttendanceList() {
           }  
         </div>
         <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" >Export PDF</button>
-        <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" >Export CSV</button>
+        <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleDownloadCSV} >Export CSV</button>
       </div>
 
       <div className="table-responsive">
