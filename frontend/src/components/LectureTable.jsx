@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import LectureTableItem from './LectureTableItem'
 
-function LectureTable({ lectures, enrols, date }) {
+function LectureTable({ lectures, date }) {
 
-    const [option, setOption] = useState({})
+    const [option, setOption] = useState({})  
 
-    const filteredLecture = enrols.filter(enrol => enrol.lecture.id === option.id)
+    const filteredLecture = lectures && lectures.filter(lecture => lecture.id === option.id)
   
     return (
       <div className="col-md-6 mb-2">

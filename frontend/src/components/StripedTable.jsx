@@ -2,23 +2,23 @@ import React, { useState } from 'react'
 import StripTableItem from './StripTableItem'
 import ReportModal from './ReportModal'
 
-function StripedTable({ students, enrols, date }) {
+function StripedTable({ students, date }) {
 
   const [option, setOption] = useState({})
-
+  
   const [open, setOpen] = useState(false)
 
   const handleClose = () => {
         setOpen(false);
     };
  
-    const handleOpen = () => {  
-        setOpen(true);
+    const handleOpen = () => {   
+        setOpen(true);   
     };
 
-    console.log(" from " + date)
+    console.log("from: " + date)
 
-  const filteredStudent = enrols.filter(enrol => enrol.student.id === option.id)
+  const filteredStudent = students && students.filter(student => student.id === option.id)
 
   return (
     <div className="col-md-6 mb-2">
@@ -59,9 +59,7 @@ function StripedTable({ students, enrols, date }) {
                         <tbody>
                             {
                                 filteredStudent.map(student => (
-                                    
                                   <StripTableItem student={student} date={date} />   
-
                                 ))
                             }
 

@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import axiosClient from "../axios-client.jsx";
 import {useStateContext} from "../context/ContextProvider.jsx";
-
 import ItemAttendanceList from './ItemAttendanceList.jsx';
+import ReportModal from './ReportModal'
 
 function AttendanceList() {
 
-    const [subjects, setSubjects] = useState([])
-    const [option, setOption] = useState('')
+  const [subjects, setSubjects] = useState([])
+  const [option, setOption] = useState('')
 
-    const [loading, setLoading] = useState(false);  
+  const [openModal, setOpenModal] = useState(false)
+
+  const handleCloseModal = () => {
+        setOpenModal(false);
+    };
+ 
+    const handleOpenModal = () => {   
+        setOpenModal(true);   
+    };
+
+    const [loading, setLoading] = useState(false);    
     const {setNotification} = useStateContext()
     const [errors, setErrors] = useState(null)
   
@@ -20,8 +30,8 @@ function AttendanceList() {
     const [{ students } = { }] = filtered.length > 0 ? filtered : [{}] 
 
     useEffect(() => {     
-        getSubjects();
-      }, []);
+      getSubjects();
+    }, []);
 
     const studentName = id => { 
       let student = students && students.filter(student => student.id === id)
@@ -39,8 +49,8 @@ function AttendanceList() {
       `${ studentName(att.student_id)}, ${att.status},${ new Date(att.attendance_time).getDate() + '/' + (new Date(att.attendance_time).getMonth() + 1)+ "/" + new Date(att.attendance_time).getFullYear()}`
       ).join('\n');
 
-      return title + headers + rows;
-    };
+      return title + headers + rows; 
+    }
 
   const downloadCSV = (csvString, filename = 'students.csv') => {
     const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
@@ -79,6 +89,8 @@ function AttendanceList() {
     return lecture_name
   }
 
+  console.log(filtered)
+
   return (
     <div className="col-lg-12 col-md-12 col-xl-12 mb-3">
 
@@ -94,17 +106,18 @@ function AttendanceList() {
             ))
           }  
         </div>
-        <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" >Export PDF</button>
+        <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleOpenModal}>Export PDF</button>
         <button className="btn btn-outline-info btn-sm ml-5" href="#" data-toggle="modal" data-target="#exampleModalLong" onClick={handleDownloadCSV} >Export CSV</button>
       </div>
 
       <div className="table-responsive">
-        <table className="table text-center table-striped display table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
+        <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
+          
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Student Name</th>
-              <th>status</th> 
+              <th scope="col">Date</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">status</th> 
             </tr>
           </thead>
 
@@ -113,9 +126,15 @@ function AttendanceList() {
             {attendance && attendance.map(att => ( 
               <ItemAttendanceList key={att.id} attendance={att} students={students} />        
             ))}
-                    
+
           </tbody>
         </table>
+
+        <ReportModal students={students}
+          data={filtered}
+          isOpen={openModal}
+          onClose={handleCloseModal} 
+        />
       </div>
 
     </div>

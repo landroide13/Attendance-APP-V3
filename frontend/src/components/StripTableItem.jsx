@@ -9,7 +9,7 @@ function StripTableItem({ student, date }) {
     <tr> 
         {
             <>
-                <td scope="col">{ student.lecture.lecture_name }</td>
+                <td scope="col">{ student.lectures.lecture_name }</td>
             </>
         }
 

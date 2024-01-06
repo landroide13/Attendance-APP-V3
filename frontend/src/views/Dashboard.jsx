@@ -226,7 +226,7 @@ function Dashboard() {
                       <h3 className="w-50 float-start card-title m-0">Tutors</h3>
                     </div>
 
-                    <div className="card-body">
+                    <div className="card-body"> 
                       <div className="table-responsive">
                         <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
                           <thead>

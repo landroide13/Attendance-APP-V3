@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { PDFDownloadLink, Document, Page, Text, View } from '@react-pdf/renderer';
+import { PDFDownloadLink, Document, Page, Text, View, Image } from '@react-pdf/renderer';
 
-const ReportPdf = ({ student, date }) =>{
+const pic1 = new URL('../assets/images/madarsa_logo.jpg', import.meta.url).href
+
+const ReportPdf = ({ data }) =>{
 
     const styles = {
 
         page: {
+            display:'flex',
+            flexDirection: 'column',
             backgroundColor: "#ffffff",
             width: '100%'
         },
@@ -14,10 +18,12 @@ const ReportPdf = ({ student, date }) =>{
             padding: 10,
             flexGrow: 1
         },
-
+    
         rowSection:{
             display:'flex',
             flexDirection: 'row',
+            alignItems:'center',
+            justifyContent: 'center',
             marginBottom: 10,
             marginTop: 8
         },
@@ -52,7 +58,7 @@ const ReportPdf = ({ student, date }) =>{
         },
         subtitle: {
             fontSize: 17, 
-            fontWeight: '600',
+            fontWeight: 'bold',
             marginRight: 13,
             marginLeft: 13,
             marginBottom: 10
@@ -65,59 +71,60 @@ const ReportPdf = ({ student, date }) =>{
 
         rowText:{
             fontSize: 18,
-            //marginLeft: 4,
             marginRight: 13,
             marginLeft: 13,
         },
-
     }
+
+    const [{ lecture_name, term }] = data && data
+
+    const [{ attendance } = { }] = data && data.length > 0 ? data : [{}] 
+
+    const [{ students } = { }] = data && data.length > 0 ? data : [{}] 
+
+    const studentName = id => { 
+        let student = students && students.filter(student => student.id === id)
+        const [ data ] = student
+        const { first_name, last_name } = data || { }
+        return first_name + " " + last_name
+      }  
 
     return(
         <Document>
             <Page size="A4" style={styles.page} wrap>
-
-                <Text style={styles.title}>Report { date }</Text>
+                <Image style={styles.image} source={pic1} />
+                <Text style={styles.title}>Subject: { lecture_name }</Text>
+                <Text style={styles.subtitle}> Term:  { term.term } - { term.year }</Text>
                 <hr />
-                <Text style={styles.subtitle}>Student Name: { student ? student[0].student.first_name : '' } { student ? student[0].student.last_name : '' }</Text>
-                
                 <View style={styles.tableSection}>
                     
                     <View style={styles.headerSection}>
-                        <Text style={styles.subtitle}>Subject</Text>
+                        <Text style={styles.subtitle}>Student</Text>
                         <Text style={styles.subtitle}>Date</Text>
                         <Text style={styles.subtitle}>Status</Text>
                     </View>
 
                     {
-                        student.map(student => {
-
-                            const filter = student.attendance.filter(attendance => attendance.date === date) 
-                            console.log(student)
-
-                            return(
-                                <View style={styles.rowSection}>
-                                    <View >
-                                        <Text style={styles.rowText}>{ student.lecture.lecture_name }</Text>
-                                        {
-                                            filter.map(attendance => (
-                                                <>
-                                                    <Text style={styles.rowText}>{ attendance.date }</Text>
-                                                    <Text style={styles.rowText}>{ attendance.status }</Text>
-                                                </>
-                                            ))
-                                        }
-                                    </View>
-                                </View>
-                            )
-                        })
+                      attendance && attendance.map(att => (
+                                            
+                        <View style={styles.rowSection}>
+                            <Text style={styles.rowText}>{ studentName(att.student_id) }</Text>
+                            <Text style={styles.rowText}>{ new Date(att.attendance_time).getDate() + '/' + (new Date(att.attendance_time).getMonth() + 1)+ "/" + new Date(att.attendance_time).getFullYear() }</Text>
+                            <Text style={styles.rowText}>{ att.status }</Text>
+                        </View>
+                                           
+                        ))
                     }
+                    
                 </View>
             </Page>
         </Document>
     )
 }
 
-function ReportModal({ student, date, isOpen, onClose}) {
+function ReportModal({ data, isOpen, onClose}) {
+
+    console.log(data)
 
     if (!isOpen) return null;
 
@@ -141,30 +148,30 @@ function ReportModal({ student, date, isOpen, onClose}) {
       };
 
   return (
-    <div class="card" style={{ ...styles.main }}>
+    <div className="card" style={{ ...styles.main }}>
         
-        <div class="card-body">
+        <div className="card-body">
 
-            <ReportPdf student={student} date={date} />
+            <ReportPdf  data={data} />
         
-            <div class="btn-group">
-                <a href="#" class="btn btn-danger mr-5 mt-7" onClick={onClose}>Close</a>
+            <div className="btn-group">
+                <a href="#" className="btn btn-danger mr-5 mt-7" onClick={onClose}>Close</a>
 
-                <DownLoadBtn student={student} date={date}  />
+                <DownLoadBtn data={data}  />
                 
             </div>
         </div>
     </div>
   )
-}
+} 
 
 export default ReportModal
 
 
-const DownLoadBtn = ({ student, date }) => {
+const DownLoadBtn = ({ data }) => {
 
     return(
-        <PDFDownloadLink document={<ReportPdf student={student} date={date} />} fileName={`${date}_report.pdf`}>
+        <PDFDownloadLink document={<ReportPdf data={data} />} fileName={`report.pdf`}>
             {({ blob, url, loading, error }) =>
                 loading ? 'Loading document...' : 'Download Report'
             }

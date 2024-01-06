@@ -30,7 +30,7 @@ function ItemAttendanceList(props) {
       return first_name + " " + last_name
     }
 
-  return ( 
+  return (    
     <>
         <tr>
             <th scope="row" onClick={() => handleAttendance(attendance.id)} style={{ fontSize: '1.2em' }} >{ new Date(attendance.attendance_time).getDate() }/{ new Date(attendance.attendance_time).getMonth() + 1 }/{ new Date(attendance.attendance_time).getFullYear() }</th>
