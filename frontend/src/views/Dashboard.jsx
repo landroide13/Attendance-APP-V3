@@ -209,9 +209,7 @@ function Dashboard() {
                           <h6 className="m-0">{ admin.first_name } { admin.last_name } </h6>
                           <p className="m-0 text-small text-muted">{ admin.email }</p>
                         </div>
-                        <div>
-                          <button className="btn btn-outline-primary btn-rounded btn-sm">Follow</button>
-                        </div>
+                        
                       </div>
                     ))}
                 
@@ -256,7 +254,7 @@ function Dashboard() {
               </div>
 
             </div>  
-               
+                
             <div className="row">
                   
               <StatusTable leave={leave} />

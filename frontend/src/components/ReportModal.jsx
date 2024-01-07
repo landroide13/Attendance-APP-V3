@@ -13,17 +13,16 @@ const ReportPdf = ({ data }) =>{
             backgroundColor: "#ffffff",
             width: '100%'
         },
-        section: {
-            margin: 10,
+        header: {
+            marginLeft: 20,
             padding: 10,
-            flexGrow: 1
         },
     
         rowSection:{
             display:'flex',
             flexDirection: 'row',
             alignItems:'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             marginBottom: 10,
             marginTop: 8
         },
@@ -32,7 +31,7 @@ const ReportPdf = ({ data }) =>{
             backgroundColor: "#f6f6f5",
             display: 'flex',
             flexDirection: "column",
-            width: '100%',
+            width: '90%',
             padding: 5,
         },
 
@@ -40,22 +39,25 @@ const ReportPdf = ({ data }) =>{
             display: "flex",
             flexDirection: "row",
             alignItems:'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             fontWeight: 'bold',
             fontSize: 20,
-            marginBottom: 10
+            margin: 10,
+            backgroundColor: '#0096FF',
         },
 
         image: {
-            height: 100,
-            width: 100
+            height: 60,
+            width: 60
         },
         title: {
             fontSize: 20,
-            marginBottom: 8,
+            marginBottom: 5,
             marginTop: 8,
+            marginLeft: 8,
             fontWeight: 'bold'
         },
+
         subtitle: {
             fontSize: 17, 
             fontWeight: 'bold',
@@ -92,16 +94,18 @@ const ReportPdf = ({ data }) =>{
     return(
         <Document>
             <Page size="A4" style={styles.page} wrap>
-                <Image style={styles.image} source={pic1} />
-                <Text style={styles.title}>Subject: { lecture_name }</Text>
-                <Text style={styles.subtitle}> Term:  { term.term } - { term.year }</Text>
+                <View style={styles.header}>
+                    <Image style={styles.image} source={pic1} />
+                    <Text style={styles.title}>Subject: { lecture_name }</Text>
+                    <Text style={styles.subtitle}> Term:  { term.term } - { term.year }</Text>
+                </View>
                 <hr />
                 <View style={styles.tableSection}>
                     
                     <View style={styles.headerSection}>
-                        <Text style={styles.subtitle}>Student</Text>
-                        <Text style={styles.subtitle}>Date</Text>
-                        <Text style={styles.subtitle}>Status</Text>
+                        <Text style={{...styles.subtitle, color:'white' }}>Student</Text>
+                        <Text style={{...styles.subtitle, color:'white' }}>Date</Text>
+                        <Text style={{...styles.subtitle, color:'white' }}>Status</Text>
                     </View>
 
                     {

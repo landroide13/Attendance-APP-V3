@@ -17,7 +17,7 @@ function EnrolStudent() {
     const [errors, setErrors] = useState(null)
 
     useEffect(() => {    
-        getSubjects(); 
+        getSubjects();   
         getStudents();
       }, []);
 
@@ -125,7 +125,7 @@ function EnrolStudent() {
                              <option>...</option>
                             {lectures.map(lecture => (
                                
-                              <option key={lecture.id} value={lecture.id}>{lecture.lecture_name}</option>
+                              <option key={lecture.id} value={lecture.id}>{lecture.lecture_name} / {lecture.term.term} - {lecture.term.year}</option>
                     
                             ))}
                         </select>

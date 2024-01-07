@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import TableItem from './TableItem'
 import axiosClient from "../axios-client.jsx";
 
-function ListTable(props) {
+function ListTable(props) {  
 
     const formRef = useRef([]);
 
@@ -69,7 +69,7 @@ function ListTable(props) {
                   <button className="btn btn-info dropdown-toggle _r_btn border-0 mt-3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                   <div className="dropdown-menu" x-placement="bottom-start" style={{ position: 'absolute', top: 0, left: 0 }}>
                     { lectures.map(lecture => (
-                      <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture)} required>{ lecture.lecture_name }</a>
+                      <a key={lecture.id} className="dropdown-item ul-widget__link--font text-success"  onClick={() => setOption(lecture)} required>{ lecture.lecture_name } / { lecture.term.term } - { lecture.term.year }</a>
                       ))
                     }    
                   </div>
@@ -83,16 +83,16 @@ function ListTable(props) {
             <div className="ul-widget__body">
                 <div className="tab-content">
 
-                    <div className="tab-pane active" id="ul-widget2-tab1-content">
+                  <div className="tab-pane active" id="ul-widget2-tab1-content">
  
-                      <div className='d-flex flex-column'>
+                    <div className='d-flex flex-column'>
 
-                          { students && students.map((student, index) => (
+                      { students && students.map((student, index) => (
 
-                            <TableItem ref={el => formRef.current[index] = el}   
-                              key={student.id} student={student} lectureId={option.id}
-                              id={student.id} presentDate={presentDate} />
-                          ))}
+                        <TableItem ref={el => formRef.current[index] = el}   
+                          key={student.id} student={student} lectureId={option.id}
+                          id={student.id} presentDate={presentDate} />
+                        ))}
   
                         <div className="d-flex flex-row mt-3">
                           <button className='btn btn-success col-md-2 offset-md-2' onClick={onSubmit}>Save</button>
@@ -101,7 +101,6 @@ function ListTable(props) {
                       </div>
 
                     </div>
-
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@ function ManageStudents() {
                                                 
                         <div className="tab-pane" id="ul-widget2-tab3-content">
 
-                          <EnrolStudent />        
+                          <EnrolStudent />         
 
                         </div>
                                                     

@@ -30,6 +30,7 @@ function StatusTable(props) {
 
     const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
+    console.log(leave && leave)
 
     const studentData = idx => { 
         let student = students && students.filter(student => student.id === idx)
@@ -50,10 +51,10 @@ function StatusTable(props) {
                     <div className="table-responsive">
                         <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
                             <thead>
-                                <tr>
+                                <tr> 
                                     <th scope="col">#ID</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Parent Email</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
@@ -70,8 +71,7 @@ function StatusTable(props) {
                                             <td><span className="badge bg-warning">Leave</span></td>
                                         </tr>
                                     )
-
-                                    })}
+                                })}
                             </tbody>
                         </table>
                     </div>
