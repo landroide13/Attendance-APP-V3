@@ -46,7 +46,7 @@ function RegisterSubject() {
         .then(() => {
           navigate('/dashboard')
           window.confirm("Subject was successfully created")
-          //setNotification('User was successfully created')
+          setNotification('User was successfully created')
         })
         .catch(err => {
           const response = err.response;

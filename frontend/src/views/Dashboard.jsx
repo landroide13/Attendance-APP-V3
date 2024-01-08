@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import StatusTable from '../components/StatusTable'
 import StripedTable from '../components/StripedTable'
 import axiosClient from "../axios-client.jsx";
+import ListUtil from '../components/ListUtil.jsx';
  
 
 function Dashboard() {
@@ -77,18 +78,27 @@ function Dashboard() {
       .catch(() => {
         const response = err.response;
       if (response && response.status === 422) {
-        setErrors(response.data.errors)
+        setErrors(response.data.errors)  
       }
       setLoading(false)
     })
-  }  
+  }
+  
+  const studentData = idx => { 
+    let student = students && students.filter(student => student.id === idx)
+    const [ data ] = student || []
+    return data
+}
 
   const admins =  users.filter(user => user.role == 'admin')
   const tutors =  users.filter(user => user.role == 'tutor')
+  const lecturers = tutors.filter(user => user.lectures.length > 0)
+  const tutorHours = tutors.filter(tutor => tutor.hours.length > 0)
   const leave = attendance.filter(att => att.status == 'Leave')
-
+  const absents = attendance.filter(att => att.status == 'Absent')
 
   const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
+
 
   return (
     <div className="main-content">
@@ -140,14 +150,14 @@ function Dashboard() {
                                 <div className="card card-icon-big mb-4">
                                     <div className="card-body text-center"><i className="i-Add-User"></i>
                                       <p className="text-muted mt-2 mb-2">Total Admins</p>
-                                      <p className="line-height-1 text-24 line-height-1 m-0">{ admins.length }</p>
+                                      <p className="text-primary text-24 line-height-1 m-0">{ admins.length }</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="card card-icon-big mb-4">
                                     <div className="card-body text-center"><i className="i-Bell"></i>
-                                        <p className="line-height-1 text-24 line-height-1 m-0">4021</p>
+                                        <p className="text-primary text-24 line-height-1 m-0">4021</p>
                                     </div>
                                 </div>
                             </div>
@@ -204,12 +214,11 @@ function Dashboard() {
 
                     { admins && admins.map(admin => ( 
 
-                      <div className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3 mr-3" src={ avatar } alt="" />
+                      <div key={admin.id} className="d-flex align-items-center border-bottom-dotted-dim pb-3 mb-3"><img className="avatar-md rounded me-3 mr-3" src={ avatar } alt="" />
                         <div className="flex-grow-1">
                           <h6 className="m-0">{ admin.first_name } { admin.last_name } </h6>
                           <p className="m-0 text-small text-muted">{ admin.email }</p>
                         </div>
-                        
                       </div>
                     ))}
                 
@@ -231,7 +240,7 @@ function Dashboard() {
                             <tr>
                               <th scope="col">#ID</th>
                               <th scope="col">Name</th>
-                              <th scope="col">Email</th>
+                              <th scope="col">Lectures</th>
                             </tr>
                           </thead>
 
@@ -241,7 +250,7 @@ function Dashboard() {
                              <tr>
                               <th scope="row">{ tutor.id }</th>
                               <td className="m-0">{ tutor.first_name } { tutor.last_name }</td>
-                              <td className="m-0">{ tutor.email }</td>
+                              <td className="m-0">{ tutor.lectures.length }</td>
                             </tr>
 
                             ))}
@@ -249,7 +258,7 @@ function Dashboard() {
                         </table>
 
                       </div>
-                  </div>  
+                  </div>   
                 </div>
               </div>
 
@@ -259,9 +268,96 @@ function Dashboard() {
                   
               <StatusTable leave={leave} />
                     
-              <StatusTable />
+              <ListUtil lecturers={lecturers} />
 
             </div> 
+
+            <div className="row">
+
+              <div className="col-lg-6 col-md-6">
+                  <div className="card mb-3">
+                    
+                    <div className="card-header d-flex align-items-left">
+                      <h3 className="w-50 float-start card-title m-0">Tutors Hours</h3>
+                    </div>
+
+                    <div className="card-body"> 
+                      <div className="table-responsive">
+                        <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Hours</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            { tutorHours && tutorHours.map(tutorHour => {
+
+                              const { hours } = tutorHour
+
+                              const sum = hours.reduce((accumulator, hours) => accumulator + hours.hours, 0);
+                              
+                              return <tr>
+
+                                      <th scope="row">{ tutorHour.first_name } { tutorHour.last_name }</th>
+
+                                      <td>{ sum } </td>
+                                        
+                                    </tr>
+                            })}
+                          </tbody>
+                        </table>
+
+                      </div>
+                  </div>   
+                </div>
+              </div>
+
+              <div className="col-lg-6 col-md-6">
+                  <div className="card mb-3">
+                    
+                    <div className="card-header d-flex align-items-left">
+                      <h3 className="w-50 float-start card-title m-0">Absent Students</h3>
+                    </div>
+
+                    <div className="card-body"> 
+                      <div className="table-responsive">
+                        <table className="display table text-center table-bordered" id="scroll_vertical_table" style={{ width:"100%" }}>
+                          <thead>
+                            <tr>
+                              <th scope="col">Date</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Parent Email</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            { absents && absents.map(absent => {
+
+                              console.log(absent.attendance_time)
+
+                              const date = new Date(absent.attendance_time).getDate() +"/"+ (new Date(absent.attendance_time).getMonth() + 1) + "/"+ new Date(absent.attendance_time).getFullYear()
+
+                              const { id , first_name, last_name, parent_email } = studentData(absent.student_id) || { }
+                              
+                              return <tr key={id}>
+                                          <th scope="row">{ date }</th>
+                                          <td>{ first_name } { last_name}</td>
+                                          <td>{ parent_email }</td>
+                                          <td><span className="badge bg-danger text-white">Absent</span></td>
+                                      </tr>
+                            })}
+                          </tbody>
+                        </table>
+
+                      </div>
+                  </div>   
+                </div>
+              </div>
+
+            </div>
     </div>
   )
 }

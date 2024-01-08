@@ -25,9 +25,9 @@ function AttendanceList() {
   
     const filtered =  subjects.filter(subject => subject.id === option)
     
-    const [{ attendance } = { }] = filtered.length > 0 ? filtered : [{}] 
+    const [{ attendance } = { }] = filtered.length > 0 ? filtered : [{ }] 
 
-    const [{ students } = { }] = filtered.length > 0 ? filtered : [{}] 
+    const [{ students } = { }] = filtered.length > 0 ? filtered : [{ }] 
 
     useEffect(() => {     
       getSubjects();

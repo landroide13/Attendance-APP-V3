@@ -2,7 +2,7 @@ import React from 'react'
 
 function LectureTableItem({ student, date }) {
 
-    const filter = student.attendance.filter(attendance => attendance.date === date)
+    const filter = student.attendance.filter(attendance => attendance.date === date) 
 
   return (
 

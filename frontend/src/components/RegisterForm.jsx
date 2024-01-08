@@ -52,7 +52,7 @@ function RegisterForm() {
           console.log(user)
           navigate('/dashboard')
           window.confirm("User was successfully created")
-          //setNotification('User was successfully created')
+          setNotification('User was successfully created')
         })
         .catch(err => {
           const response = err.response;

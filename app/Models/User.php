@@ -62,6 +62,9 @@ class User extends Authenticatable
         return $this -> belongsToMany(lecture::class, 'lecture_users');
     }
 
-    
+    public function hours()
+    {
+        return $this -> hasMany(TutorHour::class);
+    }
 
 }

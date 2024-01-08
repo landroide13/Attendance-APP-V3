@@ -59,9 +59,9 @@ function ResgisterStudent() {
         setLoading(true)
         axiosClient.post('/students', student) 
         .then(() => {
-          //navigate('/manageStudents')
+          navigate('/manageStudents')
           window.confirm("Student was successfully created")
-          //setNotification('Student was successfully created')
+          setNotification('Student was successfully created')
         })
         .catch(err => {
           const response = err.response;

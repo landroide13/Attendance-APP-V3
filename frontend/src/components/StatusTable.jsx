@@ -30,8 +30,6 @@ function StatusTable(props) {
 
     const avatar = new URL('../assets/images/fallback-avatar.jpg', import.meta.url).href
 
-    console.log(leave && leave)
-
     const studentData = idx => { 
         let student = students && students.filter(student => student.id === idx)
         const [ data ] = student || []
@@ -64,7 +62,7 @@ function StatusTable(props) {
                                    const { id , first_name, last_name, parent_email } = studentData(le.student_id) || { }
                                     
                                 return(
-                                         <tr>
+                                         <tr key={id}>
                                             <th scope="row">{ id }</th>
                                             <td>{ first_name } { last_name}</td>
                                             <td>{ parent_email }</td>

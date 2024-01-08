@@ -16,8 +16,8 @@
 
 .notification { 
     position: fixed;
-    right: 47rem;
-    top: 10rem;
+    right: 5rem;
+    top: 5rem;
     z-index: 100;
     padding: 1rem 1.5rem;
     background-color: #00a762;

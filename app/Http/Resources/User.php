@@ -20,8 +20,10 @@ class User extends JsonResource
             'last_name' => $this->last_name,
             'email' => $this->email,
             'role' => $this-> role -> name,
-            
-            'gender' => $this -> gender  
-        ];
+            'gender' => $this -> gender,
+            'lectures' => $this-> lectures,
+            'lectures' => Lecture::collection($this->whenLoaded('lectures')),   
+            'hours' => $this -> hours 
+        ]; 
     }
 }
