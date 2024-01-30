@@ -62,7 +62,7 @@ function ListTable(props) {
         <div className="card-body">
             <div className="ul-widget__head">
                 <div className="ul-widget__head-label">
-                  <h3 className="ul-widget__head-title">Take Attendance: { option.lecture_name }</h3>
+                  <h3 className="ul-widget__head-title">Take Attendance: { option.lecture_name && option.lecture_name  }  </h3>
 
                   <input type="date" value={presentDate} onChange={onDateHandle} className="form-control mb-3 mt-3" id="exampleFormControlInput1" required/>
                  

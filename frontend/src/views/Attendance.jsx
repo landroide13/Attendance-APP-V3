@@ -48,15 +48,15 @@ function Attendance() {
 
 
 
-  return (
+  return ( 
 
     <div className="main-content">
-        <div className="breadcrumb" style={{ background: '#020381' }}>   
-            <h1 className="text-white">Students Attendance</h1>
-        </div>
-        <div className="separator-breadcrumb border-top"></div>
+      <div className="breadcrumb" style={{ background: '#020381' }}>   
+          <h1 className="text-white">Students Attendance</h1>
+      </div>
+      <div className="separator-breadcrumb border-top"></div>
             
-        <ListTable students={students} lectures={lectures} />               
+      <ListTable students={students} lectures={lectures} />               
 
     </div>
        

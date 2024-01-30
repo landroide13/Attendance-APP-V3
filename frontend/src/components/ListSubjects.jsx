@@ -31,7 +31,6 @@ function ListSubjects() {
     setLoading(false)
     })
   }  
-
   
   const filtered =  lectures.filter(lecture => lecture.lecture_name == option)
 
@@ -57,18 +56,30 @@ function ListSubjects() {
 
                     { filtered && filtered.map(lecture => {
 
-                       const [{ first_name, last_name }] = lecture.tutors
-                        
+                       if(lecture.tutors.length > 0){
+
+                        const [{ first_name, last_name }] = lecture.tutors
+
                         return <tr key={ lecture.id }>
                             
-                          <td className='d-flex flex-column'>
-                            <span style={{ fontSize: '1.2em' }} className="text-success">{ lecture.lecture_name }</span>
-                            <span style={{ fontSize: '1em' }}>Tutor: { first_name }  { last_name }</span>
-                            <span style={{ fontSize: '1em' }}>Term: { lecture.term.term } / { lecture.term.year }</span>
-                          </td>
+                                <td className='d-flex flex-column'>
+                                  <span style={{ fontSize: '1.2em' }} className="text-success">{ lecture.lecture_name }</span>
+                                  <span style={{ fontSize: '1em' }}>Tutor: { first_name } { last_name }</span>
+                                  <span style={{ fontSize: '1em' }}>Term: { lecture.term.term } / { lecture.term.year }</span>
+                                </td>
 
-                        </tr>
-                        
+                              </tr>
+                      } else {
+
+                        return <tr key={ lecture.id }>
+                            
+                              <td className='d-flex flex-column'>
+                                <span style={{ fontSize: '1.2em' }} className="text-success">No tutor Assign</span>
+                              </td>
+
+                            </tr>
+                      }
+                       
                       }) 
                     }
                 </table>
